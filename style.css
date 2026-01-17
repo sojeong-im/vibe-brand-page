@@ -276,6 +276,111 @@ body {
     background: #444;
 }
 
+/* --- Stats Section --- */
+.vibe-stats-section {
+    padding: 80px 5%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.vibe-stats-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    background: var(--glass-bg);
+    padding: 40px 80px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.stat-box {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--secondary-accent);
+    font-weight: 600;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--text-color);
+}
+
+.stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--glass-border);
+}
+
+/* --- Notification Box --- */
+.vibe-notify-box {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    padding: 15px 25px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 2000;
+    transform: translateX(-150%);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.vibe-notify-box.show {
+    transform: translateX(0);
+}
+
+.notify-status-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff88;
+    animation: pulse 2s infinite;
+}
+
+.notify-message {
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.notify-message strong {
+    font-weight: 600;
+    color: var(--secondary-accent);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 @media (max-width: 768px) {
     .vibe-nav {
         display: none;
@@ -287,5 +392,21 @@ body {
 
     .vibe-header {
         height: 70px;
+    }
+
+    .vibe-header-transparent {
+        height: 70px;
+    }
+
+    .vibe-stats-container {
+        flex-direction: column;
+        gap: 30px;
+        padding: 40px;
+        width: 100%;
+    }
+
+    .stat-divider {
+        width: 40px;
+        height: 1px;
     }
 }

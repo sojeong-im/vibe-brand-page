@@ -39,4 +39,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     gridItems.forEach(item => observer.observe(item));
+
+    // Live Notification Logic
+    const notifyBox = document.getElementById('vibe-notification');
+    const notifyMsg = notifyBox.querySelector('.notify-message');
+    const locations = ['서울 강남구', '부산 해운대구', '인천 연수구', '대구 수성구', '경기 성남시'];
+
+    const showNotification = () => {
+        const randomLoc = locations[Math.floor(Math.random() * locations.length)];
+        notifyMsg.innerHTML = `방금 <strong>${randomLoc}</strong>에서 분석을 시작했습니다.`;
+        notifyBox.classList.add('show');
+
+        setTimeout(() => {
+            notifyBox.classList.remove('show');
+        }, 5000);
+    };
+
+    // Show initial notification after 3 seconds
+    setTimeout(showNotification, 3000);
+
+    // Repeat every 15-25 seconds
+    setInterval(() => {
+        showNotification();
+    }, Math.random() * (25000 - 15000) + 15000);
 });
