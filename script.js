@@ -32,13 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('show');
             }
         });
     }, observerOptions);
 
     gridItems.forEach(item => observer.observe(item));
+    document.querySelectorAll('.profile-item').forEach(item => observer.observe(item));
 
     // Live Notification Logic
     const notifyBox = document.getElementById('vibe-notification');
