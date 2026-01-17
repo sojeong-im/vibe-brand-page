@@ -42,24 +42,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Live Notification Logic
     const notifyBox = document.getElementById('vibe-notification');
-    const notifyMsg = notifyBox.querySelector('.notify-message');
-    const locations = ['서울 강남구', '부산 해운대구', '인천 연수구', '대구 수성구', '경기 성남시'];
+    const notifyText = notifyBox.querySelector('.notify-message');
 
-    const showNotification = () => {
-        const randomLoc = locations[Math.floor(Math.random() * locations.length)];
-        notifyMsg.innerHTML = `방금 <strong>${randomLoc}</strong>에서 분석을 시작했습니다.`;
+    const fakeData = [
+        "방금 <strong>서울 강남구</strong>에서 분석을 시작했습니다.",
+        "방금 <strong>김*희님</strong>의 스타일 리뷰가 등록되었습니다.",
+        "현재 <strong>14명</strong>이 동시에 접속 중입니다.",
+        "<strong>예약 마감</strong>까지 단 3자리 남았습니다."
+    ];
+
+    let index = 0;
+
+    function runNotification() {
+        // 내용 변경
+        notifyText.innerHTML = fakeData[index];
+
+        // 보여주기
         notifyBox.classList.add('show');
 
+        // 4초 후 숨기기
         setTimeout(() => {
             notifyBox.classList.remove('show');
-        }, 5000);
-    };
+            index = (index + 1) % fakeData.length;
+        }, 4000);
+    }
 
-    // Show initial notification after 3 seconds
-    setTimeout(showNotification, 3000);
+    // 10초마다 실행
+    setInterval(runNotification, 10000);
 
-    // Repeat every 15-25 seconds
-    setInterval(() => {
-        showNotification();
-    }, Math.random() * (25000 - 15000) + 15000);
+    // 첫 실행은 페이지 로드 3초 후
+    setTimeout(runNotification, 3000);
 });
