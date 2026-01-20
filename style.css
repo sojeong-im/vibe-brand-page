@@ -582,12 +582,23 @@ body {
     color: var(--bg-color);
 }
 
-/* --- Process Section --- */
+/* --- Process Section & Transition --- */
 .vibe-process-page {
-    background-color: #ffffff;
-    padding: 120px 0;
+    /* 상단 1000px 구간을 블랙에서 화이트로 부드럽게 전환 */
+    background: linear-gradient(to bottom,
+            #050505 0%,
+            #050505 100px,
+            #ffffff 900px,
+            #ffffff 100%);
+    padding: 0 0 120px 0;
     color: #1a1a1a;
     line-height: 1.8;
+    position: relative;
+}
+
+/* 트랜지션 구역 클래스 제거 (직접 배경에 통합) */
+.vibe-section-transition {
+    display: none;
 }
 
 .process-wrapper {
@@ -601,9 +612,19 @@ body {
     font-weight: 200;
     letter-spacing: 0.3em;
     text-align: center;
+    padding-top: 500px;
+    /* 그라데이션이 진행된 후 화이트 배경 구간에서 제목 시작 */
     margin-bottom: 120px;
     text-transform: uppercase;
     color: #1a1a1a;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.2s ease;
+}
+
+.process-title.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* 아코디언 행 스타일 */

@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     gridItems.forEach(item => observer.observe(item));
     document.querySelectorAll('.profile-item').forEach(item => observer.observe(item));
+    document.querySelectorAll('.process-title, .process-final-message, .process-row').forEach(item => observer.observe(item));
 
     // Live Notification Logic
     const notifyBox = document.getElementById('vibe-notification');
