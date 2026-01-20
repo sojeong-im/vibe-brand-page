@@ -486,7 +486,7 @@ body {
     display: flex;
     width: max-content;
     /* 내부 콘텐츠에 맞게 확장 */
-    animation: makeupTicker 25s linear infinite;
+    animation: makeupPageSlide 16s cubic-bezier(0.85, 0, 0.15, 1) infinite;
 }
 
 .slider-track img {
@@ -498,16 +498,31 @@ body {
     flex-shrink: 0;
 }
 
-@keyframes makeupTicker {
-    0% {
+@keyframes makeupPageSlide {
+
+    0%,
+    22% {
         transform: translateX(0);
     }
 
-    100% {
-        transform: translateX(-50%);
+    25%,
+    47% {
+        transform: translateX(-600px);
     }
 
-    /* 8개 이미지 중 4개만큼 이동 */
+    50%,
+    72% {
+        transform: translateX(-1200px);
+    }
+
+    75%,
+    97% {
+        transform: translateX(-1800px);
+    }
+
+    100% {
+        transform: translateX(-2400px);
+    }
 }
 
 /* 호버 시 멈춤 효과 */
