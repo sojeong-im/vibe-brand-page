@@ -470,8 +470,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #111;
-    /* 로딩 전후 이질감 방지 */
+    background-color: transparent;
+    /* 배경색 제거 */
 }
 
 .profile-image img {
@@ -509,8 +509,11 @@ body {
     width: 12.5% !important;
     /* 100% / 8 images */
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    /* 이미지 전체가 잘 보이고 배경이 자연스럽게 섞이도록 contain 사용 */
     flex-shrink: 0;
+    filter: invert(1) contrast(1.2) brightness(1.2);
+    /* 흰색 배경을 검은색으로 반전시켜 자연스럽게 합성 */
 }
 
 @keyframes makeupPageSlide {
