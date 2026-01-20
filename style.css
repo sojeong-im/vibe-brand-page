@@ -582,6 +582,173 @@ body {
     color: var(--bg-color);
 }
 
+/* --- Process Section --- */
+.vibe-process-page {
+    padding: 150px 5%;
+    background-color: #050505;
+}
+
+.process-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.process-title {
+    font-size: 4rem;
+    font-weight: 200;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.process-row {
+    display: flex;
+    gap: 80px;
+    padding: 80px 0;
+    border-top: 1px solid #222;
+}
+
+.process-row:first-of-type {
+    border-top: none;
+}
+
+.process-step-label {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--secondary-accent);
+    min-width: 100px;
+}
+
+.process-detail {
+    flex: 1;
+}
+
+.process-headline {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.process-description {
+    font-size: 1.1rem;
+    color: #999;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.vibe-philosophy-box {
+    background: #111;
+    padding: 35px;
+    border-radius: 4px;
+    line-height: 1.8;
+    color: #eee;
+    font-style: italic;
+    margin-bottom: 40px;
+    border-left: 3px solid var(--secondary-accent);
+}
+
+.profile-info-grid {
+    margin-top: 50px;
+}
+
+.info-title {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-list li {
+    font-size: 0.95rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+.info-list strong {
+    color: #fff;
+}
+
+.process-notice {
+    font-weight: 600;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.analysis-item {
+    background: #111;
+    padding: 30px;
+    border-radius: 4px;
+    transition: var(--transition-fast);
+}
+
+.analysis-item:hover {
+    background: #1a1a1a;
+    transform: translateY(-5px);
+}
+
+.sub-step {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--secondary-accent);
+    margin-bottom: 15px;
+}
+
+.analysis-item p {
+    font-size: 0.9rem;
+    color: #777;
+    line-height: 1.6;
+}
+
+.process-final-message {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: #fff;
+    font-weight: 300;
+    padding: 60px;
+    background: linear-gradient(to right, transparent, #111, transparent);
+}
+
+@media (max-width: 768px) {
+    .process-row {
+        flex-direction: column;
+        gap: 30px;
+        padding: 50px 0;
+    }
+
+    .process-title {
+        font-size: 2.5rem;
+    }
+
+    .process-headline {
+        font-size: 1.5rem;
+    }
+
+    .process-final-message {
+        font-size: 1.1rem;
+        padding: 40px 20px;
+    }
+}
+
 /* --- Footer Section --- */
 .vibe-footer {
     background-color: #000000;
