@@ -471,6 +471,50 @@ body {
     filter: brightness(0.9);
 }
 
+/* Makeup Slider - Infinite Ticker */
+.makeup-slider {
+    position: relative;
+    width: 600px;
+    /* 고정 너비로 안정적인 슬라이더 구현 */
+    height: 500px;
+    /* 고정 높이 */
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.slider-track {
+    display: flex;
+    width: max-content;
+    /* 내부 콘텐츠에 맞게 확장 */
+    animation: makeupTicker 25s linear infinite;
+}
+
+.slider-track img {
+    width: 600px;
+    /* 컨테이너와 동일 너비 */
+    height: 500px;
+    object-fit: cover;
+    /* 이미지가 찌그러지지 않게 */
+    flex-shrink: 0;
+}
+
+@keyframes makeupTicker {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+
+    /* 8개 이미지 중 4개만큼 이동 */
+}
+
+/* 호버 시 멈춤 효과 */
+.makeup-slider:hover .slider-track {
+    animation-play-state: paused;
+}
+
 .profile-item:hover .profile-image img {
     transform: scale(1.05);
     filter: brightness(1);
