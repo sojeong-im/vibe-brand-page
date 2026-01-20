@@ -470,7 +470,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: transparent;
+    /* 하얀색 배경 상자 제거 */
 }
 
 .profile-image img {
