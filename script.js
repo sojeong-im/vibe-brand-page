@@ -2,12 +2,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // Header Scroll Effect
     const header = document.querySelector('.vibe-header-transparent');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+        if (header && window.scrollY > 50) {
             header.classList.add('scrolled');
-        } else {
+        } else if (header) {
             header.classList.remove('scrolled');
         }
     });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('vibe-mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileLinks = document.querySelectorAll('.vibe-mobile-menu a');
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+
+        const closeMenu = () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        };
+
+        if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    }
 
     // Subtle parallax effect on project grid
     const gridItems = document.querySelectorAll('.grid-item');
