@@ -36,6 +36,7 @@ body {
     height: 100px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 5%;
     z-index: 1000;
     transition: var(--transition-slow);
@@ -62,7 +63,7 @@ body {
 .hero-nav {
     display: flex;
     gap: 35px;
-    margin-left: 60px;
+    margin-left: 0;
 }
 
 .hero-nav a {
@@ -651,7 +652,7 @@ summary::-webkit-details-marker {
 }
 
 .process-step-label {
-    flex: 0 0 200px;
+    flex: 0 0 140px;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -690,8 +691,7 @@ details[open] .process-summary {
 }
 
 .process-detail {
-    padding-left: 200px;
-    /* STEP 라벨 너비만큼 띄우기 */
+    padding-left: 140px;
     padding-bottom: 60px;
     animation: fadeIn 0.5s ease;
 }
@@ -718,16 +718,16 @@ details[open] .process-summary {
 
 .process-flex-container {
     display: flex;
-    gap: 60px;
+    gap: 80px;
     align-items: flex-start;
 }
 
 .process-text-side {
-    flex: 1.2;
+    flex: 1.6;
 }
 
 .process-image-side {
-    flex: 1;
+    flex: 1.2;
 }
 
 .process-image-container {
