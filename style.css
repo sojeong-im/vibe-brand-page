@@ -712,10 +712,26 @@ details[open] .process-summary {
     font-size: 16px;
     color: #444;
     margin-bottom: 25px;
+    word-break: keep-all;
+    line-height: 1.8;
+}
+
+.process-flex-container {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.process-text-side {
+    flex: 1.2;
+}
+
+.process-image-side {
+    flex: 1;
 }
 
 .process-image-container {
-    margin: 30px 0;
+    margin: 0;
     width: 100%;
     border-radius: 12px;
     overflow: hidden;
@@ -735,12 +751,13 @@ details[open] .process-summary {
 
 .vibe-philosophy-box {
     background-color: #f8f8f8;
-    padding: 40px;
-    margin: 40px 0;
+    padding: 30px;
+    margin: 30px 0;
     font-size: 15px;
     border-left: 1px solid #000;
     color: #1a1a1a;
     font-style: normal;
+    word-break: keep-all;
 }
 
 .profile-info-grid h4 {
@@ -833,10 +850,35 @@ details[open] .process-summary {
     .process-step-label {
         border-bottom: 1px solid #eee;
         padding-bottom: 10px;
+        flex: 0 0 auto;
     }
 
     .process-title {
         font-size: 28px;
+        padding-top: 300px;
+    }
+
+    .process-detail {
+        padding-left: 0;
+    }
+
+    .process-flex-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .process-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .process-headline-container {
+        width: 100%;
+    }
+
+    .process-headline {
+        font-size: 18px;
     }
 }
 
