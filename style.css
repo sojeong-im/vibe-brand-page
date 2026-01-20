@@ -470,42 +470,24 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent;
-    /* 배경색 제거 */
+    background-color: #fff;
 }
 
 .profile-image img {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    filter: brightness(0.9);
 }
 
-/* 호버 시 필터가 초기화되지 않도록 처리 */
 .profile-item:hover .profile-image img {
-    transform: scale(1.05);
-    filter: brightness(1);
-}
-
-/* 슬라이더 이미지 특수 필터 (반전 유지) */
-.makeup-slider .slider-track img {
-    filter: invert(1) contrast(1.2) brightness(1.2);
-    transform: scale(1.1);
-    /* 프레임 테두리를 숨기기 위해 약간 확대 */
-}
-
-.profile-item:hover .makeup-slider .slider-track img {
-    transform: scale(1.15);
-    /* 호버 시에도 확대 상태 유지하며 추가 확대 */
-    filter: invert(1) contrast(1.3) brightness(1.3);
+    transform: scale(1.03);
 }
 
 /* Makeup Slider - Infinite Ticker */
 .makeup-slider {
     display: block !important;
-    /* flex 기반 profile-image 스타일 무시 */
     position: relative;
     width: 100%;
     max-width: 600px;
@@ -517,19 +499,15 @@ body {
 .slider-track {
     display: flex;
     width: 800%;
-    /* 8개 이미지가 있으므로 100% * 8 */
     height: 100%;
     animation: makeupPageSlide 16s cubic-bezier(0.85, 0, 0.15, 1) infinite;
 }
 
 .slider-track img {
     width: 12.5% !important;
-    /* 100% / 8 images */
     height: 100%;
     object-fit: contain;
-    /* 이미지 전체가 잘 보이고 배경이 자연스럽게 섞이도록 contain 사용 */
     flex-shrink: 0;
-    /* 개별 이미지에 대한 기본 필터는 제거 (위의 상속 규칙 사용) */
 }
 
 @keyframes makeupPageSlide {
