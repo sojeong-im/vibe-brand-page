@@ -460,13 +460,26 @@ body {
 .profile-image {
     flex: 1;
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    /* 모든 이미지 최대 너비 통일 */
+    aspect-ratio: 6/5;
+    /* 모든 이미지 비율 통일 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
+    /* 로딩 전후 이질감 방지 */
 }
 
 .profile-image img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    /* 부모 높이에 맞춤 */
     display: block;
+    object-fit: cover;
+    /* 비율에 맞춰 꽉 채움 */
     transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     filter: brightness(0.9);
 }
