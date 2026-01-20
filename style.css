@@ -607,10 +607,29 @@ body {
 }
 
 .process-row {
-    display: flex;
     border-top: 1px solid #e0e0e0;
-    /* 레어리 스타일의 얇은 구분선 */
-    padding: 80px 0;
+    padding: 0;
+}
+
+.process-summary {
+    display: flex;
+    align-items: center;
+    padding: 60px 0;
+    cursor: pointer;
+    list-style: none;
+    /* 기본 화살표 제거 */
+}
+
+.process-summary::-webkit-details-marker {
+    display: none;
+    /* Safari용 기본 화살표 제거 */
+}
+
+.process-headline-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .process-step-label {
@@ -621,15 +640,27 @@ body {
     color: #1a1a1a;
 }
 
-.process-detail {
-    flex: 1;
-}
-
 .process-headline {
     font-size: 26px;
     font-weight: 400;
-    margin-bottom: 30px;
     color: #1a1a1a;
+}
+
+.icon-plus {
+    font-size: 24px;
+    font-weight: 200;
+    transition: transform 0.4s ease;
+    color: #888;
+}
+
+details[open] .icon-plus {
+    transform: rotate(45deg);
+    /* +가 x처럼 보이거나 회전하도록 설정 */
+}
+
+.process-detail {
+    padding-left: 200px;
+    padding-bottom: 80px;
 }
 
 .process-description {
