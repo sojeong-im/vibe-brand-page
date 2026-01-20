@@ -606,29 +606,26 @@ body {
     color: #1a1a1a;
 }
 
+/* 아코디언 행 스타일 */
 .process-row {
     border-top: 1px solid #e0e0e0;
-    padding: 0;
+    transition: all 0.3s ease;
+}
+
+/* 기본 화살표 숨기기 */
+summary {
+    list-style: none;
+    outline: none;
+}
+
+summary::-webkit-details-marker {
+    display: none;
 }
 
 .process-summary {
     display: flex;
-    align-items: center;
-    padding: 60px 0;
+    padding: 50px 0;
     cursor: pointer;
-    list-style: none;
-    /* 기본 화살표 제거 */
-}
-
-.process-summary::-webkit-details-marker {
-    display: none;
-    /* Safari용 기본 화살표 제거 */
-}
-
-.process-headline-container {
-    flex: 1;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -640,27 +637,54 @@ body {
     color: #1a1a1a;
 }
 
+.process-headline-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .process-headline {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 400;
+    margin: 0;
     color: #1a1a1a;
 }
 
 .icon-plus {
     font-size: 24px;
     font-weight: 200;
-    transition: transform 0.4s ease;
+    transition: transform 0.3s ease;
     color: #888;
 }
 
+/* 열렸을 때 스타일 */
 details[open] .icon-plus {
     transform: rotate(45deg);
-    /* +가 x처럼 보이거나 회전하도록 설정 */
+    /* +가 x로 바뀌는 효과 */
+}
+
+details[open] .process-summary {
+    padding-bottom: 20px;
 }
 
 .process-detail {
     padding-left: 200px;
-    padding-bottom: 80px;
+    /* STEP 라벨 너비만큼 띄우기 */
+    padding-bottom: 60px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .process-description {
