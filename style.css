@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 :root {
     --bg-color: #050505;
@@ -514,22 +515,22 @@ body {
 @keyframes makeupPageSlide {
 
     0%,
-    22% {
+    20% {
         transform: translateX(0);
     }
 
     25%,
-    47% {
+    45% {
         transform: translateX(-12.5%);
     }
 
     50%,
-    72% {
+    70% {
         transform: translateX(-25%);
     }
 
     75%,
-    97% {
+    95% {
         transform: translateX(-37.5%);
     }
 
