@@ -474,27 +474,27 @@ body {
 /* Makeup Slider - Infinite Ticker */
 .makeup-slider {
     position: relative;
-    width: 600px;
-    /* 고정 너비로 안정적인 슬라이더 구현 */
-    height: 500px;
-    /* 고정 높이 */
+    width: 100%;
+    max-width: 600px;
+    /* 데스크탑 최대 너비 */
+    aspect-ratio: 6/5;
+    /* 이미지 비율 유지 */
     overflow: hidden;
     border-radius: 12px;
 }
 
 .slider-track {
     display: flex;
-    width: max-content;
-    /* 내부 콘텐츠에 맞게 확장 */
+    width: 800%;
+    /* 8개 이미지가 있으므로 100% * 8 */
     animation: makeupPageSlide 16s cubic-bezier(0.85, 0, 0.15, 1) infinite;
 }
 
 .slider-track img {
-    width: 600px;
-    /* 컨테이너와 동일 너비 */
-    height: 500px;
+    width: 12.5%;
+    /* 100% / 8 */
+    height: 100%;
     object-fit: cover;
-    /* 이미지가 찌그러지지 않게 */
     flex-shrink: 0;
 }
 
@@ -507,21 +507,21 @@ body {
 
     25%,
     47% {
-        transform: translateX(-600px);
+        transform: translateX(-12.5%);
     }
 
     50%,
     72% {
-        transform: translateX(-1200px);
+        transform: translateX(-25%);
     }
 
     75%,
     97% {
-        transform: translateX(-1800px);
+        transform: translateX(-37.5%);
     }
 
     100% {
-        transform: translateX(-2400px);
+        transform: translateX(-50%);
     }
 }
 
@@ -697,5 +697,39 @@ body {
     .legal-links {
         flex-wrap: wrap;
         gap: 15px;
+    }
+
+    /* Profiles Responsive */
+    .vibe-profiles {
+        gap: 80px;
+        padding: 60px 5%;
+    }
+
+    .profile-item,
+    .profile-item.reverse {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .profile-text {
+        align-items: center;
+    }
+
+    .profile-text h2 {
+        font-size: 1.8rem;
+    }
+
+    .profile-text p {
+        font-size: 1rem;
+    }
+
+    .vibe-start-btn {
+        align-self: center;
+    }
+
+    .makeup-slider {
+        max-width: 100%;
+        margin: 0 auto;
     }
 }
