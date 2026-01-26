@@ -14,6 +14,19 @@ export default function Contact() {
         )
     }
 
+    const [selectedService, setSelectedService] = useState('HAIR PROFILE')
+    const [discountCode, setDiscountCode] = useState('')
+
+    const prices = {
+        'HAIR PROFILE': 55000,
+        'MAKEUP PROFILE': 55000,
+        'FASHION PROFILE': 55000,
+        'ALL-IN-ONE PACKAGE': 140000,
+    }
+
+    const currentPrice = prices[selectedService]
+    const finalPrice = discountCode === 'vb-614412' ? 0 : currentPrice
+
     const handleSubmit = (e) => {
         e.preventDefault()
         if (!agreed) {
@@ -42,12 +55,51 @@ export default function Contact() {
                     {/* Service Type */}
                     <div>
                         <label className="block text-caption uppercase text-gray-400 mb-3">Service</label>
-                        <select className="w-full p-4 border border-gray-200 bg-white text-black focus:outline-none focus:border-black transition-colors">
-                            <option>HAIR PROFILE</option>
-                            <option>MAKEUP PROFILE</option>
-                            <option>FASHION PROFILE</option>
-                            <option>ALL-IN-ONE PACKAGE</option>
+                        <select
+                            value={selectedService}
+                            onChange={(e) => setSelectedService(e.target.value)}
+                            className="w-full p-4 border border-gray-200 bg-white text-black focus:outline-none focus:border-black transition-colors"
+                        >
+                            <option value="HAIR PROFILE">HAIR PROFILE</option>
+                            <option value="MAKEUP PROFILE">MAKEUP PROFILE</option>
+                            <option value="FASHION PROFILE">FASHION PROFILE</option>
+                            <option value="ALL-IN-ONE PACKAGE">ALL-IN-ONE PACKAGE</option>
                         </select>
+                    </div>
+
+                    {/* Pricing & Discount Code */}
+                    <div className="p-6 bg-gray-50 border border-gray-100 space-y-4">
+                        <div className="flex items-center justify-between border-b border-gray-200 pb-4">
+                            <span className="text-sm text-gray-600">예상 금액</span>
+                            <div className="text-right">
+                                {discountCode === 'vb-614412' && (
+                                    <span className="block text-xs text-gray-400 line-through mb-1">
+                                        {currentPrice.toLocaleString()} KRW
+                                    </span>
+                                )}
+                                <span className={`font-serif text-xl ${discountCode === 'vb-614412' ? 'text-burgundy' : 'text-black'}`}>
+                                    {finalPrice.toLocaleString()} KRW
+                                </span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-xs uppercase text-gray-400 mb-2">Promotion Code</label>
+                            <div className="flex gap-2">
+                                <input
+                                    type="text"
+                                    value={discountCode}
+                                    onChange={(e) => setDiscountCode(e.target.value)}
+                                    placeholder="프로모션 코드를 입력하세요"
+                                    className="flex-1 p-3 text-sm border border-gray-200 focus:outline-none focus:border-black transition-colors uppercase placeholder:normal-case"
+                                />
+                                {discountCode === 'vb-614412' && (
+                                    <div className="flex items-center text-xs text-burgundy font-medium px-2">
+                                        ✓ 적용됨
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
 
                     {/* Name */}
@@ -80,8 +132,8 @@ export default function Contact() {
                                     type="button"
                                     onClick={() => toggleKeyword(keyword)}
                                     className={`py-3 text-sm border transition-all ${selectedKeywords.includes(keyword)
-                                            ? 'bg-black text-white border-black'
-                                            : 'bg-white text-gray-600 border-gray-200 hover:border-black'
+                                        ? 'bg-black text-white border-black'
+                                        : 'bg-white text-gray-600 border-gray-200 hover:border-black'
                                         }`}
                                 >
                                     {keyword}

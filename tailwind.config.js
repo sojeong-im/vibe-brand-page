@@ -21,12 +21,19 @@ export default {
                     800: '#424242',
                     900: '#212121',
                 },
+                burgundy: {
+                    DEFAULT: '#4a0909', // Darker/Deeper Burgundy
+                    dark: '#2b0505',
+                    light: '#6e1414',
+                },
             },
             fontFamily: {
-                // Editorial Serif for English headings
-                serif: ['Cormorant Garamond', 'Noto Serif KR', 'serif'],
+                // Technical/Modern Serif for English headings
+                serif: ['Space Grotesk', 'Noto Serif KR', 'sans-serif'],
                 // Sans for body text
                 sans: ['Pretendard', 'sans-serif'],
+                // Mono for data
+                mono: ['JetBrains Mono', 'monospace'],
             },
             fontSize: {
                 'display': ['clamp(3.5rem, 15vw, 12rem)', { lineHeight: '0.85', letterSpacing: '-0.02em' }],
@@ -37,6 +44,7 @@ export default {
             animation: {
                 'fade-in': 'fadeIn 0.8s ease-out forwards',
                 'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                'scan-line': 'scan 3s linear infinite',
             },
             keyframes: {
                 fadeIn: {
@@ -46,6 +54,12 @@ export default {
                 fadeInUp: {
                     '0%': { opacity: '0', transform: 'translateY(20px)' },
                     '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                scan: {
+                    '0%': { top: '0%', opacity: '0' },
+                    '10%': { opacity: '1' },
+                    '90%': { opacity: '1' },
+                    '100%': { top: '100%', opacity: '0' },
                 },
             },
         },
