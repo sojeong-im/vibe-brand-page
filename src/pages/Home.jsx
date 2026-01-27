@@ -236,7 +236,7 @@ export default function Home() {
                         </div>
 
                         <h1 className="font-serif text-[15vw] leading-[0.8] tracking-tighter text-black mb-6">
-                            VIBE
+                            <ScrambleText text="VIBE" />
                         </h1>
 
                         <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
@@ -275,48 +275,55 @@ export default function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
 
                     {/* Main Statement */}
-                    <div className="md:col-span-8 bg-gray-50 p-12 flex flex-col justify-between border border-gray-100 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 transition-opacity">
-                            <Scan size={48} strokeWidth={1} />
+                    <TiltCard className="md:col-span-8 h-full">
+                        <div className="bg-gray-50 p-12 flex flex-col justify-between border border-gray-100 relative overflow-hidden group h-full shadow-sm hover:shadow-md transition-shadow">
+                            <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 transition-opacity">
+                                <Scan size={48} strokeWidth={1} />
+                            </div>
+                            <div>
+                                <h2 className="font-serif text-4xl lg:text-6xl leading-tight mb-8">
+                                    "Feeling is just<br />
+                                    <span className="text-burgundy">unprocessed data.</span>"
+                                </h2>
+                            </div>
+                            <div className="flex items-end justify-between">
+                                <p className="max-w-md text-gray-500 leading-relaxed text-sm lg:text-base keep-all">
+                                    스타일은 감각의 영역이지만, 좋은 느낌에는 반드시 논리적인 이유가 있습니다.
+                                    VIBE는 찰나의 인상 뒤에 숨겨진 선의 각도, 비율, 조화를 추적하여 데이터로 증명합니다.
+                                </p>
+                                <Link to="/about" className="hidden md:flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-burgundy transition-colors">
+                                    Our Logic <ArrowRight size={16} />
+                                </Link>
+                            </div>
                         </div>
-                        <div>
-                            <h2 className="font-serif text-4xl lg:text-6xl leading-tight mb-8">
-                                "Feeling is just<br />
-                                <span className="text-burgundy">unprocessed data.</span>"
-                            </h2>
-                        </div>
-                        <div className="flex items-end justify-between">
-                            <p className="max-w-md text-gray-500 leading-relaxed text-sm lg:text-base keep-all">
-                                스타일은 감각의 영역이지만, 좋은 느낌에는 반드시 논리적인 이유가 있습니다.
-                                VIBE는 찰나의 인상 뒤에 숨겨진 선의 각도, 비율, 조화를 추적하여 데이터로 증명합니다.
-                            </p>
-                            <Link to="/about" className="hidden md:flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-burgundy transition-colors">
-                                Our Logic <ArrowRight size={16} />
-                            </Link>
-                        </div>
-                    </div>
+                    </TiltCard>
 
                     {/* Stats / Tech */}
-                    <div className="md:col-span-4 grid grid-rows-2 gap-6">
-                        <div className="bg-black text-white p-8 flex flex-col justify-between group hover:bg-burgundy transition-colors duration-500">
-                            <GitGraph size={32} className="text-white/50 group-hover:text-white transition-colors" />
-                            <div>
-                                <h3 className="text-4xl font-light mb-1">99.8%</h3>
-                                <p className="text-xs font-mono text-white/50">Analysis Accuracy</p>
+                    <div className="md:col-span-4 grid grid-rows-2 gap-6 h-full">
+                        <TiltCard className="h-full">
+                            <div className="bg-black text-white p-8 flex flex-col justify-between group hover:bg-burgundy transition-colors duration-500 h-full shadow-lg">
+                                <GitGraph size={32} className="text-white/50 group-hover:text-white transition-colors" />
+                                <div>
+                                    <h3 className="text-4xl font-light mb-1">99.8%</h3>
+                                    <p className="text-xs font-mono text-white/50">Analysis Accuracy</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="bg-gray-100 p-8 flex flex-col justify-between relative overflow-hidden">
-                            <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 opacity-10">
-                                {Array(36).fill(0).map((_, i) => (
-                                    <div key={i} className="border-[0.5px] border-black" />
-                                ))}
+                        </TiltCard>
+
+                        <TiltCard className="h-full">
+                            <div className="bg-gray-100 p-8 flex flex-col justify-between relative overflow-hidden h-full shadow-sm">
+                                <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 opacity-10">
+                                    {Array(36).fill(0).map((_, i) => (
+                                        <div key={i} className="border-[0.5px] border-black" />
+                                    ))}
+                                </div>
+                                <Layers size={32} className="relative z-10 text-black/50" />
+                                <div className="relative z-10">
+                                    <h3 className="text-xl font-serif mb-1">Detailed Report</h3>
+                                    <p className="text-xs text-gray-500">PDF 형식의 영구 소장 가이드</p>
+                                </div>
                             </div>
-                            <Layers size={32} className="relative z-10 text-black/50" />
-                            <div className="relative z-10">
-                                <h3 className="text-xl font-serif mb-1">Detailed Report</h3>
-                                <p className="text-xs text-gray-500">PDF 형식의 영구 소장 가이드</p>
-                            </div>
-                        </div>
+                        </TiltCard>
                     </div>
                 </div>
             </section>
