@@ -56,6 +56,88 @@ const ServiceCard = ({ title, sub, desc, img, index }) => {
     )
 }
 
+// --- Background Components ---
+
+const HeroBackground = () => {
+    return (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+            {/* 1. Radar / Spider Chart Animation (Center) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[700px] md:h-[700px] opacity-[0.03]">
+                <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                    className="w-full h-full border border-gray-900 rounded-full border-dashed"
+                />
+                <motion.div
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-12 border border-burgundy rounded-full opacity-40"
+                />
+                <svg viewBox="0 0 200 200" className="absolute inset-24 w-[calc(100%-12rem)] h-[calc(100%-12rem)] stroke-burgundy fill-burgundy/5">
+                    <motion.path
+                        d="M100 20 L170 60 L170 140 L100 180 L30 140 L30 60 Z"
+                        animate={{
+                            d: [
+                                "M100 20 L170 60 L170 140 L100 180 L30 140 L30 60 Z",
+                                "M100 10 L190 50 L180 150 L100 190 L20 150 L10 50 Z",
+                                "M100 30 L160 70 L160 130 L100 170 L40 130 L40 70 Z",
+                                "M100 20 L170 60 L170 140 L100 180 L30 140 L30 60 Z"
+                            ]
+                        }}
+                        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                        strokeWidth="0.5"
+                    />
+                    {/* Inner Shape */}
+                    <motion.path
+                        d="M100 40 L150 70 L150 130 L100 160 L50 130 L50 70 Z"
+                        animate={{
+                            d: [
+                                "M100 40 L150 70 L150 130 L100 160 L50 130 L50 70 Z",
+                                "M100 50 L140 80 L140 120 L100 150 L60 120 L60 80 Z",
+                                "M100 40 L150 70 L150 130 L100 160 L50 130 L50 70 Z"
+                            ]
+                        }}
+                        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                        strokeWidth="0.5"
+                    />
+                </svg>
+            </div>
+
+            {/* 2. Floating Data Graph lines (Right) */}
+            <div className="absolute top-1/3 right-[5%] w-48 flex flex-col gap-1 opacity-[0.05]">
+                {Array(15).fill(0).map((_, i) => (
+                    <motion.div
+                        key={`line-${i}`}
+                        className="h-px bg-black origin-right"
+                        animate={{ scaleX: [0.2, 1, 0.4] }}
+                        transition={{ duration: 2 + i * 0.2, repeat: Infinity, repeatType: "mirror" }}
+                    />
+                ))}
+            </div>
+
+            {/* 3. Grid Dots (Bottom Left) */}
+            <div className="absolute bottom-20 left-[5%] grid grid-cols-6 gap-3 opacity-[0.05]">
+                {Array(36).fill(0).map((_, i) => (
+                    <motion.div
+                        key={`dot-${i}`}
+                        className="w-1 h-1 rounded-full bg-burgundy"
+                        animate={{ opacity: [0.2, 1, 0.2] }}
+                        transition={{ duration: 2, delay: i * 0.05, repeat: Infinity }}
+                    />
+                ))}
+            </div>
+
+            {/* 4. Scanning Line (Vertical) */}
+            <motion.div
+                className="absolute top-0 bottom-0 w-px bg-burgundy/20"
+                style={{ left: '20%' }}
+                animate={{ left: ['0%', '100%'], opacity: [0, 1, 0] }}
+                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            />
+        </div>
+    )
+}
+
 export default function Home() {
     const containerRef = useRef(null)
     const { scrollYProgress } = useScroll({
@@ -72,31 +154,37 @@ export default function Home() {
 
             {/* HERO SECTION */}
             <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden border-b border-gray-100">
+                <HeroBackground />
                 <motion.div
                     style={{ y: yHero, opacity: opacityHero }}
                     className="absolute inset-0 z-0"
                 >
                     {/* Abstract Video Placeholder or Gradient Mesh */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#fff_0%,_#f8f0f0_50%,_#fff_100%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#fff_0%,_#fffafa_50%,_#fff_100%)]" />
                     <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
                 </motion.div>
 
-                <div className="relative z-10 text-center px-6 mix-blend-difference text-black">
+                <div className="relative z-10 text-center px-6 mix-blend-darken text-black">
                     <motion.div
                         initial={{ opacity: 0, y: 100 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     >
-                        <p className="font-mono text-sm tracking-[0.5em] mb-6 text-burgundy">VISUAL LOGIC SYSTEM</p>
-                        <h1 className="font-serif text-[15vw] leading-[0.8] tracking-tighter text-black">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-burgundy/5 border border-burgundy/10 mb-8 backdrop-blur-sm">
+                            <span className="w-1.5 h-1.5 rounded-full bg-burgundy animate-pulse" />
+                            <p className="font-mono text-[10px] tracking-[0.2em] text-burgundy font-medium">VISUAL LOGIC SYSTEM 2.0</p>
+                        </div>
+
+                        <h1 className="font-serif text-[15vw] leading-[0.8] tracking-tighter text-black mb-6">
                             VIBE
                         </h1>
-                        <div className="flex items-center justify-center gap-4 mt-6">
-                            <span className="h-px w-12 bg-black/20" />
-                            <p className="font-sans font-light text-lg tracking-wide text-gray-500">
-                                482 Facial Data Points Analysis
+
+                        <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
+                            <span className="hidden md:block h-px w-12 bg-black/10" />
+                            <p className="font-sans font-light text-lg tracking-wide text-gray-500 max-w-sm leading-relaxed keep-all">
+                                482개의 얼굴 데이터 포인트 분석을 통해<br className="hidden md:block" /> 당신만의 고유한 스타일 원형을 찾습니다.
                             </p>
-                            <span className="h-px w-12 bg-black/20" />
+                            <span className="hidden md:block h-px w-12 bg-black/10" />
                         </div>
                     </motion.div>
                 </div>
