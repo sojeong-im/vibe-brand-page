@@ -60,20 +60,61 @@ const ServiceCard = ({ title, sub, desc, img, index }) => {
 
 const HeroBackground = () => {
     return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-            {/* 1. Radar / Spider Chart Animation (Center) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[700px] md:h-[700px] opacity-[0.03]">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none perspective-[1000px]">
+            {/* 3D Vibe Core (Cube) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] z-0">
+                <style>{`
+                    .cube-container {
+                        width: 100%;
+                        height: 100%;
+                        transform-style: preserve-3d;
+                        animation: rotateCube 20s infinite linear;
+                    }
+                    .cube-face {
+                        position: absolute;
+                        width: 200px;
+                        height: 200px;
+                        border: 1px solid rgba(74, 9, 9, 0.3); /* Burgundy low opacity */
+                        background: rgba(255, 255, 255, 0.05);
+                        backdrop-filter: blur(2px);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-family: monospace;
+                        font-size: 10px;
+                        color: rgba(74, 9, 9, 0.5);
+                        box-shadow: 0 0 15px rgba(74, 9, 9, 0.1);
+                    }
+                    .front  { transform: rotateY(0deg) translateZ(100px); }
+                    .back   { transform: rotateY(180deg) translateZ(100px); }
+                    .right  { transform: rotateY(90deg) translateZ(100px); }
+                    .left   { transform: rotateY(-90deg) translateZ(100px); }
+                    .top    { transform: rotateX(90deg) translateZ(100px); }
+                    .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+                    @keyframes rotateCube {
+                        0% { transform: rotateX(0deg) rotateY(0deg); }
+                        100% { transform: rotateX(360deg) rotateY(360deg); }
+                    }
+                `}</style>
+                <div className="cube-container">
+                    <div className="cube-face front">VIBE_DATA_01</div>
+                    <div className="cube-face back">LOGIC_CORE</div>
+                    <div className="cube-face right">ANALYSIS</div>
+                    <div className="cube-face left">SYSTEM</div>
+                    <div className="cube-face top"></div>
+                    <div className="cube-face bottom"></div>
+                </div>
+            </div>
+
+            {/* Radar / Spider Chart Animation (Background Layer) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[800px] md:h-[800px] opacity-[0.04] -z-10">
                 <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
                     className="w-full h-full border border-gray-900 rounded-full border-dashed"
                 />
-                <motion.div
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-12 border border-burgundy rounded-full opacity-40"
-                />
-                <svg viewBox="0 0 200 200" className="absolute inset-24 w-[calc(100%-12rem)] h-[calc(100%-12rem)] stroke-burgundy fill-burgundy/5">
+                <svg viewBox="0 0 200 200" className="absolute inset-24 w-[calc(100%-12rem)] h-[calc(100%-12rem)] stroke-burgundy fill-transparent">
                     <motion.path
                         d="M100 20 L170 60 L170 140 L100 180 L30 140 L30 60 Z"
                         animate={{
@@ -82,23 +123,11 @@ const HeroBackground = () => {
                                 "M100 10 L190 50 L180 150 L100 190 L20 150 L10 50 Z",
                                 "M100 30 L160 70 L160 130 L100 170 L40 130 L40 70 Z",
                                 "M100 20 L170 60 L170 140 L100 180 L30 140 L30 60 Z"
-                            ]
+                            ],
+                            rotate: [0, 90, 180, 270, 360]
                         }}
-                        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                        strokeWidth="0.5"
-                    />
-                    {/* Inner Shape */}
-                    <motion.path
-                        d="M100 40 L150 70 L150 130 L100 160 L50 130 L50 70 Z"
-                        animate={{
-                            d: [
-                                "M100 40 L150 70 L150 130 L100 160 L50 130 L50 70 Z",
-                                "M100 50 L140 80 L140 120 L100 150 L60 120 L60 80 Z",
-                                "M100 40 L150 70 L150 130 L100 160 L50 130 L50 70 Z"
-                            ]
-                        }}
-                        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                        strokeWidth="0.5"
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        strokeWidth="0.2"
                     />
                 </svg>
             </div>

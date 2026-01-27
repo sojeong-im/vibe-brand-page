@@ -23,7 +23,7 @@ import { ReactLenis } from '@studio-freight/react-lenis'
 
 function App() {
     return (
-        <ReactLenis root>
+        <ReactLenis root options={{ lerp: 0.05, duration: 1.5, smoothTouch: true }}>
             <div className="min-h-screen flex flex-col bg-white">
                 <ScrollToTop />
                 <Header />
