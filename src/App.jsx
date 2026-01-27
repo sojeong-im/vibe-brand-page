@@ -19,22 +19,26 @@ function ScrollToTop() {
     return null
 }
 
+import { ReactLenis } from '@studio-freight/react-lenis'
+
 function App() {
     return (
-        <div className="min-h-screen flex flex-col">
-            <ScrollToTop />
-            <Header />
-            <main className="flex-1">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/services" element={<Services />} />
-                    <Route path="/process" element={<Process />} />
-                    <Route path="/contact" element={<Contact />} />
-                </Routes>
-            </main>
-            <Footer />
-        </div>
+        <ReactLenis root>
+            <div className="min-h-screen flex flex-col bg-white">
+                <ScrollToTop />
+                <Header />
+                <main className="flex-1 selection:bg-burgundy selection:text-white">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/services" element={<Services />} />
+                        <Route path="/process" element={<Process />} />
+                        <Route path="/contact" element={<Contact />} />
+                    </Routes>
+                </main>
+                <Footer />
+            </div>
+        </ReactLenis>
     )
 }
 
