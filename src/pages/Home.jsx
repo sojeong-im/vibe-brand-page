@@ -60,7 +60,7 @@ function HeroSection() {
                 </div>
 
                 <div className="absolute inset-0 bg-black/50" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/20 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-burgundy/20 via-transparent to-transparent opacity-80" />
             </div>
 
             {/* Content */}
@@ -74,11 +74,11 @@ function HeroSection() {
                     </h1>
                     <p className="text-white/90 text-lg md:text-xl font-light max-w-2xl mx-auto mb-12 animate-fade-in-up delay-200" style={{ wordBreak: 'keep-all' }}>
                         느낌이 데이터가 되는 순간, VIBE<br />
-                        <span className="text-accent-light/90 text-base mt-3 block font-medium tracking-wider">마케터가 설계한 '스타일 원형' 분석 시스템</span>
+                        <span className="text-burgundy-light/90 text-base mt-3 block font-medium tracking-wider">마케터가 설계한 '스타일 원형' 분석 시스템</span>
                     </p>
                     <Link
                         to="/services"
-                        className="inline-block px-12 py-5 border border-white/50 text-white text-sm tracking-[0.2em] uppercase hover:bg-accent hover:border-accent hover:text-white transition-all duration-500 animate-fade-in-up delay-300"
+                        className="inline-block px-12 py-5 border border-white/50 text-white text-sm tracking-[0.2em] uppercase hover:bg-burgundy hover:border-burgundy hover:text-white transition-all duration-500 animate-fade-in-up delay-300"
                     >
                         시작하기
                     </Link>
@@ -101,12 +101,12 @@ function PhilosophySection() {
     return (
         <section className="py-32 bg-white">
             <div className="max-w-4xl mx-auto px-6 text-center reveal">
-                <p className="text-xs tracking-[0.3em] uppercase text-accent mb-8 font-bold">Brand Philosophy</p>
+                <p className="text-xs tracking-[0.3em] uppercase text-burgundy mb-8 font-bold">Brand Philosophy</p>
                 <h2 className="font-serif text-3xl md:text-5xl font-light leading-tight mb-12" style={{ wordBreak: 'keep-all' }}>
                     "우리가 '느낌'이라 부르는 모든 것은<br />
-                    결국 정교한 <span className="text-accent font-medium">'데이터'</span>의 합입니다."
+                    결국 정교한 <span className="text-burgundy font-medium">'데이터'</span>의 합입니다."
                 </h2>
-                <div className="w-px h-20 bg-accent mx-auto mb-12" />
+                <div className="w-px h-20 bg-burgundy mx-auto mb-12" />
                 <p className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto mb-8" style={{ wordBreak: 'keep-all' }}>
                     스타일은 감각의 영역이지만, 좋은 느낌에는 반드시 논리적인 이유가 있습니다.
                     VIBE는 찰나의 인상 뒤에 숨겨진 선의 각도, 비율, 조화를 추적합니다.
@@ -147,7 +147,7 @@ function SystemSection() {
         <section id="process" className="py-32 bg-gray-50 border-y border-gray-200">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center mb-24 reveal">
-                    <p className="text-xs tracking-[0.3em] uppercase text-accent mb-4 font-bold">Process</p>
+                    <p className="text-xs tracking-[0.3em] uppercase text-burgundy mb-4 font-bold">Process</p>
                     <h2 className="font-serif text-4xl md:text-5xl font-light mb-6">VIBE SYSTEM</h2>
                     <p className="text-gray-500 font-light text-lg">데이터 분석 체계</p>
                 </div>
@@ -159,12 +159,12 @@ function SystemSection() {
                     {steps.map((step, idx) => (
                         <div key={idx} className="relative pt-12 reveal delay-100 group">
                             {/* Dot */}
-                            <div className="absolute top-0 left-0 md:left-1/2 md:-translate-x-1/2 w-8 h-8 md:w-4 md:h-4 rounded-full bg-white border-2 border-gray-200 group-hover:border-accent group-hover:bg-accent transition-all duration-500 flex items-center justify-center md:block z-10 shadow-sm">
+                            <div className="absolute top-0 left-0 md:left-1/2 md:-translate-x-1/2 w-8 h-8 md:w-4 md:h-4 rounded-full bg-white border-2 border-gray-200 group-hover:border-burgundy group-hover:bg-burgundy transition-all duration-500 flex items-center justify-center md:block z-10 shadow-sm">
                                 <span className="md:hidden text-[10px]">{idx + 1}</span>
                             </div>
 
                             <div className="text-center">
-                                <div className="aspect-[4/5] mb-8 overflow-hidden bg-gray-100 relative group-hover:shadow-2xl transition-all duration-700 border border-gray-200 group-hover:border-accent">
+                                <div className="aspect-[4/5] mb-8 overflow-hidden bg-gray-100 relative group-hover:shadow-2xl transition-all duration-700 border border-gray-200 group-hover:border-burgundy">
                                     {/* Data Sheet Header */}
                                     <div className="absolute top-0 left-0 right-0 h-6 bg-white/90 border-b border-gray-200 flex items-center px-2 z-30">
                                         <div className="w-2 h-2 rounded-full bg-gray-300 mr-1" />
@@ -172,17 +172,17 @@ function SystemSection() {
                                         <span className="ml-auto text-[8px] font-mono text-gray-400">DATA_file_0{idx + 1}</span>
                                     </div>
 
-                                    <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/10 z-20 transition-colors duration-500" />
+                                    <div className="absolute inset-0 bg-burgundy/0 group-hover:bg-burgundy/10 z-20 transition-colors duration-500" />
 
                                     {/* Scanning Line Effect */}
-                                    <div className="absolute top-0 left-0 right-0 h-px bg-accent/50 shadow-[0_0_10px_rgba(37,99,235,0.5)] translate-y-[-100%] group-hover:translate-y-[500%] transition-transform duration-[2s] z-30 opacity-0 group-hover:opacity-100 ease-linear" />
+                                    <div className="absolute top-0 left-0 right-0 h-px bg-burgundy/50 shadow-[0_0_10px_rgba(99,15,15,0.5)] translate-y-[-100%] group-hover:translate-y-[500%] transition-transform duration-[2s] z-30 opacity-0 group-hover:opacity-100 ease-linear" />
 
                                     {idx === 0 && <img src="/assets/process-step2.jpg" className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" alt="Scanning" />}
                                     {idx === 1 && <img src="/assets/process-step3.jpg" className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" alt="Analysis" />}
                                     {idx === 2 && <img src="/assets/process-step1.png" className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" alt="Guide" />}
                                 </div>
-                                <h3 className="font-serif text-3xl font-light mb-3 group-hover:text-accent transition-colors duration-300">{step.title}</h3>
-                                <p className="text-xs font-bold text-accent mb-4 tracking-[0.2em] uppercase">{step.sub}</p>
+                                <h3 className="font-serif text-3xl font-light mb-3 group-hover:text-burgundy transition-colors duration-300">{step.title}</h3>
+                                <p className="text-xs font-bold text-burgundy mb-4 tracking-[0.2em] uppercase">{step.sub}</p>
                                 <p className="text-gray-500 leading-relaxed keep-all text-sm px-4">
                                     {step.desc}
                                 </p>
@@ -230,7 +230,7 @@ function SolutionSection() {
     return (
         <section className="bg-white pb-20">
             <div className="text-center py-24 reveal">
-                <p className="text-xs tracking-[0.3em] uppercase text-accent mb-4 font-bold">Solution</p>
+                <p className="text-xs tracking-[0.3em] uppercase text-burgundy mb-4 font-bold">Solution</p>
                 <h2 className="font-serif text-4xl md:text-5xl font-light">VIBE SOLUTION</h2>
                 <p className="text-gray-500 mt-4">실무 구현 서비스</p>
             </div>
@@ -255,9 +255,9 @@ function SolutionSection() {
                             <p className="text-gray-600 leading-relaxed mb-10 max-w-md" style={{ wordBreak: 'keep-all' }}>{sol.description}</p>
                             <Link
                                 to={sol.link}
-                                className="inline-flex items-center gap-3 text-sm tracking-wide group hover:text-accent transition-colors"
+                                className="inline-flex items-center gap-3 text-sm tracking-wide group hover:text-burgundy transition-colors"
                             >
-                                <span className="border-b border-black pb-1 group-hover:border-accent">자세히 보기</span>
+                                <span className="border-b border-black pb-1 group-hover:border-burgundy">자세히 보기</span>
                                 <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
                             </Link>
                         </div>
@@ -271,7 +271,7 @@ function SolutionSection() {
 // Brand Narrative / Why VIBE
 function NarrativeSection() {
     return (
-        <section className="py-32 bg-black text-white">
+        <section className="py-32 bg-burgundy-dark text-white">
             <div className="max-w-4xl mx-auto px-6 text-center reveal">
                 <p className="font-serif text-2xl md:text-3xl font-light leading-relaxed italic text-white/90 mb-12" style={{ wordBreak: 'keep-all' }}>
                     "느낌으로만 설명되던 스타일의 영역을<br />데이터로 바꿨습니다."
@@ -296,7 +296,7 @@ function CTASection() {
     return (
         <section className="py-32 bg-white text-black border-t border-gray-100">
             <div className="max-w-4xl mx-auto px-6 text-center reveal">
-                <p className="text-xs tracking-[0.3em] uppercase text-accent mb-6 font-bold">Start Now</p>
+                <p className="text-xs tracking-[0.3em] uppercase text-burgundy mb-6 font-bold">Start Now</p>
                 <h2 className="font-serif text-4xl md:text-6xl font-light mb-8 leading-tight">
                     당신이 막연하게 느껴왔던 분위기,<br />이제 데이터로 확인하세요.
                 </h2>
@@ -305,7 +305,7 @@ function CTASection() {
                 </p>
                 <Link
                     to="/services"
-                    className="inline-block px-14 py-5 bg-accent text-white text-sm tracking-[0.2em] uppercase hover:bg-black transition-all duration-300"
+                    className="inline-block px-14 py-5 bg-burgundy text-white text-sm tracking-[0.2em] uppercase hover:bg-black transition-all duration-300"
                 >
                     서비스 보러가기
                 </Link>

@@ -21,10 +21,10 @@ export default {
                     800: '#424242',
                     900: '#212121',
                 },
-                accent: {
-                    DEFAULT: '#2563EB', // Royal Blue - Neutral & Tech
-                    dark: '#1d4ed8',
-                    light: '#60a5fa',
+                burgundy: {
+                    DEFAULT: '#4a0909', // Darker/Deeper Burgundy
+                    dark: '#2b0505',
+                    light: '#6e1414',
                 },
             },
             fontFamily: {

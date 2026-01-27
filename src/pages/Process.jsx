@@ -124,7 +124,7 @@ export default function Process() {
                                     {/* Live Indicator */}
                                     <div className="absolute top-6 right-6 flex flex-col items-end space-y-1">
                                         <div className="flex items-center gap-2">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-accent/80 animate-pulse" />
+                                            <span className="w-1.5 h-1.5 rounded-full bg-burgundy/80 animate-pulse" />
                                             <span className="text-[10px] font-mono text-white/70 tracking-widest">LIVE DATA</span>
                                         </div>
                                     </div>

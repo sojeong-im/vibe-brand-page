@@ -57,22 +57,22 @@ export default function About() {
                     {/* Facial Analysis Target Box (Center) */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[400px] border border-white/20 hidden md:block">
                         {/* Corner Brackets */}
-                        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-accent/80"></div>
-                        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-accent/80"></div>
-                        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-accent/80"></div>
-                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-accent/80"></div>
+                        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-burgundy/80"></div>
+                        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-burgundy/80"></div>
+                        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-burgundy/80"></div>
+                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-burgundy/80"></div>
 
                         {/* Center Crosshair */}
                         <div className="absolute top-1/2 left-1/2 w-4 h-4 -translate-x-1/2 -translate-y-1/2 border border-white/30"></div>
 
                         {/* Tracking Label */}
-                        <div className="absolute -top-6 left-0 text-[10px] text-accent font-mono tracking-widest bg-black/50 px-2 py-1">
+                        <div className="absolute -top-6 left-0 text-[10px] text-burgundy font-mono tracking-widest bg-black/50 px-2 py-1">
                             TARGET_DETECTED [ID:8821]
                         </div>
                     </div>
 
                     {/* Scanning Line - Stronger */}
-                    <div className="absolute inset-x-0 h-[2px] bg-accent shadow-[0_0_20px_rgba(37,99,235,0.5)] animate-scan-line opacity-80" />
+                    <div className="absolute inset-x-0 h-[2px] bg-burgundy shadow-[0_0_20px_rgba(255,0,0,0.5)] animate-scan-line opacity-80" />
 
                     {/* Dynamic Glitch / Noise Overlay */}
                     <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
@@ -101,9 +101,9 @@ export default function About() {
                             <span>SYSTEM_READY</span>
                         </div>
                         <div className="text-right">
-                            <div className="text-accent">SCANNING... 82%</div>
+                            <div className="text-burgundy">SCANNING... 82%</div>
                             <div className="w-24 h-1 bg-white/10 mt-1">
-                                <div className="w-[82%] h-full bg-accent"></div>
+                                <div className="w-[82%] h-full bg-burgundy"></div>
                             </div>
                         </div>
                         <div className="space-y-1 text-right mt-4 text-white/30">
@@ -122,7 +122,7 @@ export default function About() {
                         <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-light leading-tight mb-12 animate-fade-in-up delay-100">
                             느낌이<br />데이터가 되는 순간
                         </h1>
-                        <div className="w-20 h-px bg-accent mb-12 animate-fade-in-up delay-200" />
+                        <div className="w-20 h-px bg-burgundy mb-12 animate-fade-in-up delay-200" />
                         <p className="text-xl md:text-2xl text-white/80 font-light leading-relaxed max-w-2xl keep-all animate-fade-in-up delay-300">
                             VIBE는 주관적인 '인상'을 객관적인 '지표'로 변환하여, 개인의 고유한 매력을 찾아주는 비주얼 로직(Visual Logic) 분석 브랜드입니다.
                         </p>
@@ -133,10 +133,10 @@ export default function About() {
             {/* Brand Philosophy */}
             <section ref={addToRefs} className="reveal py-32 px-6">
                 <div className="max-w-4xl mx-auto text-center">
-                    <p className="text-accent font-bold text-xs tracking-[0.3em] uppercase mb-8">Philosophy</p>
+                    <p className="text-burgundy font-bold text-xs tracking-[0.3em] uppercase mb-8">Philosophy</p>
                     <h2 className="font-serif text-3xl md:text-5xl font-light leading-loose mb-16 keep-all">
                         "우리가 '느낌'이라 부르는 모든 것은<br />
-                        결국 정교한 <span className="text-accent italic">데이터</span>의 합이다."
+                        결국 정교한 <span className="text-burgundy italic">데이터</span>의 합이다."
                     </h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 text-left">
@@ -170,7 +170,7 @@ export default function About() {
                     </div>
 
                     <div>
-                        <p className="text-accent font-bold text-xs tracking-[0.3em] uppercase mb-6">Our Narrative</p>
+                        <p className="text-burgundy font-bold text-xs tracking-[0.3em] uppercase mb-6">Our Narrative</p>
                         <h2 className="font-serif text-4xl md:text-5xl font-light leading-loose mb-8 keep-all">
                             "느낌으로만 설명되던 스타일의 영역을<br />데이터로 바꿨습니다."
                         </h2>
@@ -192,21 +192,21 @@ export default function About() {
                     <p className="text-white/50 text-xs tracking-[0.3em] uppercase mb-12">Vision</p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div className="border border-white/20 p-10 hover:border-accent transition-colors duration-500 group text-left">
-                            <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:border-accent transition-all">
+                        <div className="border border-white/20 p-10 hover:border-burgundy transition-colors duration-500 group text-left">
+                            <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center mb-8 group-hover:bg-burgundy group-hover:border-burgundy transition-all">
                                 <span className="font-serif text-xl">1</span>
                             </div>
-                            <h3 className="font-serif text-2xl mb-4 group-hover:text-accent transition-colors">VIBE Tech Platform</h3>
+                            <h3 className="font-serif text-2xl mb-4 group-hover:text-burgundy transition-colors">VIBE Tech Platform</h3>
                             <p className="text-white/60 leading-relaxed keep-all text-sm">
                                 오프라인 진단의 정밀함을 온라인으로 구현하여, 사진 한 장만으로 개인이 고유 수치를 확인하고 관리할 수 있는 'AI 분위기 분석 엔진'을 고도화합니다.
                             </p>
                         </div>
 
-                        <div className="border border-white/20 p-10 hover:border-accent transition-colors duration-500 group text-left">
-                            <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center mb-8 group-hover:bg-accent group-hover:border-accent transition-all">
+                        <div className="border border-white/20 p-10 hover:border-burgundy transition-colors duration-500 group text-left">
+                            <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center mb-8 group-hover:bg-burgundy group-hover:border-burgundy transition-all">
                                 <span className="font-serif text-xl">2</span>
                             </div>
-                            <h3 className="font-serif text-2xl mb-4 group-hover:text-accent transition-colors">V-Commerce</h3>
+                            <h3 className="font-serif text-2xl mb-4 group-hover:text-burgundy transition-colors">V-Commerce</h3>
                             <p className="text-white/60 leading-relaxed keep-all text-sm">
                                 단순한 추천을 넘어, 사용자의 분석 수치와 제품의 사양을 매칭하는 '수치 맞춤형 큐레이션 커머스'를 구축하여 쇼핑의 새로운 표준을 제시합니다.
                             </p>
@@ -224,7 +224,7 @@ export default function About() {
                     </h2>
                     <Link
                         to="/services"
-                        className="inline-block px-14 py-5 bg-black text-white text-sm tracking-[0.2em] uppercase hover:bg-accent transition-all duration-300"
+                        className="inline-block px-14 py-5 bg-black text-white text-sm tracking-[0.2em] uppercase hover:bg-burgundy transition-all duration-300"
                     >
                         시작하기
                     </Link>
