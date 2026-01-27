@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOP | VIBE</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #111;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        /* [추가] 상단 헤더 & 네비게이션 스타일 */
+        .vibe-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            box-sizing: border-box;
+        }
+
+        .logo-container img {
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .hero-nav a {
+            text-decoration: none;
+            color: #111;
+            margin-left: 30px;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* 쇼핑 섹션 스타일 */
+        .vibe-shop-section {
+            padding: 150px 0 100px;
+            background-color: #fcfcfc;
+        }
+
+        .shop-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .shop-title {
+            font-size: 32px;
+            font-weight: 200;
+            letter-spacing: 0.3em;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 18px;
+            font-weight: 300;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        .product-info {
+            padding: 30px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .product-notice {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .soldout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #e56353;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: not-allowed;
+            margin-bottom: 25px;
+        }
+
+        .product-detail-list {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex !important;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 2000;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 1px;
+            background-color: #111;
+            transition: 0.3s ease;
+        }
+
+        /* Mobile Overlay Menu */
+        .vibe-mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: #fff;
+            z-index: 1500;
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .vibe-mobile-menu.active {
+            right: 0;
+        }
+
+        .vibe-mobile-menu a {
+            font-size: 2rem;
+            color: #000;
+            text-decoration: none;
+            margin: 20px 0;
+            font-weight: 200;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 30px;
+            right: 5%;
+            font-size: 30px;
+            cursor: pointer;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="vibe-header">
+        <div class="logo-container">
+            <a href="index.html"><img src="assets/logo.png" alt="VIBE"></a>
+        </div>
+        <nav class="hero-nav">
+            <a href="about.html">About VIBE</a>
+            <a href="shop.html">Shop</a>
+            <a href="index.html#process">Process</a>
+            <a href="index.html#faq">FAQ</a>
+        </nav>
+        <div class="mobile-menu-btn" id="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <section class="vibe-shop-section">
+        <div class="shop-container">
+            <h2 class="shop-title">SHOP</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&q=80"
+                            alt="HAIR">
+                        <div class="image-overlay">사진 변경</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">VIBE HAIR PROFILE</h3>
+                        <p class="product-price">₩ 128,000</p>
+                        <div class="product-notice">평일 오전 09:00 선착순 오픈<br>응답 완료 후, 다음날 결과지 제공</div>
+                        <button class="soldout-btn" disabled>Sold out</button>
+                        <div class="product-detail-list">
+                            <p>얼굴형 헤어스타일 30종 분석</p>
+                            <p>앞머리 고민을 해결해 드립니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80"
+                            alt="MAKEUP">
+                        <div class="image-overlay">사진 변경</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">VIBE Makeup PROFILE</h3>
+                        <p class="product-price">₩ 108,000</p>
+                        <div class="product-notice">평일 오전 09:00 선착순 오픈<br>응답 완료 후, 다음날 결과지 제공</div>
+                        <button class="soldout-btn" disabled>Sold out</button>
+                        <div class="product-detail-list">
+                            <p>이목구비 장점 살린 25종 분석</p>
+                            <p>가장 조화로운 눈썹 형태 제안</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80"
+                            alt="FASHION">
+                        <div class="image-overlay">사진 변경</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">VIBE FASHION PROFILE</h3>
+                        <p class="product-price">₩ 138,000</p>
+                        <div class="product-notice">평일 오전 09:00 선착순 오픈<br>응답 완료 후, 다음날 결과지 제공</div>
+                        <button class="soldout-btn" disabled>Sold out</button>
+                        <div class="product-detail-list">
+                            <p>체형별 상하의 코디 조합</p>
+                            <p>나만의 분위기를 완성하는 패션</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="vibe-mobile-menu" id="vibe-mobile-menu">
+        <div class="mobile-menu-close" id="mobile-menu-close">&times;</div>
+        <a href="about.html">About VIBE</a>
+        <a href="shop.html">Shop</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#faq">FAQ</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

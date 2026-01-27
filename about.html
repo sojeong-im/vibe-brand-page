@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About VIBE</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #111;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        /* 공통 헤더 스타일 */
+        .vibe-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            box-sizing: border-box;
+        }
+
+        .logo-container img {
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .hero-nav a {
+            text-decoration: none;
+            color: #111;
+            margin-left: 30px;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* 본문 스타일 */
+        .about-section {
+            padding: 150px 0 100px;
+        }
+
+        .about-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 5%;
+            line-height: 2;
+        }
+
+        .about-category {
+            font-size: 13px;
+            letter-spacing: 0.4em;
+            color: #999;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .about-headline {
+            font-size: 30px;
+            font-weight: 200;
+            margin-bottom: 60px;
+        }
+
+        .philosophy-box {
+            border-top: 1px solid #111;
+            padding-top: 40px;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .vibe-header {
+                padding: 0 5%;
+                height: 70px;
+            }
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 2000;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 1px;
+            background-color: #111;
+            transition: 0.3s ease;
+        }
+
+        /* Mobile Overlay Menu */
+        .vibe-mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: #fff;
+            z-index: 1500;
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .vibe-mobile-menu.active {
+            right: 0;
+        }
+
+        .vibe-mobile-menu a {
+            font-size: 2rem;
+            color: #000;
+            text-decoration: none;
+            margin: 20px 0;
+            font-weight: 200;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 30px;
+            right: 5%;
+            font-size: 30px;
+            cursor: pointer;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="vibe-header">
+        <div class="logo-container">
+            <a href="index.html"><img src="assets/logo.png" alt="VIBE"></a>
+        </div>
+        <nav class="hero-nav">
+            <a href="about.html">About VIBE</a>
+            <a href="shop.html">Shop</a>
+            <a href="index.html#process">Process</a>
+            <a href="index.html#faq">FAQ</a>
+        </nav>
+        <div class="mobile-menu-btn" id="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <section class="about-section">
+        <div class="about-wrapper">
+            <span class="about-category">ABOUT VIBE</span>
+            <h2 class="about-headline">VIBE: 희소하고 특별한 당신의 매력</h2>
+            <p>모든 사람은 각자의 매력을 지니고 있으며, 충분히 아름답습니다. VIBE는 우리가 ‘스스로’를 발견함으로써 더 아름답고 자유로운 세상을 꿈꿉니다.</p>
+            <p>일반적으로 주변과 다른 내 특징을 ‘단점’이라고 생각하지만, 사실 그 특징이 나를 뻔하지 않고 ‘개성’ 있는 사람으로 만들어 줍니다.</p>
+
+            <div class="philosophy-box">
+                <p>VIBE는 객관적인 수치 기반의 분석을 제공합니다. <strong>분석 시스템의 데이터 분석을 통해</strong> 개별 분석가의 주관적인 느낌과 취향을 배제하고, 일관적이고 정확한
+                    분석을 도출합니다.</p>
+                <p style="text-align:center; margin-top:80px; color:#888;">저는 당신의 분위기 분석가, <strong>VIBE</strong>입니다.</p>
+            </div>
+        </div>
+    </section>
+    <div class="vibe-mobile-menu" id="vibe-mobile-menu">
+        <div class="mobile-menu-close" id="mobile-menu-close">&times;</div>
+        <a href="about.html">About VIBE</a>
+        <a href="shop.html">Shop</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#faq">FAQ</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
