@@ -63,7 +63,7 @@ const HeroBackground = () => {
         <div className="absolute inset-0 overflow-hidden pointer-events-none select-none perspective-[1000px]">
 
             {/* 3D Gyroscopic Identity Core */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] z-0 flex items-center justify-center">
+            <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] z-0 flex items-center justify-center scale-110 md:scale-125">
                 <style>{`
                     .gyro-container {
                         width: 300px;
@@ -79,13 +79,13 @@ const HeroBackground = () => {
                         left: 0;
                         width: 100%;
                         height: 100%;
-                        border: 1px solid rgba(74, 9, 9, 0.3);
+                        border: 1px solid rgba(74, 9, 9, 0.5);
                         border-radius: 50%;
                         transform-style: preserve-3d;
                     }
 
                     .ring-inner {
-                        border: 1px dashed rgba(74, 9, 9, 0.6);
+                        border: 1px dashed rgba(74, 9, 9, 0.8);
                         width: 80%;
                         height: 80%;
                         top: 10%;
