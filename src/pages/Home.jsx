@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring, useInView, useMotionValue } from 'framer-motion'
 import { ArrowRight, Scan, GitGraph, Layers, ArrowUpRight } from 'lucide-react'
 
 // --- Components ---
