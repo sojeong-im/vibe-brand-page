@@ -77,7 +77,7 @@ export default function Contact() {
                                         {currentPrice.toLocaleString()} KRW
                                     </span>
                                 )}
-                                <span className={`font-serif text-xl ${discountCode === 'vb-614412' ? 'text-burgundy' : 'text-black'}`}>
+                                <span className={`font-serif text-xl ${discountCode === 'vb-614412' ? 'text-accent' : 'text-black'}`}>
                                     {finalPrice.toLocaleString()} KRW
                                 </span>
                             </div>
@@ -94,7 +94,7 @@ export default function Contact() {
                                     className="flex-1 p-3 text-sm border border-gray-200 focus:outline-none focus:border-black transition-colors uppercase placeholder:normal-case"
                                 />
                                 {discountCode === 'vb-614412' && (
-                                    <div className="flex items-center text-xs text-burgundy font-medium px-2">
+                                    <div className="flex items-center text-xs text-accent font-medium px-2">
                                         ✓ 적용됨
                                     </div>
                                 )}

@@ -10,9 +10,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                     {/* Brand */}
                     <div className="md:col-span-2">
-                        <Link to="/">
-                            <img src="/assets/vibe_logo.png" alt="VIBE Logo" className="h-10 w-auto object-contain mb-4" />
-                        </Link>
+                        <Link to="/" className="font-serif text-3xl">VIBE</Link>
                         <p className="text-gray-500 text-sm leading-relaxed mt-4 max-w-sm keep-all">
                             느낌이 아닌 근거로, 당신만의 스타일 가이드를 데이터로 증명합니다.
                         </p>

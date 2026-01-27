@@ -37,8 +37,8 @@ export default function Header() {
             <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${headerBg}`}>
                 <div className="max-w-7xl mx-auto px-6 lg:px-12">
                     <div className="flex items-center justify-between h-20">
-                        <Link to="/">
-                            <img src="/assets/vibe_logo.png" alt="VIBE Logo" className="h-8 w-auto object-contain" />
+                        <Link to="/" className={`font-serif text-2xl tracking-tight ${isScrolled || !isHome ? 'text-accent font-bold' : 'text-white'}`}>
+                            VIBE
                         </Link>
 
                         <nav className="hidden lg:flex items-center gap-12">
@@ -46,7 +46,7 @@ export default function Header() {
                                 <Link
                                     key={link.to}
                                     to={link.to}
-                                    className={`text-xs tracking-[0.15em] uppercase transition-colors hover:text-burgundy duration-300 ${textColor}`}
+                                    className={`text-xs tracking-[0.15em] uppercase transition-colors hover:text-accent duration-300 ${textColor}`}
                                 >
                                     {link.label}
                                 </Link>

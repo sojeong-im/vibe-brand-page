@@ -21,15 +21,15 @@ export default {
                     800: '#424242',
                     900: '#212121',
                 },
-                burgundy: {
-                    DEFAULT: '#4a0909', // Darker/Deeper Burgundy
-                    dark: '#2b0505',
-                    light: '#6e1414',
+                accent: {
+                    DEFAULT: '#2563EB', // Royal Blue - Neutral & Tech
+                    dark: '#1d4ed8',
+                    light: '#60a5fa',
                 },
             },
             fontFamily: {
                 // Technical/Modern Serif for English headings
-                serif: ['Space Grotesk', 'Noto Serif KR', 'sans-serif'],
+                serif: ['Space Grotesk', 'sans-serif'],
                 // Sans for body text
                 sans: ['Pretendard', 'sans-serif'],
                 // Mono for data
