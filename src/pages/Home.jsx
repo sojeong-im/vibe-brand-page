@@ -61,107 +61,138 @@ const ServiceCard = ({ title, sub, desc, img, index }) => {
 const HeroBackground = () => {
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none select-none perspective-[1000px]">
-            {/* 3D Vibe Core (Cube) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] z-0">
+
+            {/* 3D Gyroscopic Identity Core */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] z-0 flex items-center justify-center">
                 <style>{`
-                    .cube-container {
+                    .gyro-container {
+                        width: 300px;
+                        height: 300px;
+                        position: relative;
+                        transform-style: preserve-3d;
+                        animation: float 6s ease-in-out infinite;
+                    }
+
+                    .ring {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
                         width: 100%;
                         height: 100%;
+                        border: 1px solid rgba(74, 9, 9, 0.3);
+                        border-radius: 50%;
                         transform-style: preserve-3d;
-                        animation: rotateCube 20s infinite linear;
                     }
-                    .cube-face {
-                        position: absolute;
-                        width: 200px;
-                        height: 200px;
-                        border: 1px solid rgba(74, 9, 9, 0.3); /* Burgundy low opacity */
-                        background: rgba(255, 255, 255, 0.05);
-                        backdrop-filter: blur(2px);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-family: monospace;
-                        font-size: 10px;
-                        color: rgba(74, 9, 9, 0.5);
-                        box-shadow: 0 0 15px rgba(74, 9, 9, 0.1);
-                    }
-                    .front  { transform: rotateY(0deg) translateZ(100px); }
-                    .back   { transform: rotateY(180deg) translateZ(100px); }
-                    .right  { transform: rotateY(90deg) translateZ(100px); }
-                    .left   { transform: rotateY(-90deg) translateZ(100px); }
-                    .top    { transform: rotateX(90deg) translateZ(100px); }
-                    .bottom { transform: rotateX(-90deg) translateZ(100px); }
 
-                    @keyframes rotateCube {
-                        0% { transform: rotateX(0deg) rotateY(0deg); }
-                        100% { transform: rotateX(360deg) rotateY(360deg); }
+                    .ring-inner {
+                        border: 1px dashed rgba(74, 9, 9, 0.6);
+                        width: 80%;
+                        height: 80%;
+                        top: 10%;
+                        left: 10%;
                     }
+
+                    .ring-core {
+                        width: 60%;
+                        height: 60%;
+                        top: 20%;
+                        left: 20%;
+                        border: 2px solid rgba(74, 9, 9, 0.1);
+                        background: radial-gradient(circle at 30% 30%, rgba(74,9,9,0.1), transparent);
+                    }
+
+                    .ring-1 { animation: rotate1 12s linear infinite; }
+                    .ring-2 { animation: rotate2 15s linear infinite; width: 110%; height: 110%; top: -5%; left: -5%; border-color: rgba(74,9,9,0.2); }
+                    .ring-3 { animation: rotate3 20s linear infinite; width: 130%; height: 130%; top: -15%; left: -15%; border-style: dotted; border-width: 2px; }
+
+                    .core-orb {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 100px;
+                        height: 100px;
+                        background: radial-gradient(circle, rgba(74,9,9,0.8) 0%, rgba(74,9,9,0.2) 60%, transparent 100%);
+                        border-radius: 50%;
+                        box-shadow: 0 0 50px rgba(74,9,9,0.4);
+                        animation: pulse-core 3s ease-in-out infinite;
+                    }
+
+                    .data-point {
+                        position: absolute;
+                        background: #4a0909;
+                        border-radius: 50%;
+                        opacity: 0.6;
+                    }
+
+                    @keyframes rotate1 { 0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); } 100% { transform: rotateX(360deg) rotateY(180deg) rotateZ(360deg); } }
+                    @keyframes rotate2 { 0% { transform: rotateX(60deg) rotateY(0deg); } 100% { transform: rotateX(60deg) rotateY(360deg); } }
+                    @keyframes rotate3 { 0% { transform: rotateX(-60deg) rotateY(0deg); } 100% { transform: rotateX(-60deg) rotateY(-360deg); } }
+                    
+                    @keyframes float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-20px) scale(0.95); } }
+                    @keyframes pulse-core { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; } 50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.5; } }
                 `}</style>
-                <div className="cube-container">
-                    <div className="cube-face front">VIBE_DATA_01</div>
-                    <div className="cube-face back">LOGIC_CORE</div>
-                    <div className="cube-face right">ANALYSIS</div>
-                    <div className="cube-face left">SYSTEM</div>
-                    <div className="cube-face top"></div>
-                    <div className="cube-face bottom"></div>
+
+                <div className="gyro-container">
+                    {/* Rotating Rings */}
+                    <div className="ring ring-1">
+                        <div className="absolute top-0 left-1/2 w-2 h-2 bg-burgundy rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+                    </div>
+                    <div className="ring ring-2"></div>
+                    <div className="ring ring-3"></div>
+
+                    {/* Inner Structure */}
+                    <div className="ring ring-inner" style={{ animation: 'rotate3 10s linear infinite reverse' }}></div>
+
+                    {/* Central Core */}
+                    <div className="core-orb">
+                        {/* Core Scan Line */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent w-full h-[20%] animate-scan-fast opacity-50"></div>
+                    </div>
                 </div>
+
+                {/* Floating PROFILING DATA Particles */}
+                <motion.div
+                    className="absolute top-10 right-[-50px] bg-white/10 backdrop-blur-md px-4 py-2 border-l-2 border-burgundy shadow-lg"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1, duration: 1 }}
+                >
+                    <p className="font-mono text-[10px] text-burgundy font-bold tracking-widest">MATCH: 98.4%</p>
+                    <p className="font-mono text-[8px] text-gray-500">ID: A-482-X</p>
+                </motion.div>
+
+                <motion.div
+                    className="absolute bottom-[-20px] left-[-40px] bg-white/10 backdrop-blur-md px-4 py-2 border-r-2 border-burgundy shadow-lg"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1.5, duration: 1 }}
+                >
+                    <p className="font-mono text-[10px] text-burgundy font-bold tracking-widest">ANALYZING...</p>
+                    <div className="w-16 h-1 bg-gray-200 mt-1 overflow-hidden">
+                        <motion.div
+                            className="h-full bg-burgundy"
+                            animate={{ width: ["0%", "100%"] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                        />
+                    </div>
+                </motion.div>
             </div>
 
-            {/* Radar / Spider Chart Animation (Background Layer) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[800px] md:h-[800px] opacity-[0.04] -z-10">
-                <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                    className="w-full h-full border border-gray-900 rounded-full border-dashed"
-                />
-                <svg viewBox="0 0 200 200" className="absolute inset-24 w-[calc(100%-12rem)] h-[calc(100%-12rem)] stroke-burgundy fill-transparent">
-                    <motion.path
-                        d="M100 20 L170 60 L170 140 L100 180 L30 140 L30 60 Z"
-                        animate={{
-                            d: [
-                                "M100 20 L170 60 L170 140 L100 180 L30 140 L30 60 Z",
-                                "M100 10 L190 50 L180 150 L100 190 L20 150 L10 50 Z",
-                                "M100 30 L160 70 L160 130 L100 170 L40 130 L40 70 Z",
-                                "M100 20 L170 60 L170 140 L100 180 L30 140 L30 60 Z"
-                            ],
-                            rotate: [0, 90, 180, 270, 360]
-                        }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                        strokeWidth="0.2"
-                    />
+            {/* Background Grid & Noise */}
+            <div className="absolute inset-0 opacity-[0.04]">
+                <svg width="100%" height="100%">
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                    </pattern>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
                 </svg>
             </div>
-
-            {/* 2. Floating Data Graph lines (Right) */}
-            <div className="absolute top-1/3 right-[5%] w-48 flex flex-col gap-1 opacity-[0.05]">
-                {Array(15).fill(0).map((_, i) => (
-                    <motion.div
-                        key={`line-${i}`}
-                        className="h-px bg-black origin-right"
-                        animate={{ scaleX: [0.2, 1, 0.4] }}
-                        transition={{ duration: 2 + i * 0.2, repeat: Infinity, repeatType: "mirror" }}
-                    />
-                ))}
-            </div>
-
-            {/* 3. Grid Dots (Bottom Left) */}
-            <div className="absolute bottom-20 left-[5%] grid grid-cols-6 gap-3 opacity-[0.05]">
-                {Array(36).fill(0).map((_, i) => (
-                    <motion.div
-                        key={`dot-${i}`}
-                        className="w-1 h-1 rounded-full bg-burgundy"
-                        animate={{ opacity: [0.2, 1, 0.2] }}
-                        transition={{ duration: 2, delay: i * 0.05, repeat: Infinity }}
-                    />
-                ))}
-            </div>
-
-            {/* 4. Scanning Line (Vertical) */}
             <motion.div
                 className="absolute top-0 bottom-0 w-px bg-burgundy/20"
-                style={{ left: '20%' }}
-                animate={{ left: ['0%', '100%'], opacity: [0, 1, 0] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                style={{ left: '50%' }}
+                animate={{ height: ['0%', '100%'], opacity: [0, 1, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
         </div>
     )
