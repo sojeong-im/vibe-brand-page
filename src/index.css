@@ -10,29 +10,28 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+
 
 body {
   font-family: 'Pretendard', sans-serif;
-  background-color: #FFFFFF;
-  color: #000000;
+  background-color: #000000;
+  color: #FFFFFF;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
 /* Editorial Minimal Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FFFFFF;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #000000;
+  background: #00EAFF;
+  border-radius: 3px;
 }
 
 /* Typography Utilities */
@@ -48,7 +47,7 @@ body {
 .editorial-divider {
   width: 40px;
   height: 1px;
-  background: #000000;
+  background: #00EAFF;
 }
 
 /* Hover underline effect */
@@ -63,7 +62,7 @@ body {
   left: 0;
   width: 0;
   height: 1px;
-  background: #000000;
+  background: #00EAFF;
   transition: width 0.3s ease;
 }
 

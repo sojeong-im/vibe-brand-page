@@ -10,22 +10,27 @@ export default {
                 black: '#000000',
                 white: '#FFFFFF',
                 gray: {
-                    50: '#FAFAFA',
-                    100: '#F5F5F5',
-                    200: '#EEEEEE',
-                    300: '#E0E0E0',
-                    400: '#BDBDBD',
-                    500: '#9E9E9E',
-                    600: '#757575',
-                    700: '#616161',
-                    800: '#424242',
-                    900: '#212121',
+                    50: '#F5F5F5',
+                    100: '#E0E0E0',
+                    200: '#CCCCCC',
+                    300: '#B3B3B3',
+                    400: '#999999',
+                    500: '#808080',
+                    600: '#666666',
+                    700: '#4D4D4D',
+                    800: '#333333',
+                    900: '#1A1A1A',
                 },
-                burgundy: {
-                    DEFAULT: '#4a0909', // Darker/Deeper Burgundy
-                    dark: '#2b0505',
-                    light: '#6e1414',
+                brand: {
+                    DEFAULT: '#00EAFF', // Electric Blue (Neon)
+                    dark: '#00B8D4',    // Darker Electric Blue
+                    light: '#E0FFFF',   // Light Cyan
+                    glow: '#00EAFF',    // For shadows/glows
                 },
+                accent: {
+                    DEFAULT: '#2D5AF5', // Deep Blue
+                    dark: '#001F80',
+                }
             },
             fontFamily: {
                 // Technical/Modern Serif for English headings
@@ -45,6 +50,8 @@ export default {
                 'fade-in': 'fadeIn 0.8s ease-out forwards',
                 'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
                 'scan-line': 'scan 3s linear infinite',
+                'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'float': 'float 6s ease-in-out infinite',
             },
             keyframes: {
                 fadeIn: {
@@ -61,6 +68,18 @@ export default {
                     '90%': { opacity: '1' },
                     '100%': { top: '100%', opacity: '0' },
                 },
+                pulse: {
+                    '0%, 100%': { opacity: '1' },
+                    '50%': { opacity: '0.5' },
+                },
+                float: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-20px)' },
+                }
+            },
+            boxShadow: {
+                'neon': '0 0 5px theme("colors.brand.DEFAULT"), 0 0 20px theme("colors.brand.DEFAULT")',
+                'neon-strong': '0 0 10px theme("colors.brand.DEFAULT"), 0 0 40px theme("colors.brand.DEFAULT"), 0 0 80px theme("colors.brand.DEFAULT")',
             },
         },
     },

@@ -24,6 +24,7 @@ export default function Header() {
         { to: '/about', label: 'About' },
         { to: '/services', label: 'Services' },
         { to: '/process', label: 'Process' },
+        { to: '/insight', label: 'Insight' },
         { to: '/contact', label: 'Contact' },
     ]
 
@@ -39,13 +40,13 @@ export default function Header() {
                     className={`
                         flex items-center justify-between px-8 transition-all duration-500
                         ${isScrolled
-                            ? 'w-[90%] md:w-[600px] h-14 bg-white/80 backdrop-blur-md rounded-full shadow-lg border border-white/20'
+                            ? 'w-[90%] md:w-[600px] h-14 bg-black/50 backdrop-blur-md rounded-full shadow-[0_0_15px_rgba(0,234,255,0.1)] border border-white/10'
                             : 'w-full max-w-7xl h-20 bg-transparent'
                         }
                     `}
                 >
                     {/* Logo */}
-                    <Link to="/" className={`font-serif text-2xl tracking-tight z-50 transition-colors ${isScrolled ? 'text-black' : (isHome ? 'text-black mix-blend-difference' : 'text-black')
+                    <Link to="/" className={`font-serif text-2xl tracking-tight z-50 transition-colors ${isScrolled ? 'text-white' : 'text-white'
                         }`}>
                         VIBE
                     </Link>
@@ -56,7 +57,7 @@ export default function Header() {
                             <Link
                                 key={link.to}
                                 to={link.to}
-                                className={`text-[11px] font-medium uppercase tracking-widest hover:text-burgundy transition-colors ${isScrolled ? 'text-gray-600' : (isHome ? 'text-gray-900' : 'text-gray-600')
+                                className={`text-[11px] font-medium uppercase tracking-widest hover:text-brand transition-colors ${isScrolled ? 'text-gray-300' : 'text-gray-300'
                                     }`}
                             >
                                 {link.label}
@@ -67,7 +68,7 @@ export default function Header() {
                     {/* Mobile Toggle */}
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className={`md:hidden flex flex-col gap-1.5 p-2 z-50 ${isScrolled ? 'text-black' : (isHome ? 'text-black' : 'text-black')
+                        className={`md:hidden flex flex-col gap-1.5 p-2 z-50 ${isScrolled ? 'text-white' : 'text-white'
                             }`}
                     >
                         <motion.span
@@ -86,13 +87,13 @@ export default function Header() {
                 </div>
             </motion.header>
 
-            <div className={`fixed inset-0 bg-white z-40 lg:hidden transition-all duration-500 flex flex-col items-center justify-center ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+            <div className={`fixed inset-0 bg-black/95 backdrop-blur-xl z-40 lg:hidden transition-all duration-500 flex flex-col items-center justify-center ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
                 }`}>
                 {navLinks.map((link) => (
                     <Link
                         key={link.to}
                         to={link.to}
-                        className="text-3xl font-serif py-4 text-black hover:italic transition-all"
+                        className="text-3xl font-serif py-4 text-white hover:text-brand hover:italic transition-all"
                     >
                         {link.label}
                     </Link>

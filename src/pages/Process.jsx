@@ -41,13 +41,13 @@ export default function Process() {
     ]
 
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-transparent min-h-screen text-white">
             {/* Hero */}
-            <section className="pt-32 pb-20 px-6 bg-gray-50">
+            <section className="pt-32 pb-20 px-6 bg-black/40 backdrop-blur-sm">
                 <div className="max-w-4xl mx-auto text-center">
                     <p className="text-xs tracking-[0.3em] uppercase text-gray-400 mb-4">How it works</p>
-                    <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light mb-6">Process</h1>
-                    <p className="text-gray-500 text-lg">선택하고, 응답하고, 받아보세요.</p>
+                    <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light mb-6 text-white">Process</h1>
+                    <p className="text-gray-400 text-lg">선택하고, 응답하고, 받아보세요.</p>
                 </div>
             </section>
 
@@ -56,7 +56,7 @@ export default function Process() {
                 {steps.map((step, index) => (
                     <div key={index} className={`grid grid-cols-1 lg:grid-cols-2 min-h-[60vh] ${index % 2 === 1 ? '' : ''}`}>
                         {/* Image */}
-                        <div className={`relative overflow-hidden ${index === 2 ? 'bg-black' : 'bg-gray-100'} ${index % 2 === 1 ? 'lg:order-2' : ''} group`}>
+                        <div className={`relative overflow-hidden ${index === 2 ? 'bg-black' : 'bg-white/5'} ${index % 2 === 1 ? 'lg:order-2' : ''} group`}>
                             <img
                                 src={step.image}
                                 alt={step.title}
@@ -99,8 +99,8 @@ export default function Process() {
 
                                     {/* Label */}
                                     <div className="absolute bottom-10 left-10 flex flex-col items-start gap-2">
-                                        <span className="text-[10px] font-serif text-gray-500 tracking-[0.3em] uppercase flex items-center gap-2">
-                                            <span className="w-2 h-2 rounded-full bg-gray-400 animate-ping" />
+                                        <span className="text-[10px] font-serif text-gray-400 tracking-[0.3em] uppercase flex items-center gap-2">
+                                            <span className="w-2 h-2 rounded-full bg-brand animate-ping" />
                                             Select Your Profile
                                         </span>
                                     </div>
@@ -124,7 +124,7 @@ export default function Process() {
                                     {/* Live Indicator */}
                                     <div className="absolute top-6 right-6 flex flex-col items-end space-y-1">
                                         <div className="flex items-center gap-2">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-burgundy/80 animate-pulse" />
+                                            <span className="w-1.5 h-1.5 rounded-full bg-brand/80 animate-pulse" />
                                             <span className="text-[10px] font-mono text-white/70 tracking-widest">LIVE DATA</span>
                                         </div>
                                     </div>
@@ -189,14 +189,14 @@ export default function Process() {
                         <div className={`flex items-center ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
                             <div className="p-10 lg:p-16">
                                 <div className="flex items-center gap-4 mb-6">
-                                    <span className="font-serif text-5xl text-gray-200">{step.number}</span>
+                                    <span className="font-serif text-5xl text-gray-400">{step.number}</span>
                                 </div>
                                 <h3 className="font-serif text-3xl md:text-4xl font-light mb-4">{step.title}</h3>
                                 <p className="text-gray-600 mb-8" style={{ wordBreak: 'keep-all' }}>{step.description}</p>
                                 <ul className="space-y-3">
                                     {step.details.map((detail, i) => (
-                                        <li key={i} className="text-sm text-gray-500 flex items-start gap-3">
-                                            <span className="w-1 h-1 bg-gray-400 rounded-full mt-2 flex-shrink-0" />
+                                        <li key={i} className="text-sm text-gray-400 flex items-start gap-3">
+                                            <span className="w-1 h-1 bg-brand rounded-full mt-2 flex-shrink-0" />
                                             {detail}
                                         </li>
                                     ))}
@@ -208,7 +208,7 @@ export default function Process() {
             </section>
 
             {/* Note */}
-            <section className="py-20 bg-black text-white">
+            <section className="py-20 bg-brand/10 border border-brand/20 backdrop-blur-md text-white">
                 <div className="max-w-3xl mx-auto px-6 text-center">
                     <p className="font-serif text-2xl md:text-3xl font-light leading-relaxed" style={{ wordBreak: 'keep-all' }}>
                         VIBE는 데이터 기반의 일관된 분석 결과를 제공합니다.
@@ -219,11 +219,11 @@ export default function Process() {
             {/* CTA */}
             <section className="py-24 px-6">
                 <div className="max-w-3xl mx-auto text-center">
-                    <h2 className="font-serif text-4xl font-light mb-6">시작하기</h2>
-                    <p className="text-gray-500 mb-10" style={{ wordBreak: 'keep-all' }}>나만의 스타일 기준을 만들어보세요.</p>
+                    <h2 className="font-serif text-4xl font-light mb-6 text-white">시작하기</h2>
+                    <p className="text-gray-400 mb-10" style={{ wordBreak: 'keep-all' }}>나만의 스타일 기준을 만들어보세요.</p>
                     <Link
                         to="/services"
-                        className="inline-block px-12 py-5 bg-black text-white text-sm tracking-[0.15em] uppercase hover:bg-gray-800 transition-all"
+                        className="inline-block px-12 py-5 bg-brand text-black font-bold text-sm tracking-[0.15em] uppercase hover:bg-white transition-all shadow-[0_0_20px_rgba(0,234,255,0.4)]"
                     >
                         서비스 보기
                     </Link>

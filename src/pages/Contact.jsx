@@ -37,7 +37,7 @@ export default function Contact() {
     }
 
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-transparent min-h-screen text-white">
             {/* Header */}
             <section className="pt-32 pb-16 px-6">
                 <div className="max-w-2xl mx-auto text-center">
@@ -58,7 +58,7 @@ export default function Contact() {
                         <select
                             value={selectedService}
                             onChange={(e) => setSelectedService(e.target.value)}
-                            className="w-full p-4 border border-gray-200 bg-white text-black focus:outline-none focus:border-black transition-colors"
+                            className="w-full p-4 border border-white/20 bg-black/50 text-white focus:outline-none focus:border-brand transition-colors"
                         >
                             <option value="HAIR PROFILE">HAIR PROFILE</option>
                             <option value="MAKEUP PROFILE">MAKEUP PROFILE</option>
@@ -68,16 +68,16 @@ export default function Contact() {
                     </div>
 
                     {/* Pricing & Discount Code */}
-                    <div className="p-6 bg-gray-50 border border-gray-100 space-y-4">
-                        <div className="flex items-center justify-between border-b border-gray-200 pb-4">
-                            <span className="text-sm text-gray-600">예상 금액</span>
+                    <div className="p-6 bg-white/5 border border-white/10 space-y-4">
+                        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                            <span className="text-sm text-gray-400">예상 금액</span>
                             <div className="text-right">
                                 {discountCode === 'vb-614412' && (
-                                    <span className="block text-xs text-gray-400 line-through mb-1">
+                                    <span className="block text-xs text-gray-500 line-through mb-1">
                                         {currentPrice.toLocaleString()} KRW
                                     </span>
                                 )}
-                                <span className={`font-serif text-xl ${discountCode === 'vb-614412' ? 'text-burgundy' : 'text-black'}`}>
+                                <span className={`font-serif text-xl ${discountCode === 'vb-614412' ? 'text-brand' : 'text-white'}`}>
                                     {finalPrice.toLocaleString()} KRW
                                 </span>
                             </div>
@@ -91,10 +91,10 @@ export default function Contact() {
                                     value={discountCode}
                                     onChange={(e) => setDiscountCode(e.target.value)}
                                     placeholder="프로모션 코드를 입력하세요"
-                                    className="flex-1 p-3 text-sm border border-gray-200 focus:outline-none focus:border-black transition-colors uppercase placeholder:normal-case"
+                                    className="flex-1 p-3 text-sm border border-white/20 bg-black/50 text-white focus:outline-none focus:border-brand transition-colors uppercase placeholder:normal-case placeholder:text-gray-600"
                                 />
                                 {discountCode === 'vb-614412' && (
-                                    <div className="flex items-center text-xs text-burgundy font-medium px-2">
+                                    <div className="flex items-center text-xs text-brand font-medium px-2">
                                         ✓ 적용됨
                                     </div>
                                 )}
@@ -108,7 +108,7 @@ export default function Contact() {
                         <input
                             type="text"
                             placeholder="성함과 연락처를 입력해주세요"
-                            className="w-full p-4 border border-gray-200 focus:outline-none focus:border-black transition-colors placeholder:text-gray-300"
+                            className="w-full p-4 border border-white/20 bg-black/50 text-white focus:outline-none focus:border-brand transition-colors placeholder:text-gray-600"
                         />
                     </div>
 
@@ -118,7 +118,7 @@ export default function Contact() {
                         <input
                             type="email"
                             placeholder="결과지를 받으실 이메일 주소"
-                            className="w-full p-4 border border-gray-200 focus:outline-none focus:border-black transition-colors placeholder:text-gray-300"
+                            className="w-full p-4 border border-white/20 bg-black/50 text-white focus:outline-none focus:border-brand transition-colors placeholder:text-gray-600"
                         />
                     </div>
 
@@ -132,8 +132,8 @@ export default function Contact() {
                                     type="button"
                                     onClick={() => toggleKeyword(keyword)}
                                     className={`py-3 text-sm border transition-all ${selectedKeywords.includes(keyword)
-                                        ? 'bg-black text-white border-black'
-                                        : 'bg-white text-gray-600 border-gray-200 hover:border-black'
+                                        ? 'bg-brand text-black border-brand font-bold'
+                                        : 'bg-black/30 text-gray-400 border-white/20 hover:border-brand hover:text-white'
                                         }`}
                                 >
                                     {keyword}
@@ -148,12 +148,12 @@ export default function Contact() {
                         <textarea
                             rows={4}
                             placeholder="고민되는 스타일 부분을 자유롭게 적어주세요"
-                            className="w-full p-4 border border-gray-200 focus:outline-none focus:border-black transition-colors placeholder:text-gray-300 resize-none"
+                            className="w-full p-4 border border-white/20 bg-black/50 text-white focus:outline-none focus:border-brand transition-colors placeholder:text-gray-600 resize-none"
                         />
                     </div>
 
                     {/* Privacy */}
-                    <div className="border border-gray-200 p-6">
+                    <div className="border border-white/20 p-6 bg-white/5">
                         <p className="text-caption uppercase text-gray-400 mb-4">개인정보 수집 동의</p>
                         <div className="text-xs text-gray-500 space-y-1 mb-4">
                             <p>1. 수집 항목: 이름, 연락처, 이메일</p>
@@ -165,7 +165,7 @@ export default function Contact() {
                                 type="checkbox"
                                 checked={agreed}
                                 onChange={(e) => setAgreed(e.target.checked)}
-                                className="w-4 h-4 accent-black"
+                                className="w-4 h-4 accent-brand bg-black border-white/20"
                             />
                             <span className="text-sm">동의합니다 (필수)</span>
                         </label>
@@ -174,7 +174,7 @@ export default function Contact() {
                     {/* Submit */}
                     <button
                         type="submit"
-                        className="w-full py-5 bg-black text-white text-sm tracking-[0.15em] uppercase hover:bg-gray-800 transition-all"
+                        className="w-full py-5 bg-brand text-black text-sm tracking-[0.15em] uppercase hover:bg-white transition-all font-bold shadow-[0_0_20px_rgba(0,234,255,0.4)]"
                     >
                         신청하기
                     </button>
@@ -184,7 +184,7 @@ export default function Contact() {
                 <div className="mt-16 text-center">
                     <div className="editorial-divider mx-auto mb-6" />
                     <p className="text-sm text-gray-500 mb-2">다른 문의 방법</p>
-                    <a href="mailto:contact@vibe-profile.co.kr" className="text-sm hover-line">
+                    <a href="mailto:contact@vibe-profile.co.kr" className="text-sm hover-line text-white">
                         contact@vibe-profile.co.kr
                     </a>
                 </div>

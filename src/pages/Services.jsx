@@ -15,9 +15,9 @@ function ServiceCard({ number, title, titleKr, price, description, features, ima
     }, [images])
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-gray-200">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-white/10 bg-black/40 backdrop-blur-sm">
             {/* Image */}
-            <div className="img-zoom aspect-[3/4] bg-gray-50 order-2 lg:order-1 overflow-hidden p-12 flex items-center justify-center relative">
+            <div className="img-zoom aspect-[3/4] bg-white/5 order-2 lg:order-1 overflow-hidden p-12 flex items-center justify-center relative">
                 {images ? (
                     images.map((img, idx) => (
                         <img
@@ -36,29 +36,29 @@ function ServiceCard({ number, title, titleKr, price, description, features, ima
             {/* Content */}
             <div className="p-8 lg:p-12 flex flex-col order-1 lg:order-2">
                 <p className="text-caption uppercase text-gray-400 mb-2">{number}</p>
-                <h3 className="font-serif text-3xl md:text-4xl font-light mb-1">{title}</h3>
-                <p className="text-gray-500 mb-6">{titleKr}</p>
+                <h3 className="font-serif text-3xl md:text-4xl font-light mb-1 text-white">{title}</h3>
+                <p className="text-gray-400 mb-6">{titleKr}</p>
 
-                <p className="text-gray-600 leading-relaxed keep-all mb-8 flex-1">
+                <p className="text-gray-400 leading-relaxed keep-all mb-8 flex-1">
                     {description}
                 </p>
 
                 {/* Features */}
                 <ul className="space-y-2 mb-8">
                     {features.map((feature, index) => (
-                        <li key={index} className="text-sm text-gray-500 flex items-start gap-2">
-                            <span className="mt-1.5 w-1 h-1 bg-black rounded-full flex-shrink-0" />
+                        <li key={index} className="text-sm text-gray-400 flex items-start gap-2">
+                            <span className="mt-1.5 w-1 h-1 bg-brand rounded-full flex-shrink-0" />
                             {feature}
                         </li>
                     ))}
                 </ul>
 
                 {/* Price & CTA */}
-                <div className="border-t border-gray-200 pt-6">
-                    <p className="font-serif text-3xl font-light mb-6">₩{price}</p>
+                <div className="border-t border-white/10 pt-6">
+                    <p className="font-serif text-3xl font-light mb-6 text-white">₩{price}</p>
                     <Link
                         to="/contact"
-                        className="block w-full py-4 bg-black text-white text-center text-sm tracking-[0.1em] uppercase hover:bg-gray-800 transition-all"
+                        className="block w-full py-4 bg-brand text-black text-center text-sm tracking-[0.1em] uppercase hover:bg-white transition-all font-bold"
                     >
                         신청하기
                     </Link>
@@ -110,7 +110,7 @@ export default function Services() {
     ]
 
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-transparent min-h-screen text-white">
             {/* Header */}
             <section className="pt-32 pb-20 px-6">
                 <div className="max-w-4xl mx-auto text-center">
@@ -132,7 +132,8 @@ export default function Services() {
             </section>
 
             {/* Package */}
-            <section className="py-24 bg-black text-white">
+            <section className="py-24 bg-brand/10 border border-brand/20 text-white backdrop-blur-md relative overflow-hidden">
+                <div className="absolute inset-0 bg-brand/5 pointer-events-none" />
                 <div className="max-w-4xl mx-auto px-6 text-center">
                     <p className="text-caption uppercase text-gray-500 mb-4">Special</p>
                     <h2 className="font-serif text-4xl md:text-5xl font-light mb-4">All-in-One</h2>
@@ -145,7 +146,7 @@ export default function Services() {
                     </div>
                     <Link
                         to="/contact"
-                        className="inline-block px-10 py-4 border border-white text-sm tracking-[0.1em] uppercase hover:bg-white hover:text-black transition-all"
+                        className="inline-block px-10 py-4 border border-brand text-brand-light text-sm tracking-[0.1em] uppercase hover:bg-brand hover:text-black transition-all"
                     >
                         패키지 신청
                     </Link>
@@ -163,12 +164,12 @@ export default function Services() {
                             { q: '분석은 어떻게 진행되나요?', a: 'VIBE 시스템이 제출된 응답 데이터를 기반으로 자동 분석하여 결과지를 생성합니다.' },
                             { q: '환불은 가능한가요?', a: '체크리스트 제출 전까지 100% 환불 가능합니다.' },
                         ].map((item, index) => (
-                            <details key={index} className="border-t border-gray-200 last:border-b group">
-                                <summary className="py-6 flex justify-between items-center cursor-pointer list-none">
+                            <details key={index} className="border-t border-white/10 last:border-b last:border-white/10 group">
+                                <summary className="py-6 flex justify-between items-center cursor-pointer list-none text-white hover:text-brand transition-colors">
                                     <span className="text-lg">{item.q}</span>
-                                    <span className="text-xl group-open:rotate-45 transition-transform">+</span>
+                                    <span className="text-xl group-open:rotate-45 transition-transform text-brand">+</span>
                                 </summary>
-                                <p className="pb-6 text-gray-500 leading-relaxed">{item.a}</p>
+                                <p className="pb-6 text-gray-400 leading-relaxed">{item.a}</p>
                             </details>
                         ))}
                     </div>

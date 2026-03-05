@@ -1,394 +1,575 @@
-import { useRef, useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useTransform, useSpring, useInView, useMotionValue } from 'framer-motion'
-import { ArrowRight, Scan, GitGraph, Layers, ArrowUpRight } from 'lucide-react'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import FaceModel from '../components/FaceModel'
+import LaunchPopup from '../components/LaunchPopup'
 
-// --- Components ---
+// Counter Animation Hook
+const useCounter = (end, duration = 2000, startCounting = false) => {
+    const [count, setCount] = useState(0)
 
-const Marquee = ({ text }) => {
-    return (
-        <div className="relative flex overflow-hidden py-6 bg-burgundy text-white">
-            <motion.div
-                className="flex whitespace-nowrap gap-12 font-serif text-2xl uppercase tracking-widest"
-                animate={{ x: [0, -1000] }}
-                transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
-            >
-                {Array(10).fill(text).map((item, i) => (
-                    <span key={i} className="flex items-center gap-12">
-                        {item} <span className="w-2 h-2 bg-white rounded-full opacity-50" />
-                    </span>
-                ))}
-            </motion.div>
-        </div>
-    )
+    useEffect(() => {
+        if (!startCounting) return
+
+        let startTime
+        let animationFrame
+
+        const animate = (currentTime) => {
+            if (!startTime) startTime = currentTime
+            const progress = Math.min((currentTime - startTime) / duration, 1)
+
+            setCount(Math.floor(progress * end))
+
+            if (progress < 1) {
+                animationFrame = requestAnimationFrame(animate)
+            }
+        }
+
+        animationFrame = requestAnimationFrame(animate)
+        return () => cancelAnimationFrame(animationFrame)
+    }, [end, duration, startCounting])
+
+    return count
 }
 
-const ServiceCard = ({ title, sub, desc, img, index }) => {
+// Stat Counter Component
+const StatCounter = ({ value, label, suffix = '', prefix = '' }) => {
+    const ref = useRef(null)
+    const isInView = useInView(ref, { once: true, margin: "-100px" })
+    const count = useCounter(value, 2000, isInView)
+
     return (
         <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.2 }}
-            className="group relative h-[400px] md:h-[500px] border border-gray-200 bg-white overflow-hidden"
+            ref={ref}
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
         >
-            <div className="absolute inset-0 bg-gray-100 overflow-hidden">
-                <img src={img} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
+            <div className="text-6xl md:text-7xl font-light tracking-tight mb-2 font-mono">
+                <span className="bg-gradient-to-b from-brand-light to-brand-dark bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(0,234,255,0.5)]">
+                    {prefix}{count.toLocaleString()}{suffix}
+                </span>
             </div>
-
-            <div className="absolute bottom-0 left-0 w-full p-8 text-white z-10">
-                <div className="overflow-hidden mb-2">
-                    <p className="text-xs font-mono mb-2 text-white/70 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                        SERVICE_0{index + 1}
-                    </p>
-                </div>
-                <h3 className="font-serif text-3xl font-light mb-4">{title}</h3>
-                <p className="text-sm text-white/80 max-w-xs leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                    {desc}
-                </p>
+            <div className="text-sm uppercase tracking-[0.3em] text-gray-400">
+                {label}
             </div>
-
-            <Link to="/services" className="absolute top-6 right-6 w-10 h-10 border border-white/30 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:text-black">
-                <ArrowUpRight size={18} />
-            </Link>
         </motion.div>
     )
 }
 
-// --- Background Components ---
-
-const HeroBackground = () => {
+// Grid Scan Effect Component
+const GridScanEffect = () => {
     return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none perspective-[1000px]">
-
-            {/* 3D Gyroscopic Identity Core */}
-            <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] z-0 flex items-center justify-center scale-110 md:scale-125">
-                <style>{`
-                    .gyro-container {
-                        width: 300px;
-                        height: 300px;
-                        position: relative;
-                        transform-style: preserve-3d;
-                        animation: float 6s ease-in-out infinite;
-                    }
-
-                    .ring {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        border: 1px solid rgba(74, 9, 9, 0.5);
-                        border-radius: 50%;
-                        transform-style: preserve-3d;
-                    }
-
-                    .ring-inner {
-                        border: 1px dashed rgba(74, 9, 9, 0.8);
-                        width: 80%;
-                        height: 80%;
-                        top: 10%;
-                        left: 10%;
-                    }
-
-                    .ring-core {
-                        width: 60%;
-                        height: 60%;
-                        top: 20%;
-                        left: 20%;
-                        border: 2px solid rgba(74, 9, 9, 0.1);
-                        background: radial-gradient(circle at 30% 30%, rgba(74,9,9,0.1), transparent);
-                    }
-
-                    .ring-1 { animation: rotate1 12s linear infinite; }
-                    .ring-2 { animation: rotate2 15s linear infinite; width: 110%; height: 110%; top: -5%; left: -5%; border-color: rgba(74,9,9,0.2); }
-                    .ring-3 { animation: rotate3 20s linear infinite; width: 130%; height: 130%; top: -15%; left: -15%; border-style: dotted; border-width: 2px; }
-
-                    .core-orb {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        width: 100px;
-                        height: 100px;
-                        background: radial-gradient(circle, rgba(74,9,9,0.8) 0%, rgba(74,9,9,0.2) 60%, transparent 100%);
-                        border-radius: 50%;
-                        box-shadow: 0 0 50px rgba(74,9,9,0.4);
-                        animation: pulse-core 3s ease-in-out infinite;
-                    }
-
-                    .data-point {
-                        position: absolute;
-                        background: #4a0909;
-                        border-radius: 50%;
-                        opacity: 0.6;
-                    }
-
-                    @keyframes rotate1 { 0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); } 100% { transform: rotateX(360deg) rotateY(180deg) rotateZ(360deg); } }
-                    @keyframes rotate2 { 0% { transform: rotateX(60deg) rotateY(0deg); } 100% { transform: rotateX(60deg) rotateY(360deg); } }
-                    @keyframes rotate3 { 0% { transform: rotateX(-60deg) rotateY(0deg); } 100% { transform: rotateX(-60deg) rotateY(-360deg); } }
-                    
-                    @keyframes float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-20px) scale(0.95); } }
-                    @keyframes pulse-core { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; } 50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.5; } }
-                `}</style>
-
-                <div className="gyro-container">
-                    {/* Rotating Rings */}
-                    <div className="ring ring-1">
-                        <div className="absolute top-0 left-1/2 w-2 h-2 bg-burgundy rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-                    </div>
-                    <div className="ring ring-2"></div>
-                    <div className="ring ring-3"></div>
-
-                    {/* Inner Structure */}
-                    <div className="ring ring-inner" style={{ animation: 'rotate3 10s linear infinite reverse' }}></div>
-
-                    {/* Central Core */}
-                    <div className="core-orb">
-                        {/* Core Scan Line */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent w-full h-[20%] animate-scan-fast opacity-50"></div>
-                    </div>
-                </div>
-
-                {/* Floating PROFILING DATA Particles */}
-                <motion.div
-                    className="absolute top-10 right-[-50px] bg-white/10 backdrop-blur-md px-4 py-2 border-l-2 border-burgundy shadow-lg"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1, duration: 1 }}
-                >
-                    <p className="font-mono text-[10px] text-burgundy font-bold tracking-widest">MATCH: 98.4%</p>
-                    <p className="font-mono text-[8px] text-gray-500">ID: A-482-X</p>
-                </motion.div>
-
-                <motion.div
-                    className="absolute bottom-[-20px] left-[-40px] bg-white/10 backdrop-blur-md px-4 py-2 border-r-2 border-burgundy shadow-lg"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1.5, duration: 1 }}
-                >
-                    <p className="font-mono text-[10px] text-burgundy font-bold tracking-widest">ANALYZING...</p>
-                    <div className="w-16 h-1 bg-gray-200 mt-1 overflow-hidden">
-                        <motion.div
-                            className="h-full bg-burgundy"
-                            animate={{ width: ["0%", "100%"] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                        />
-                    </div>
-                </motion.div>
-            </div>
-
-            {/* Background Grid & Noise */}
-            <div className="absolute inset-0 opacity-[0.04]">
-                <svg width="100%" height="100%">
-                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                    </pattern>
-                    <rect width="100%" height="100%" fill="url(#grid)" />
-                </svg>
-            </div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+            <div className="absolute inset-0" style={{
+                backgroundImage: `
+                    linear-gradient(0deg, transparent 24%, rgba(0, 234, 255, 0.05) 25%, rgba(0, 234, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 234, 255, 0.05) 75%, rgba(0, 234, 255, 0.05) 76%, transparent 77%, transparent),
+                    linear-gradient(90deg, transparent 24%, rgba(0, 234, 255, 0.05) 25%, rgba(0, 234, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 234, 255, 0.05) 75%, rgba(0, 234, 255, 0.05) 76%, transparent 77%, transparent)
+                `,
+                backgroundSize: '50px 50px'
+            }} />
             <motion.div
-                className="absolute top-0 bottom-0 w-px bg-burgundy/20"
-                style={{ left: '50%' }}
-                animate={{ height: ['0%', '100%'], opacity: [0, 1, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-brand to-transparent shadow-[0_0_15px_#00EAFF]"
+                animate={{
+                    top: ['0%', '100%']
+                }}
+                transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: 'linear'
+                }}
             />
         </div>
     )
 }
 
-export default function Home() {
-    const containerRef = useRef(null)
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"]
-    })
+// Data Visualization Component
+const DataVisualization = () => {
+    return (
+        <div className="relative w-full h-64 bg-black/40 border border-brand/20 rounded-2xl overflow-hidden backdrop-blur-sm shadow-[0_0_30px_rgba(0,234,255,0.1)]">
+            <GridScanEffect />
+            <div className="absolute inset-0 flex items-center justify-center">
+                <div className="grid grid-cols-8 gap-2 w-full h-full p-8">
+                    {Array.from({ length: 32 }).map((_, i) => (
+                        <motion.div
+                            key={i}
+                            className="bg-brand/30 rounded shadow-[0_0_10px_rgba(0,234,255,0.2)]"
+                            initial={{ scaleY: 0 }}
+                            animate={{ scaleY: Math.random() }}
+                            transition={{
+                                duration: 0.5,
+                                delay: i * 0.05,
+                                repeat: Infinity,
+                                repeatType: 'reverse',
+                                repeatDelay: Math.random() * 2
+                            }}
+                            style={{ originY: 1 }}
+                        />
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
+}
 
-    // Parallax logic for Hero
-    const yHero = useTransform(scrollYProgress, [0, 0.2], ["0%", "50%"])
-    const opacityHero = useTransform(scrollYProgress, [0, 0.2], [1, 0])
+
+// Counter Animation Hook
+// ... existing code ...
+
+function Home() {
+    const { scrollYProgress } = useScroll()
+    const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0])
+    const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95])
 
     return (
-        <div ref={containerRef} className="bg-white">
+        <div className="bg-transparent text-white">
+            <LaunchPopup />
+            {/* Hero Section */}
+            <motion.section
+                className="relative min-h-screen flex items-center justify-center overflow-hidden"
+                style={{ opacity: heroOpacity, scale: heroScale }}
+            >
+                {/* Visual Backdrop is handled by global Background3D, but we add local gradient for focus */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black pointer-events-none" />
 
-            {/* HERO SECTION */}
-            <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden border-b border-gray-100">
-                <HeroBackground />
-                <motion.div
-                    style={{ y: yHero, opacity: opacityHero }}
-                    className="absolute inset-0 z-0"
-                >
-                    {/* Abstract Video Placeholder or Gradient Mesh */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#fff_0%,_#fffafa_50%,_#fff_100%)]" />
-                    <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-                </motion.div>
+                {/* Animated Particles - Cyan */}
+                <div className="absolute inset-0">
+                    {Array.from({ length: 20 }).map((_, i) => (
+                        <motion.div
+                            key={i}
+                            className="absolute w-1 h-1 bg-brand rounded-full shadow-[0_0_10px_#00EAFF]"
+                            style={{
+                                left: `${Math.random() * 100}%`,
+                                top: `${Math.random() * 100}%`,
+                            }}
+                            animate={{
+                                opacity: [0, 1, 0],
+                                scale: [0, 1.5, 0],
+                            }}
+                            transition={{
+                                duration: 2 + Math.random() * 2,
+                                repeat: Infinity,
+                                delay: Math.random() * 2,
+                            }}
+                        />
+                    ))}
+                </div>
 
-                <div className="relative z-10 text-center px-6 mix-blend-darken text-black">
+                <div className="relative z-10 text-center px-6 max-w-7xl mx-auto">
                     <motion.div
-                        initial={{ opacity: 0, y: 100 }}
+                        initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                        className="mb-6"
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-burgundy/5 border border-burgundy/10 mb-8 backdrop-blur-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-burgundy animate-pulse" />
-                            <p className="font-mono text-[10px] tracking-[0.2em] text-burgundy font-medium">VISUAL LOGIC SYSTEM 2.0</p>
-                        </div>
+                        <span className="text-sm uppercase tracking-[0.3em] text-brand-light font-mono border border-brand/30 px-4 py-2 rounded-full backdrop-blur-md">
+                            Visual Logic System
+                        </span>
+                    </motion.div>
 
-                        <h1 className="font-serif text-[15vw] leading-[0.8] tracking-tighter text-black mb-6">
-                            <ScrambleText text="VIBE" />
-                        </h1>
+                    <motion.h1
+                        className="text-display font-serif font-bold mb-8 drop-shadow-2xl"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.4 }}
+                    >
+                        <span className="block text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">
+                            VIBE
+                        </span>
+                    </motion.h1>
 
-                        <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
-                            <span className="hidden md:block h-px w-12 bg-black/10" />
-                            <p className="font-sans font-light text-lg tracking-wide text-gray-500 max-w-sm leading-relaxed keep-all">
-                                482개의 얼굴 데이터 포인트 분석을 통해<br className="hidden md:block" /> 당신만의 고유한 스타일 원형을 찾습니다.
-                            </p>
-                            <span className="hidden md:block h-px w-12 bg-black/10" />
-                        </div>
+                    <motion.p
+                        className="text-2xl md:text-3xl text-gray-300 mb-4 font-light tracking-wide"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.6 }}
+                    >
+                        Own Your Vibe.
+                    </motion.p>
+
+                    <motion.p
+                        className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.8 }}
+                    >
+                        느낌을 모아 데이터로 가이드하다
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 1 }}
+                        className="flex gap-4 justify-center flex-wrap"
+                    >
+                        <Link
+                            to="/services"
+                            className="px-8 py-4 bg-brand text-black rounded-full font-bold hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,234,255,0.5)]"
+                        >
+                            서비스 시작하기
+                        </Link>
+                        <Link
+                            to="/about"
+                            className="px-8 py-4 border border-brand/50 text-brand-light rounded-full font-medium hover:bg-brand/10 hover:border-brand transition-all duration-300 backdrop-blur-sm"
+                        >
+                            VIBE 알아보기
+                        </Link>
                     </motion.div>
                 </div>
 
                 {/* Scroll Indicator */}
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1, duration: 1 }}
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                    className="absolute bottom-10 left-1/2 -translate-x-1/2"
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
                 >
-                    <span className="text-[10px] font-mono text-gray-400">SCROLL TO ANALYZE</span>
-                    <div className="w-px h-12 bg-gray-200 relative overflow-hidden">
+                    <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
                         <motion.div
-                            className="absolute top-0 left-0 w-full h-1/2 bg-burgundy"
-                            animate={{ y: ["-100%", "200%"] }}
-                            transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                            className="w-1 h-2 bg-white rounded-full"
+                            animate={{ y: [0, 12, 0] }}
+                            transition={{ duration: 2, repeat: Infinity }}
                         />
                     </div>
                 </motion.div>
-            </section>
+            </motion.section>
 
-            {/* MARQUEE */}
-            <Marquee text="DATA DRIVEN STYLE • PERSONALIZED VIBE • VISUAL LOGIC •" />
+            {/* VIBE AI Preview Section */}
+            <section className="py-24 md:py-32 px-6 relative overflow-hidden">
+                <div className="absolute inset-0 bg-brand/5" />
+                <GridScanEffect />
 
-            {/* INTRO / PHILOSOPHY - BENTO GRID */}
-            <section className="py-32 px-6 lg:px-12 max-w-[1600px] mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+                <div className="max-w-7xl mx-auto relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <span className="inline-block px-3 py-1 bg-brand/10 border border-brand/20 text-brand text-xs font-mono mb-6 rounded-full">
+                                AI ANALYSIS Beta
+                            </span>
+                            <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight">
+                                VIBE AI :<br />
+                                <span className="text-brand">THE LOGIC OF BEAUTY</span>
+                            </h2>
+                            <p className="text-xl text-gray-300 mb-8 leading-relaxed font-light">
+                                Undefined VIBE, Defined by Data.<br />
+                                거울 속 모호했던 나의 분위기를<br />
+                                <strong className="text-white">0.1mm의 정확한 수치</strong>로 정의합니다.
+                            </p>
 
-                    {/* Main Statement */}
-                    <TiltCard className="md:col-span-8 h-full">
-                        <div className="bg-gray-50 p-12 flex flex-col justify-between border border-gray-100 relative overflow-hidden group h-full shadow-sm hover:shadow-md transition-shadow">
-                            <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 transition-opacity">
-                                <Scan size={48} strokeWidth={1} />
-                            </div>
-                            <div>
-                                <h2 className="font-serif text-4xl lg:text-6xl leading-tight mb-8">
-                                    "Feeling is just<br />
-                                    <span className="text-burgundy">unprocessed data.</span>"
-                                </h2>
-                            </div>
-                            <div className="flex items-end justify-between">
-                                <p className="max-w-md text-gray-500 leading-relaxed text-sm lg:text-base keep-all">
-                                    스타일은 감각의 영역이지만, 좋은 느낌에는 반드시 논리적인 이유가 있습니다.
-                                    VIBE는 찰나의 인상 뒤에 숨겨진 선의 각도, 비율, 조화를 추적하여 데이터로 증명합니다.
-                                </p>
-                                <Link to="/about" className="hidden md:flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-burgundy transition-colors">
-                                    Our Logic <ArrowRight size={16} />
-                                </Link>
-                            </div>
-                        </div>
-                    </TiltCard>
-
-                    {/* Stats / Tech */}
-                    <div className="md:col-span-4 grid grid-rows-2 gap-6 h-full">
-                        <TiltCard className="h-full">
-                            <div className="bg-black text-white p-8 flex flex-col justify-between group hover:bg-burgundy transition-colors duration-500 h-full shadow-lg">
-                                <GitGraph size={32} className="text-white/50 group-hover:text-white transition-colors" />
-                                <div>
-                                    <h3 className="text-4xl font-light mb-1">99.8%</h3>
-                                    <p className="text-xs font-mono text-white/50">Analysis Accuracy</p>
+                            <div className="space-y-6 mb-10">
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 rounded-full bg-gray-900 border border-brand/30 flex items-center justify-center flex-shrink-0">
+                                        <span className="text-xl">👁️</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-white font-bold mb-1">Visual Logic</h4>
+                                        <p className="text-gray-400 text-sm">"내가 알고 있던 나의 느낌들"을 단순한 감상이 아닌 객관적 지표로 정리해 줍니다.</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 rounded-full bg-gray-900 border border-brand/30 flex items-center justify-center flex-shrink-0">
+                                        <span className="text-xl">📐</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-white font-bold mb-1">Precise Algorithm</h4>
+                                        <p className="text-gray-400 text-sm">오직 당신만을 위해 설계된 VIBE 알고리즘을 경험해 보세요.</p>
+                                    </div>
                                 </div>
                             </div>
-                        </TiltCard>
 
-                        <TiltCard className="h-full">
-                            <div className="bg-gray-100 p-8 flex flex-col justify-between relative overflow-hidden h-full shadow-sm">
-                                <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 opacity-10">
-                                    {Array(36).fill(0).map((_, i) => (
-                                        <div key={i} className="border-[0.5px] border-black" />
-                                    ))}
+                            <a
+                                href="https://vibe-face.netlify.app/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-brand transition-all duration-300"
+                            >
+                                <span>AI 분석 시작하기</span>
+                                <span className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors">
+                                    →
+                                </span>
+                                <div className="absolute inset-0 rounded-full ring-2 ring-white/50 group-hover:ring-brand/50 animate-ping opacity-20" />
+                            </a>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="relative"
+                        >
+                            {/* Decorative Elements */}
+                            <div className="absolute -inset-4 bg-gradient-to-tr from-brand/20 to-transparent rounded-3xl blur-2xl" />
+
+                            <div className="relative bg-black border border-white/10 rounded-2xl overflow-hidden aspect-[4/3] group">
+                                {/* 3D Model View */}
+                                <div className="absolute inset-0 opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+                                    <FaceModel />
                                 </div>
-                                <Layers size={32} className="relative z-10 text-black/50" />
-                                <div className="relative z-10">
-                                    <h3 className="text-xl font-serif mb-1">Detailed Report</h3>
-                                    <p className="text-xs text-gray-500">PDF 형식의 영구 소장 가이드</p>
+                                <div className="absolute inset-0 bg-grid-white/[0.05]" />
+
+                                {/* Scanning Hud */}
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <div className="w-[80%] h-[80%] border border-brand/30 relative">
+                                        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-brand" />
+                                        <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-brand" />
+                                        <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-brand" />
+                                        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-brand" />
+
+                                        {/* Center Crosshair */}
+                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                            <div className="w-12 h-12 border border-brand/50 rounded-full flex items-center justify-center">
+                                                <div className="w-1 h-1 bg-brand rounded-full" />
+                                            </div>
+                                        </div>
+
+                                        {/* Data Points */}
+                                        <div className="absolute top-1/4 left-1/4 flex gap-2 items-center">
+                                            <div className="w-2 h-2 bg-brand rounded-full animate-pulse" />
+                                            <span className="text-[10px] font-mono text-brand">P_042</span>
+                                        </div>
+                                        <div className="absolute bottom-1/3 right-1/4 flex gap-2 items-center flex-row-reverse">
+                                            <div className="w-2 h-2 bg-brand rounded-full animate-pulse delay-100" />
+                                            <span className="text-[10px] font-mono text-brand">P_089</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black to-transparent" />
+                                <div className="absolute bottom-6 left-6 font-mono text-xs text-brand-light">
+                                    Scanning... 98%
                                 </div>
                             </div>
-                        </TiltCard>
+                        </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* SERVICES PREVIEW */}
-            <section className="py-20 px-6 lg:px-12 bg-white">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-gray-100 pb-8">
-                    <div>
-                        <p className="font-mono text-xs text-burgundy mb-2">VIBE SOLUTIONS</p>
-                        <h2 className="font-serif text-4xl font-light">Service Line-up</h2>
-                    </div>
-                    <Link to="/services" className="text-sm border-b border-black pb-1 hover:text-burgundy hover:border-burgundy transition-colors mt-4 md:mt-0">
-                        View All Services
-                    </Link>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <ServiceCard
-                        index={0}
-                        title="VIBE HAIR"
-                        sub="헤어 컨설팅"
-                        desc="얼굴형과 이목구비 비율을 분석하여 가장 이상적인 가르마, 기장, 펌 스타일을 제안합니다."
-                        img="/assets/hair.jpg"
-                    />
-                    <ServiceCard
-                        index={1}
-                        title="VIBE MAKEUP"
-                        sub="메이크업 컨설팅"
-                        desc="피부톤 정밀 진단과 이목구비 분석을 통해 나에게 꼭 맞는 컬러와 쉐입을 찾아드립니다."
-                        img="/assets/makeup.jpg"
-                    />
-                    <ServiceCard
-                        index={2}
-                        title="VIBE FASHION"
-                        sub="패션 컨설팅"
-                        desc="체형 분석 데이터를 기반으로 체형을 보완하고 장점을 극대화하는 핏과 스타일링을 코칭합니다."
-                        img="/assets/fashion_1.png"
-                    />
-                </div>
-            </section>
-
-            {/* INTERACTIVE CTA - SCANNER */}
-            <section className="py-32 bg-black text-white relative overflow-hidden group">
-                <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-1000">
-                    <img src="/assets/project2.png" alt="Background" className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-[2s]" />
-                </div>
-
-                {/* Scan Overlay Lines */}
-                <div className="absolute inset-x-0 top-0 h-px bg-burgundy/50 shadow-[0_0_20px_#4a0909] animate-scan-line" />
-
-                <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
-                    <h2 className="font-serif text-5xl md:text-7xl mb-8 leading-tight">
-                        Ready to Find<br />Your <span className="text-burgundy italic">Own Vibe?</span>
-                    </h2>
-                    <p className="text-white/60 text-lg mb-12 max-w-xl mx-auto">
-                        더 이상 감에 의존하지 마세요. 당신의 고유한 분위기를 데이터로 증명해드립니다.
-                    </p>
-                    <Link
-                        to="/contact"
-                        className="inline-flex items-center justify-center h-14 px-10 border border-white/20 bg-white/5 backdrop-blur-sm text-sm tracking-widest uppercase hover:bg-burgundy hover:border-burgundy transition-all duration-300"
+            {/* Brand Philosophy Section */}
+            <section className="py-32 px-6 bg-black/50 relative">
+                <div className="max-w-6xl mx-auto relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="text-center mb-20"
                     >
-                        Start Analysis
-                    </Link>
+                        <h2 className="text-headline font-serif font-bold text-white mb-6">
+                            느낌이 데이터가 되는 순간
+                        </h2>
+                        <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                            우리가 '느낌'이라 부르는 모든 것은 결국 정교한 '데이터'의 합이다.
+                        </p>
+                    </motion.div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {[
+                            {
+                                title: '정밀한 분석',
+                                description: '얼굴의 수만 가지 좌표를 읽어내어 고유한 수치를 수집합니다.',
+                                icon: '📊'
+                            },
+                            {
+                                title: '데이터 증명',
+                                description: '왜 이 스타일이 어울리는지를 수치와 비율로 설명합니다.',
+                                icon: '🔬'
+                            },
+                            {
+                                title: '스타일 설계',
+                                description: '분석된 데이터를 기반으로 최적의 스타일 가이드를 제공합니다.',
+                                icon: '✨'
+                            }
+                        ].map((item, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: index * 0.2 }}
+                                className="group relative p-8 bg-gray-900/50 backdrop-blur-sm border border-white/10 rounded-2xl hover:border-brand transition-all duration-500 hover:shadow-[0_0_20px_rgba(0,234,255,0.2)]"
+                            >
+                                <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(0,234,255,0.4)]">
+                                    {item.icon}
+                                </div>
+                                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-brand transition-colors">
+                                    {item.title}
+                                </h3>
+                                <p className="text-gray-400 leading-relaxed">
+                                    {item.description}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Data Stats Section */}
+            <section className="py-32 px-6 bg-black relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-dark/10 to-transparent opacity-20" />
+
+                <div className="max-w-6xl mx-auto relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="text-center mb-20"
+                    >
+                        <h2 className="text-headline font-serif font-bold text-white mb-6">
+                            데이터로 증명하는 스타일
+                        </h2>
+                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                            VIBE는 막연한 '느낌'을 말하지 않습니다
+                        </p>
+                    </motion.div>
+
+                    <div className="grid md:grid-cols-3 gap-16 mb-20">
+                        <StatCounter value={10000} label="분석 데이터 포인트" suffix="+" />
+                        <StatCounter value={98} label="고객 만족도" suffix="%" />
+                        <StatCounter value={500} label="스타일 프로파일" suffix="+" />
+                    </div>
+
+                    <DataVisualization />
+                </div>
+            </section>
+
+            {/* Services Preview */}
+            <section className="py-32 px-6 relative bg-black/40">
+                <div className="max-w-7xl mx-auto relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="text-center mb-20"
+                    >
+                        <h2 className="text-headline font-serif font-bold text-white mb-6">
+                            VIBE SYSTEM
+                        </h2>
+                        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                            데이터 분석부터 스타일 구현까지
+                        </p>
+                    </motion.div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {[
+                            {
+                                title: 'VIBE SCAN',
+                                subtitle: '데이터 추출',
+                                description: '정밀 분석 시스템을 통해 얼굴의 수만 가지 좌표를 읽어냅니다.',
+                                color: 'from-brand to-brand-dark'
+                            },
+                            {
+                                title: 'VIBE ANALYSIS',
+                                subtitle: '분위기 증명',
+                                description: '수집된 데이터로 개인의 분위기 원형을 분석합니다.',
+                                color: 'from-brand-light to-brand'
+                            },
+                            {
+                                title: 'VIBE GUIDE',
+                                subtitle: '스타일 설계',
+                                description: '최적 공식을 담은 퍼스널 데이터 시트를 제공합니다.',
+                                color: 'from-brand-dark to-brand'
+                            },
+                            {
+                                title: 'VIBE TOUCH',
+                                subtitle: '퀵 메이크업',
+                                description: '데이터 기반 현장 이미지 보정 서비스입니다.',
+                                color: 'from-brand-dark to-accent'
+                            },
+                            {
+                                title: 'VIBE DIRECTING',
+                                subtitle: '패션·헤어 컨설팅',
+                                description: '전문가가 직접 스타일을 가이드합니다.',
+                                color: 'from-accent to-brand-dark'
+                            },
+                            {
+                                title: 'VIBE CLASS',
+                                subtitle: '셀프 브랜딩 교육',
+                                description: '스스로 스타일을 관리하는 실전 노하우를 전수합니다.',
+                                color: 'from-brand to-accent'
+                            }
+                        ].map((service, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: index * 0.1 }}
+                                className="group relative overflow-hidden rounded-2xl p-8 bg-gray-900 border border-white/10 hover:border-brand/50 transition-all duration-500 hover:shadow-[0_0_20px_rgba(0,234,255,0.15)]"
+                            >
+                                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+
+                                <div className="relative z-10">
+                                    <div className="text-caption text-brand mb-2 font-mono">
+                                        {service.subtitle}
+                                    </div>
+                                    <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-brand-light transition-colors duration-300">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-gray-400 leading-relaxed mb-6">
+                                        {service.description}
+                                    </p>
+                                    <div className="flex items-center text-brand font-medium group-hover:translate-x-2 transition-transform duration-300">
+                                        자세히 보기 →
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="text-center mt-16"
+                    >
+                        <Link
+                            to="/services"
+                            className="inline-block px-10 py-5 bg-white text-black rounded-full font-medium hover:bg-brand hover:text-black transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                        >
+                            전체 서비스 보기
+                        </Link>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* CTA Section */}
+            <section className="py-32 px-6 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-brand-dark/20 to-black" />
+                <GridScanEffect />
+
+                <div className="max-w-4xl mx-auto text-center relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <h2 className="text-headline font-serif font-bold text-white mb-6">
+                            당신의 느낌을 데이터로
+                        </h2>
+                        <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+                            막연하게 느껴왔던 분위기, 이제 데이터로 확인하세요.<br />
+                            나를 표현하는 일은 더 이상 막막한 과제가 아닌 즐거운 확신이 됩니다.
+                        </p>
+                        <Link
+                            to="/contact"
+                            className="inline-block px-12 py-5 bg-brand text-black rounded-full font-bold hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,234,255,0.6)]"
+                        >
+                            무료 상담 신청하기
+                        </Link>
+                    </motion.div>
                 </div>
             </section>
         </div>
     )
 }
+
+export default Home
