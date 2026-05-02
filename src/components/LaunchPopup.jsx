@@ -50,8 +50,8 @@ export default function LaunchPopup() {
                         {/* Poster Image */}
                         <div className="w-full md:w-1/2 bg-black h-64 md:h-auto relative overflow-hidden">
                             <img
-                                src="/assets/vibe_event_poster.jpg"
-                                alt="VIBE CHECK Event Poster"
+                                src="/assets/vibe_launching_poster_new.jpg"
+                                alt="LAUNCHING EVENT Poster"
                                 className="w-full h-full object-cover object-center transition-transform hover:scale-105 duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:hidden" />
@@ -69,11 +69,11 @@ export default function LaunchPopup() {
 
                             <span className="text-brand font-bold tracking-widest text-xs uppercase mb-3">Brand Launch Event</span>
                             <h2 className="text-3xl md:text-4xl font-serif text-white mb-4 leading-tight">
-                                VIBE CHECK :<br />The Choice Experiment
+                                LAUNCHING EVENT :<br />느낌을 모아 데이터로 가이드하다
                             </h2>
                             <p className="text-gray-400 mb-8 leading-relaxed text-sm md:text-base">
-                                주관적인 '인상'을 '데이터'로 확인하는 실험.<br />
-                                VIBE의 첫 번째 브랜드 팝업에 초대합니다.
+                                더욱 업그레이드된 VIBE 브랜드 런칭 행사.<br />
+                                주관적인 '인상'을 '지표'로 변환하는 한층 정교해진 비주얼 로직 체험에 초대합니다.
                             </p>
 
                             <div className="space-y-3 mt-auto">
