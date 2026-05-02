@@ -19,30 +19,29 @@ const articles = [
         title: "LAUNCHING EVENT : 느낌을 모아 데이터로 가이드하다",
         desc: "더욱 업그레이드된 VIBE 브랜드 런칭 행사. 주관적인 ‘인상’을 객관적인 ‘지표’로 전환하는 한층 정교해진 비주얼 로직 체험에 초대합니다.",
         content: `
-            <p class="lead">VIBE 브랜드 런칭 행사 : <strong>느낌을 모아 데이터로 가이드하다</strong>. 당신의 선택이 데이터가 되는 순간을 더욱 깊게 경험하세요.<br/>📅 2026년 5월 7일 (목) 19:30</p>
+            <p class="lead break-keep">VIBE 브랜드 런칭 행사 : <strong>느낌을 모아 데이터로 가이드하다</strong>.<br/>당신의 선택이 데이터가 되는 순간을 더욱 깊게 경험하세요.<br/>📅 2026년 5월 7일 (목) 19:30</p>
             
             <p class="text-center italic text-brand mb-8 font-bold">SEE YOUR VIBE. MAP YOUR IDENTITY.<br/>VISUAL IDENTITY BY INTELLIGENT BEAUTY ENGINE</p>
 
             <h3>✦ 참가자 전원 | AI 얼굴 분석 &amp; 이미지맵 제작</h3>
-            <p>행사에 참여해 주시는 모든 분들께, 더욱 업그레이드된 VIBE의 핵심 서비스를 직접 경험할 수 있는 특별한 기회를 드립니다.</p>
-            <p>VIBE는 주관적인 <strong>'인상'</strong>을 객관적인 <strong>'지표'</strong>로 변환하여, 개인의 고유한 매력을 찾아주는 비주얼 로직입니다. 고도화된 AI가 이목구비의 골격·비율·텍스처 데이터를 분석하고, 그 결과를 바탕으로 <strong>나만의 이미지맵(Image Map)</strong>을 제작해 드립니다. 숫자로 확인하는 나다움을 더욱 정확하게 경험해보세요.</p>
+            <p className="break-keep">행사에 참여해 주시는 모든 분들께, 더욱 업그레이드된 VIBE의 핵심 서비스를 직접 경험할 수 있는 특별한 기회를 드립니다.</p>
+            <p className="break-keep">VIBE는 주관적인 <strong>'인상'</strong>을 객관적인 <strong>'지표'</strong>로 변환하여, 개인의 고유한 매력을 찾아주는 비주얼 로직입니다.<br className="hidden md:block"/> 고도화된 AI가 이목구비의 골격·비율·텍스처 데이터를 분석하고, 그 결과를 바탕으로 <strong>나만의 이미지맵(Image Map)</strong>을 제작해 드립니다. 숫자로 확인하는 나다움을 더욱 정확하게 경험해보세요.</p>
             <ul>
-                <li><strong>분위기(Internal):</strong> 내가 선택한 이미지 맵(Map)을 기반으로 현재의 나를 확인하고, 유사한 분위기의 연예인과 매칭합니다.</li>
-                <li><strong>AI 결과(External):</strong> 얼굴 AI 분석을 통해 이목구비 골격 및 비율 데이터를 정밀하게 추출합니다. (예: 액티브 큐트, 엘레강스 등)</li>
+                <li className="break-keep"><strong>분위기(Internal):</strong> 내가 선택한 이미지 맵(Map)을 기반으로 현재의 나를 확인하고, 유사한 분위기의 연예인과 매칭합니다.</li>
+                <li className="break-keep"><strong>AI 결과(External):</strong> 얼굴 AI 분석을 통해 이목구비 골격 및 비율 데이터를 정밀하게 추출합니다. (예: 액티브 큐트, 엘레강스 등)</li>
             </ul>
 
             <h3>✦ 더욱 강력해진 VIBE 부스</h3>
-            <p>VIBE가 직접 운영하는 뷰티 솔루션 부스입니다. 분석 결과지를 손에 들고 바로 실전 변신에 도전하세요.</p>
+            <p className="break-keep">VIBE가 직접 운영하는 뷰티 솔루션 부스입니다. 분석 결과지를 손에 들고 바로 실전 변신에 도전하세요.</p>
             <ul>
-                <li><strong>💄 Makeup Booth:</strong> 고도화된 AI 분석 데이터 시트를 바탕으로, 내 골격과 분위기에 최적화된 메이크업 솔루션을 제안해 드립니다.</li>
-                <li><strong>✂️ Hair Booth:</strong> 얼굴형·하관 무게중심·이목구비 배치 데이터를 기반으로, 나에게 맞는 완벽한 헤어스타일을 제안해 드립니다.</li>
+                <li className="break-keep"><strong>💄 Makeup Booth:</strong> 고도화된 AI 분석 데이터 시트를 바탕으로, 내 골격과 분위기에 최적화된 메이크업 솔루션을 제안해 드립니다.</li>
             </ul>
 
             <h3>✦ 파트너 입점 부스</h3>
-            <p>VIBE의 철학에 공감한 파트너 브랜드들이 함께합니다. 분석 결과지를 지참하면 더욱 특별한 경험을 드립니다.</p>
+            <p className="break-keep">VIBE의 철학에 공감한 파트너 브랜드들이 함께합니다. 분석 결과지를 지참하면 더욱 특별한 경험을 드립니다.</p>
             <ul>
-                <li><strong>🌸 Perfume Booth:</strong> 분석 결과지 기반으로 추천된 향수를 직접 조향하고 시향해 볼 수 있습니다. 내 분위기를 완성하는 향기를 찾아드립니다.</li>
-                <li><strong>🔮 Tarot Booth:</strong> 내면의 에너지와 외면의 바이브가 얼마나 정렬되어 있는지, 타로를 통해 분석해 드립니다.</li>
+                <li className="break-keep"><strong>🌸 Perfume Booth:</strong> 분석 결과지 기반으로 추천된 향수를 직접 조향하고 시향해 볼 수 있습니다. 내 분위기를 완성하는 향기를 찾아드립니다.</li>
+                <li className="break-keep"><strong>🔮 Tarot Booth:</strong> 내면의 에너지와 외면의 바이브가 얼마나 정렬되어 있는지, 타로를 통해 분석해 드립니다.</li>
             </ul>
         `,
         author: "VIBE Event Team",
