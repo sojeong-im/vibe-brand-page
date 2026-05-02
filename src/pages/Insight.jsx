@@ -29,6 +29,7 @@ const articles = [
             <ul>
                 <li className="break-keep"><strong>분위기(Internal):</strong> 내가 선택한 이미지 맵(Map)을 기반으로 현재의 나를 확인하고, 유사한 분위기의 연예인과 매칭합니다.</li>
                 <li className="break-keep"><strong>AI 결과(External):</strong> 얼굴 AI 분석을 통해 이목구비 골격 및 비율 데이터를 정밀하게 추출합니다. (예: 액티브 큐트, 엘레강스 등)</li>
+                <li className="break-keep text-brand"><strong>✨ Limited Edition:</strong> 런칭 행사 참가자 분들께만 특별히 제작해 드리는 실물 <strong>'VIBE Profile Card'</strong>를 현장에서 받아보실 수 있습니다.</li>
             </ul>
 
             <h3>✦ 더욱 강력해진 VIBE 부스</h3>
