@@ -74,7 +74,7 @@ export default function Services() {
             number: '01',
             title: 'Hair',
             titleKr: '헤어 프로파일',
-            price: '128,000',
+            price: '88,000',
             description: '얼굴형 분석을 통해 당신의 분위기를 극대화할 최적의 헤어 스타일을 제안합니다.',
             features: ['얼굴형 헤어스타일 30종 분석', '앞머리 고민 해결', '기장부터 텍스처까지 맞춤 가이드'],
             images: ['/assets/hair_slide_1.png', '/assets/hair_slide_2.png'],
@@ -83,7 +83,7 @@ export default function Services() {
             number: '02',
             title: 'Makeup',
             titleKr: '메이크업 프로파일',
-            price: '108,000',
+            price: '88,000',
             description: '당신만의 퍼스널 컬러와 피부 톤, 눈매에 맞춘 정교한 메이크업 가이드를 제공합니다.',
             features: ['이목구비 장점 살린 25종 분석', '가장 조화로운 눈썹 형태 제안', '컬러 조합 가이드'],
             images: [
@@ -97,7 +97,7 @@ export default function Services() {
             number: '03',
             title: 'Fashion',
             titleKr: '패션 프로파일',
-            price: '138,000',
+            price: '88,000',
             description: '체형 분석을 넘어 당신의 전체적인 실루엣과 바이브를 완성하는 패션 큐레이션입니다.',
             features: ['체형별 상하의 코디 조합 35종', '나만의 분위기를 완성하는 패션', '시즌별 스타일링 가이드'],
             images: [
@@ -141,8 +141,8 @@ export default function Services() {
                         Hair + Makeup + Fashion 세 가지 프로필을 한 번에.
                     </p>
                     <div className="flex items-baseline justify-center gap-4 mb-10">
-                        <span className="text-gray-500 line-through">₩374,000</span>
-                        <span className="font-serif text-5xl font-light">₩298,000</span>
+                        <span className="text-gray-500 line-through">₩264,000</span>
+                        <span className="font-serif text-5xl font-light">₩198,000</span>
                     </div>
                     <Link
                         to="/contact"
