@@ -48,7 +48,7 @@ const articles = [
         author: "VIBE Event Team",
         date: "2026.05.07 (THU)",
         readTime: "5분 읽기",
-        image: "/assets/vibe_launching_poster.png"
+        image: "/assets/vibe_launching_poster_new.jpg"
     },
     {
         id: 0,
