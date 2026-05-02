@@ -130,6 +130,42 @@ export default function About() {
                 </div>
             </section>
 
+            {/* What We Do */}
+            <section ref={addToRefs} className="reveal py-32 px-6 bg-brand/5 border-y border-brand/10">
+                <div className="max-w-4xl mx-auto text-center">
+                    <p className="text-brand font-bold text-xs tracking-[0.3em] uppercase mb-8">What We Do</p>
+                    <h2 className="font-serif text-3xl md:text-5xl font-light leading-loose mb-12 keep-all text-white">
+                        가장 나다운 모습을 찾는<br />
+                        <strong className="font-bold">데이터 기반 스타일 솔루션</strong>
+                    </h2>
+                    <p className="text-gray-300 leading-relaxed text-lg keep-all max-w-3xl mx-auto mb-16">
+                        VIBE는 막연하게 느껴지던 '분위기'와 '매력'을 AI 기술을 통해 객관적인 데이터로 수치화합니다. 
+                        얼굴형, 이목구비, 체형 등을 분석하여 <strong>나에게 가장 최적화된 헤어, 메이크업, 패션 프로파일 리포트를 제공</strong>하는 스타일 큐레이션 전문 기업입니다.
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="bg-black/40 border border-white/10 p-8 hover:border-brand transition-colors text-left">
+                            <h3 className="font-serif text-xl mb-4 text-brand">01. AI Analysis</h3>
+                            <p className="text-gray-400 text-sm leading-relaxed keep-all">
+                                주관적인 느낌에 의존하지 않고, 신체와 얼굴의 특징을 정밀하게 추출하여 논리적인 지표로 변환합니다.
+                            </p>
+                        </div>
+                        <div className="bg-black/40 border border-white/10 p-8 hover:border-brand transition-colors text-left">
+                            <h3 className="font-serif text-xl mb-4 text-brand">02. Profile Report</h3>
+                            <p className="text-gray-400 text-sm leading-relaxed keep-all">
+                                도출된 데이터를 바탕으로 헤어스타일, 메이크업 톤, 패션 실루엣에 대한 명확한 가이드라인을 제시합니다.
+                            </p>
+                        </div>
+                        <div className="bg-black/40 border border-white/10 p-8 hover:border-brand transition-colors text-left">
+                            <h3 className="font-serif text-xl mb-4 text-brand">03. Custom Curation</h3>
+                            <p className="text-gray-400 text-sm leading-relaxed keep-all">
+                                나의 매력을 극대화할 수 있는 구체적인 뷰티/패션 아이템과 스타일링 팁을 1:1 맞춤형으로 큐레이션합니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Brand Philosophy */}
             <section ref={addToRefs} className="reveal py-32 px-6">
                 <div className="max-w-4xl mx-auto text-center">
