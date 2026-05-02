@@ -181,7 +181,7 @@ export default function About() {
                             </p>
                             <div className="bg-white/5 border-l-2 border-brand p-6 mb-8">
                                 <p className="text-white/80 text-sm leading-relaxed keep-all">
-                                    "현재 런칭 행사 참가자 분들께 한정판으로 제작해 드리고 있으며, 
+                                    "현재 런칭 행사 참가자 분들께 한정판으로 신청을 통해 제작해 드리고 있으며, 
                                     VIBE가 준비 중인 가장 중요한 핵심 프로파일 제품입니다."
                                 </p>
                             </div>
