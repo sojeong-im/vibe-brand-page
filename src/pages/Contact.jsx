@@ -18,10 +18,10 @@ export default function Contact() {
     const [discountCode, setDiscountCode] = useState('')
 
     const prices = {
-        'HAIR PROFILE': 55000,
-        'MAKEUP PROFILE': 55000,
-        'FASHION PROFILE': 55000,
-        'ALL-IN-ONE PACKAGE': 140000,
+        'HAIR PROFILE': 88000,
+        'MAKEUP PROFILE': 88000,
+        'FASHION PROFILE': 88000,
+        'ALL-IN-ONE PACKAGE': 198000,
     }
 
     const currentPrice = prices[selectedService]
