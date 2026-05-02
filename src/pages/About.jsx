@@ -166,6 +166,58 @@ export default function About() {
                 </div>
             </section>
 
+            {/* Profile Card Section */}
+            <section ref={addToRefs} className="reveal py-32 px-6">
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        <div className="order-2 lg:order-1">
+                            <p className="text-brand font-bold text-xs tracking-[0.3em] uppercase mb-8">Exclusive Product</p>
+                            <h2 className="font-serif text-4xl md:text-5xl font-light mb-8 text-white leading-tight keep-all">
+                                VIBE <span className="italic text-brand">Profile Card</span>
+                            </h2>
+                            <p className="text-gray-300 text-lg leading-relaxed mb-8 keep-all">
+                                주관적인 분위기를 물리적인 데이터로 소장하는 가장 완벽한 방법. 
+                                VIBE Profile Card는 AI 분석을 통해 도출된 당신의 비주얼 지표를 정교하게 시각화한 결과지입니다.
+                            </p>
+                            <div className="bg-white/5 border-l-2 border-brand p-6 mb-8">
+                                <p className="text-white/80 text-sm leading-relaxed keep-all">
+                                    "현재 런칭 행사 참가자 분들께 한정판으로 제작해 드리고 있으며, 
+                                    VIBE가 준비 중인 가장 중요한 핵심 프로파일 제품입니다."
+                                </p>
+                            </div>
+                            <ul className="space-y-4">
+                                <li className="flex items-center gap-3 text-gray-400">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-brand"></div>
+                                    <span>AI 이목구비 골격 및 비율 데이터 시각화</span>
+                                </li>
+                                <li className="flex items-center gap-3 text-gray-400">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-brand"></div>
+                                    <span>개인화된 무드 큐레이션 및 컬러 팔레트</span>
+                                </li>
+                                <li className="flex items-center gap-3 text-gray-400">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-brand"></div>
+                                    <span>물리적 소장이 가능한 고품질 카드 형태</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="order-1 lg:order-2 relative">
+                            <div className="absolute -inset-4 border border-brand/20 -z-10 animate-pulse"></div>
+                            <div className="bg-black p-4 border border-white/10 shadow-2xl">
+                                <img 
+                                    src="/assets/vibe_profile_sample.png" 
+                                    alt="VIBE Profile Card Limited Edition" 
+                                    className="w-full h-auto grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+                                />
+                            </div>
+                            {/* HUD Element */}
+                            <div className="absolute top-0 right-0 p-4 font-mono text-[10px] text-brand bg-black/80 border-b border-l border-brand/30">
+                                PRODUCT_TYPE: PROFILE_CARD_V1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Brand Philosophy */}
             <section ref={addToRefs} className="reveal py-32 px-6">
                 <div className="max-w-4xl mx-auto text-center">
