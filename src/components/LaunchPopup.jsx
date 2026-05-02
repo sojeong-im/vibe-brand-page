@@ -68,12 +68,13 @@ export default function LaunchPopup() {
                             </button>
 
                             <span className="text-brand font-bold tracking-widest text-xs uppercase mb-3">Brand Launch Event</span>
-                            <h2 className="text-3xl md:text-4xl font-serif text-white mb-4 leading-tight">
-                                LAUNCHING EVENT :<br />느낌을 모아 데이터로 가이드하다
+                            <h2 className="text-3xl md:text-4xl font-serif text-white mb-4 leading-tight keep-all">
+                                LAUNCHING EVENT :<br />
+                                느낌을 모아 데이터로 가이드하다
                             </h2>
-                            <p className="text-gray-400 mb-8 leading-relaxed text-sm md:text-base">
+                            <p className="text-gray-400 mb-8 leading-relaxed text-sm md:text-base keep-all">
                                 더욱 업그레이드된 VIBE 브랜드 런칭 행사.<br />
-                                주관적인 '인상'을 '지표'로 변환하는 한층 정교해진 비주얼 로직 체험에 초대합니다.
+                                주관적인 '인상'을 '지표'로 변환하는<br className="hidden md:block" /> 한층 정교해진 비주얼 로직 체험에 초대합니다.
                             </p>
 
                             <div className="space-y-3 mt-auto">
