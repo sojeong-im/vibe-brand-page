@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>VIBE INSIGHT</title>
+  <link>https://vibelogic.site/insight.html</link>
+  <description>데이터가 제안하는 스타일 전략과 VIBE의 발자취</description>
+  <language>ko</language>
+  <item>
+    <title>유행을 넘어서는 '희소성'의 가치: 당신의 데이터가 정답인 이유</title>
+    <link>https://vibelogic.site/insight.html</link>
+    <description>남들과 똑같은 메이크업이 어색하게 느껴졌다면, 이제는 나의 얼굴 수치에 집중해야 할 때입니다.</description>
+    <pubDate>Mon, 27 Jan 2026 00:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>VIBE AI는 어떻게 당신의 분위기를 스캔할까?</title>
+    <link>https://vibelogic.site/insight.html</link>
+    <description>VIBE AI가 얼굴의 랜드마크를 추출하고 이를 데이터화하는 과정을 공개합니다.</description>
+    <pubDate>Mon, 20 Jan 2026 00:00:00 +0900</pubDate>
+  </item>
+</channel>
+</rss>

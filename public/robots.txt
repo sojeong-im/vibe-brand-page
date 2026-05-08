@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://vibelogic.site/sitemap.xml
+RSS: https://vibelogic.site/rss.xml
