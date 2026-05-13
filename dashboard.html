@@ -189,6 +189,51 @@
             right: 20px;
         }
 
+        /* 1.5 Questionnaire */
+        .qna-list {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .qna-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 25px 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .qna-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--vibe-blue);
+            transform: translateX(10px);
+        }
+
+        .qna-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            color: var(--vibe-blue);
+            font-weight: 700;
+            min-width: 30px;
+        }
+
+        .qna-text {
+            font-size: 16px;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .qna-highlight {
+            color: var(--vibe-accent);
+        }
+
         /* 2. AI Analysis */
         .analysis-grid {
             display: grid;
@@ -448,11 +493,67 @@
             </div>
         </section>
 
-        <!-- 2. AI Analysis -->
-        <section id="analysis">
+        <!-- 2. VIBE Questionnaire -->
+        <section id="questionnaire">
             <div class="section-header">
                 <span class="section-number">02</span>
-                <span class="section-title">Section 1: AI Analysis</span>
+                <span class="section-title">Section 1: Vibe Questionnaire</span>
+            </div>
+            
+            <div style="text-align: center; margin-bottom: 40px; z-index: 10;">
+                <h2 style="font-size: 32px; margin-bottom: 15px;">Pursuit of Vibe</h2>
+                <p style="color: var(--text-dim); line-height: 1.6;">완벽한 스타일 진단을 위해 VIBE 프로파일러가 참고하는 10가지 핵심 진단 항목입니다.</p>
+            </div>
+
+            <div class="qna-list">
+                <div class="qna-item">
+                    <div class="qna-number">Q1</div>
+                    <div class="qna-text">평소 가장 선호하는 옷의 핏(실루엣)은 무엇인가요? <span style="color:var(--text-dim);font-size:14px;">(예: 오버핏, 슬림핏, 레귤러)</span></div>
+                </div>
+                <div class="qna-item">
+                    <div class="qna-number">Q2</div>
+                    <div class="qna-text">옷을 고를 때 가장 중요하게 생각하는 요소는 무엇인가요? <span style="color:var(--text-dim);font-size:14px;">(예: 소재, 컬러, 디자인, 편안함)</span></div>
+                </div>
+                <div class="qna-item">
+                    <div class="qna-number">Q3</div>
+                    <div class="qna-text">주로 활동하는 환경이나 직업군의 드레스코드는 어떤 편인가요? <span style="color:var(--text-dim);font-size:14px;">(예: 캐주얼, 정장, 유니폼)</span></div>
+                </div>
+                <div class="qna-item">
+                    <div class="qna-number">Q4</div>
+                    <div class="qna-text">본인의 몸에서 가장 강조하고 싶은 부분과 가리고 싶은 부분은 어디인가요?</div>
+                </div>
+                <div class="qna-item" style="border-left: 3px solid var(--vibe-accent);">
+                    <div class="qna-number qna-highlight">Q5</div>
+                    <div class="qna-text">몸에 새겨진 <span class="qna-highlight">문신(타투)이나 특별한 흉터</span>가 있나요? <span style="color:var(--text-dim);font-size:14px;">(있다면 크기와 위치, 노출 의향을 알려주세요.)</span></div>
+                </div>
+                <div class="qna-item">
+                    <div class="qna-number">Q6</div>
+                    <div class="qna-text">평소 메이크업을 할 때 가장 신경 쓰는 부위는 어디인가요? <span style="color:var(--text-dim);font-size:14px;">(예: 피부 표현, 눈썹, 립)</span></div>
+                </div>
+                <div class="qna-item">
+                    <div class="qna-number">Q7</div>
+                    <div class="qna-text">본인이 생각하는 자신의 가장 큰 매력 포인트(분위기)는 무엇이라고 생각하나요? <span style="color:var(--text-dim);font-size:14px;">(예: 시크함, 부드러움, 러블리함)</span></div>
+                </div>
+                <div class="qna-item">
+                    <div class="qna-number">Q8</div>
+                    <div class="qna-text">절대 시도하고 싶지 않은 스타일이나 색상이 있다면 무엇인가요?</div>
+                </div>
+                <div class="qna-item">
+                    <div class="qna-number">Q9</div>
+                    <div class="qna-text">헤어스타일을 바꿀 때 가장 큰 고민거리는 무엇인가요? <span style="color:var(--text-dim);font-size:14px;">(예: 볼륨, 곱슬기, 숱)</span></div>
+                </div>
+                <div class="qna-item">
+                    <div class="qna-number">Q10</div>
+                    <div class="qna-text">최종적으로 이 프로파일지를 통해 어떤 이미지(추구미)로 기억되고 싶으신가요?</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. AI Analysis -->
+        <section id="analysis">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <span class="section-title">Section 2: AI Analysis</span>
             </div>
             <div class="analysis-grid">
                 <div class="embed-container">
@@ -479,11 +580,11 @@
             </div>
         </section>
 
-        <!-- 3. Precision Tuning -->
+        <!-- 4. Precision Tuning -->
         <section id="tuning">
             <div class="section-header">
-                <span class="section-number">03</span>
-                <span class="section-title">Section 2: Precision Tuning</span>
+                <span class="section-number">04</span>
+                <span class="section-title">Section 3: Precision Tuning</span>
             </div>
             <div class="tuning-controls">
                 <div class="tuning-card">
@@ -513,11 +614,11 @@
             </div>
         </section>
 
-        <!-- 4. Review Campaign -->
+        <!-- 5. Review Campaign -->
         <section id="review">
             <div class="section-header">
-                <span class="section-number">04</span>
-                <span class="section-title">Section 3: DATA FEEDBACK</span>
+                <span class="section-number">05</span>
+                <span class="section-title">Section 4: DATA FEEDBACK</span>
             </div>
             <div class="campaign-box">
                 <h2 style="font-size: 48px; margin-bottom: 20px;">The Value of Your Feedback</h2>
