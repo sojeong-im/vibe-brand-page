@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIBE - 응답 리스트</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #05070a;
+            --vibe-navy: #0a1128;
+            --vibe-blue: #0047ff;
+            --vibe-accent: #e56353;
+            --text-main: #ffffff;
+            --text-dim: #888888;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Pretendard', -apple-system, sans-serif;
+        }
+
+        /* Admin Auth Overlay */
+        #auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .auth-box {
+            text-align: center;
+            width: 300px;
+        }
+
+        .auth-box h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.5em;
+            color: var(--vibe-blue);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        #admin-pass {
+            width: 100%;
+            background: none;
+            border: none;
+            border-bottom: 2px solid var(--border-color);
+            color: white;
+            font-size: 32px;
+            text-align: center;
+            letter-spacing: 0.5em;
+            padding: 10px 0;
+            outline: none;
+            font-family: 'Space Grotesk', sans-serif;
+            transition: 0.3s;
+        }
+
+        #admin-pass:focus {
+            border-bottom-color: var(--vibe-blue);
+        }
+
+        .auth-status {
+            font-size: 10px;
+            color: var(--vibe-accent);
+            margin-top: 15px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        /* Dashboard Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: none; /* Shown after auth */
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            margin: 0;
+        }
+
+        .back-btn {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            color: var(--vibe-blue);
+        }
+
+        /* Response Cards */
+        .response-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .response-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .response-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .time-badge {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            color: var(--vibe-blue);
+            background: rgba(0, 71, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .qna-row {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .q-text {
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        .a-text {
+            font-size: 15px;
+            color: var(--text-main);
+            line-height: 1.5;
+            background: rgba(0,0,0,0.3);
+            padding: 10px 15px;
+            border-radius: 6px;
+            border-left: 2px solid var(--vibe-blue);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: var(--text-dim);
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.2em;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Admin Auth -->
+    <div id="auth-overlay">
+        <div class="auth-box">
+            <h2>Admin Authentication</h2>
+            <input type="password" id="admin-pass" maxlength="5" placeholder="·····" autocomplete="off">
+            <div id="auth-error" class="auth-status">INVALID ACCESS CODE</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container" id="main-content">
+        <div class="header">
+            <h1>Pursuit of Vibe - Responses</h1>
+            <a href="/dashboard.html" class="back-btn">← Back to Dashboard</a>
+        </div>
+        
+        <div id="loading" class="loading">FETCHING DATA...</div>
+        <div class="response-grid" id="response-list"></div>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyDveEhCUwEBglkznumfDIVCtpEsRfWOyrc",
+            authDomain: "vibe-brand-page.firebaseapp.com",
+            projectId: "vibe-brand-page",
+            storageBucket: "vibe-brand-page.firebasestorage.app",
+            messagingSenderId: "421880123399",
+            appId: "1:421880123399:web:3820b6eb99ab43a542daa2"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Auth Logic
+        const passInput = document.getElementById('admin-pass');
+        const authOverlay = document.getElementById('auth-overlay');
+        const authError = document.getElementById('auth-error');
+        const mainContent = document.getElementById('main-content');
+
+        passInput.addEventListener('input', (e) => {
+            if (e.target.value === '00347') {
+                authOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    authOverlay.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    fetchData();
+                }, 800);
+            } else if (e.target.value.length === 5) {
+                authError.style.opacity = '1';
+                passInput.style.borderBottomColor = 'var(--vibe-accent)';
+                setTimeout(() => {
+                    e.target.value = '';
+                    authError.style.opacity = '0';
+                    passInput.style.borderBottomColor = 'var(--border-color)';
+                }, 1000);
+            }
+        });
+
+        // Fetch Data
+        async function fetchData() {
+            const listEl = document.getElementById('response-list');
+            const loadingEl = document.getElementById('loading');
+
+            try {
+                const q = query(collection(db, "vibe_pursuits"), orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                loadingEl.style.display = 'none';
+                
+                if (querySnapshot.empty) {
+                    listEl.innerHTML = '<div style="text-align:center; color: var(--text-dim); padding: 40px;">아직 접수된 응답이 없습니다.</div>';
+                    return;
+                }
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const date = data.createdAt ? new Date(data.createdAt.toDate()).toLocaleString('ko-KR') : '시간 정보 없음';
+                    
+                    // Arrays to string
+                    const q2 = Array.isArray(data.q2) ? data.q2.join(', ') : data.q2;
+                    const q6 = Array.isArray(data.q6) ? data.q6.join(', ') : data.q6;
+                    
+                    const card = document.createElement('div');
+                    card.className = 'response-card';
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <span class="time-badge">${date}</span>
+                        </div>
+                        <div class="qna-row"><div class="q-text">Q1. 선호 핏</div><div class="a-text">${data.q1 || '-'}</div></div>
+                        <div class="qna-row"><div class="q-text">Q2. 중요 요소</div><div class="a-text">${q2 || '-'}</div></div>
+                        <div class="qna-row"><div class="q-text">Q3. 드레스코드</div><div class="a-text">${data.q3 || '-'}</div></div>
+                        <div class="qna-row"><div class="q-text">Q4. 강조/보완 부위</div><div class="a-text">${data.q4 || '-'}</div></div>
+                        <div class="qna-row"><div class="q-text" style="color:var(--vibe-accent);">Q5. 타투/흉터</div><div class="a-text">${data.q5_has_tattoo || '-'} ${data.q5_detail ? `(${data.q5_detail})` : ''}</div></div>
+                        <div class="qna-row"><div class="q-text">Q6. 메이크업 신경 부위</div><div class="a-text">${q6 || '-'}</div></div>
+                        <div class="qna-row"><div class="q-text">Q7. 매력 포인트(분위기)</div><div class="a-text">${data.q7 || '-'}</div></div>
+                        <div class="qna-row"><div class="q-text">Q8. 기피 스타일/색상</div><div class="a-text">${data.q8 || '-'}</div></div>
+                        <div class="qna-row"><div class="q-text">Q9. 헤어 고민</div><div class="a-text">${data.q9 || '-'}</div></div>
+                        <div class="qna-row"><div class="q-text">Q10. 추구미</div><div class="a-text">${data.q10 || '-'}</div></div>
+                    `;
+                    listEl.appendChild(card);
+                });
+            } catch (error) {
+                console.error("Error fetching documents: ", error);
+                loadingEl.innerText = "데이터를 불러오는 중 오류가 발생했습니다.";
+            }
+        }
+    </script>
+</body>
+</html>
