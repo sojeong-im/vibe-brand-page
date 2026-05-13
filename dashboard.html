@@ -709,13 +709,26 @@
                 </div>
                 </div>
 
-                <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color);">
-                    <div style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: var(--vibe-blue); margin-bottom: 15px; letter-spacing: 0.1em;">ADDITIONAL INFO</div>
-                    <div class="qna-content">
-                        <div class="qna-text">위고비, 다이어트 보조제 복용 여부 <span style="color:var(--text-dim);font-size:14px;">(선택)</span></div>
-                        <div class="qna-options">
-                            <label class="qna-option"><input type="radio" name="q11" value="O"> O</label>
-                            <label class="qna-option"><input type="radio" name="q11" value="X"> X</label>
+                </div>
+
+                <div class="applicant-info-card" style="margin-top: 40px; padding: 30px; background: rgba(0, 71, 255, 0.03); border: 1px solid rgba(0, 71, 255, 0.1); border-radius: 12px;">
+                    <div style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: var(--vibe-blue); margin-bottom: 25px; letter-spacing: 0.1em; display: flex; align-items: center; gap: 10px;">
+                        <span style="display:inline-block; width: 6px; height: 6px; background: var(--vibe-blue); border-radius: 50%;"></span>
+                        APPLICANT INFO
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 25px;">
+                        <div class="qna-content" style="margin: 0;">
+                            <div class="qna-text">프로파일지 신청자 성함 <span style="color:var(--vibe-accent);font-size:14px;">*</span></div>
+                            <input type="text" name="applicant_name" class="qna-input" placeholder="이름을 입력해주세요" style="background: white; border-color: rgba(0,0,0,0.1);">
+                        </div>
+                        
+                        <div class="qna-content" style="margin: 0;">
+                            <div class="qna-text">위고비, 다이어트 보조제 복용 여부 <span style="color:var(--text-dim);font-size:14px;">(선택)</span></div>
+                            <div class="qna-options">
+                                <label class="qna-option" style="background: white;"><input type="radio" name="q11" value="O"> O</label>
+                                <label class="qna-option" style="background: white;"><input type="radio" name="q11" value="X"> X</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -914,6 +927,7 @@
                 const formData = new FormData(e.target);
                 const data = {
                     createdAt: serverTimestamp(),
+                    applicant_name: formData.get('applicant_name') || '미기재',
                     q1: (formData.get('q1') === '기타' ? formData.get('q1_etc') : formData.get('q1')) || '미선택',
                     q2: formData.getAll('q2') || [],
                     q3: formData.get('q3') || '미선택',
