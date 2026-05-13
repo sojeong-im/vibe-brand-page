@@ -707,6 +707,16 @@
                         <textarea name="q10" class="qna-input" rows="3"></textarea>
                     </div>
                 </div>
+                <div class="qna-item">
+                    <div class="qna-number">Q11</div>
+                    <div class="qna-content">
+                        <div class="qna-text">위고비, 다이어트 보조제 복용 여부</div>
+                        <div class="qna-options">
+                            <label class="qna-option"><input type="radio" name="q11" value="O"> O</label>
+                            <label class="qna-option"><input type="radio" name="q11" value="X"> X</label>
+                        </div>
+                    </div>
+                </div>
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px;">
                     <button type="submit" class="submit-btn">데이터 저장하기</button>
                     <a href="/responses.html" style="color: var(--vibe-blue); font-size: 14px; text-decoration: underline; text-underline-offset: 4px;">관리자 전용 응답 확인 페이지로 이동 →</a>
@@ -911,7 +921,8 @@
                     q7: formData.get('q7') || '',
                     q8: formData.get('q8') || '',
                     q9: formData.get('q9') || '',
-                    q10: formData.get('q10') || ''
+                    q10: formData.get('q10') || '',
+                    q11: formData.get('q11') || '미선택'
                 };
 
                 // Create a Promise that rejects after 10 seconds to prevent infinite hanging
