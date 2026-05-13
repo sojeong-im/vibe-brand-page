@@ -15,9 +15,9 @@ function ServiceCard({ number, title, titleKr, price, description, features, ima
     }, [images])
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-white/10 bg-black/40 backdrop-blur-sm">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-gray-100 bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
             {/* Image */}
-            <div className="img-zoom aspect-[3/4] bg-white/5 order-2 lg:order-1 overflow-hidden p-12 flex items-center justify-center relative">
+            <div className="img-zoom aspect-[3/4] bg-gray-50 order-2 lg:order-1 overflow-hidden p-12 flex items-center justify-center relative">
                 {images ? (
                     images.map((img, idx) => (
                         <img
@@ -34,19 +34,19 @@ function ServiceCard({ number, title, titleKr, price, description, features, ima
             </div>
 
             {/* Content */}
-            <div className="p-8 lg:p-12 flex flex-col order-1 lg:order-2">
-                <p className="text-caption uppercase text-gray-400 mb-2">{number}</p>
-                <h3 className="font-serif text-3xl md:text-4xl font-light mb-1 text-white">{title}</h3>
-                <p className="text-gray-400 mb-6">{titleKr}</p>
+            <div className="p-8 lg:p-12 flex flex-col order-1 lg:order-2 bg-white">
+                <p className="text-caption uppercase text-brand mb-2 font-mono text-xs tracking-widest">{number}</p>
+                <h3 className="font-serif text-3xl md:text-4xl font-light mb-1 text-gray-900">{title}</h3>
+                <p className="text-gray-400 mb-6 text-sm">{titleKr}</p>
 
-                <p className="text-gray-400 leading-relaxed keep-all mb-8 flex-1">
+                <p className="text-gray-600 leading-relaxed keep-all mb-8 flex-1">
                     {description}
                 </p>
 
                 {/* Features */}
                 <ul className="space-y-2 mb-8">
                     {features.map((feature, index) => (
-                        <li key={index} className="text-sm text-gray-400 flex items-start gap-2">
+                        <li key={index} className="text-sm text-gray-500 flex items-start gap-2">
                             <span className="mt-1.5 w-1 h-1 bg-brand rounded-full flex-shrink-0" />
                             {feature}
                         </li>
@@ -54,11 +54,11 @@ function ServiceCard({ number, title, titleKr, price, description, features, ima
                 </ul>
 
                 {/* Price & CTA */}
-                <div className="border-t border-white/10 pt-6">
-                    <p className="font-serif text-3xl font-light mb-6 text-white">₩{price}</p>
+                <div className="border-t border-gray-100 pt-6">
+                    <p className="font-serif text-3xl font-light mb-6 text-gray-900">₩{price}</p>
                     <Link
                         to="/contact"
-                        className="block w-full py-4 bg-brand text-black text-center text-sm tracking-[0.1em] uppercase hover:bg-white transition-all font-bold"
+                        className="block w-full py-4 bg-brand text-white text-center text-sm tracking-[0.1em] uppercase hover:bg-brand/80 hover:shadow-[0_4px_20px_rgba(0,194,255,0.3)] transition-all font-bold rounded-lg"
                     >
                         신청하기
                     </Link>
@@ -110,12 +110,12 @@ export default function Services() {
     ]
 
     return (
-        <div className="bg-transparent min-h-screen text-white">
+        <div className="bg-transparent min-h-screen text-gray-900">
             {/* Header */}
             <section className="pt-32 pb-20 px-6">
                 <div className="max-w-4xl mx-auto text-center">
-                    <p className="text-caption uppercase text-gray-400 mb-4">Services</p>
-                    <h1 className="font-serif text-headline font-light mb-6">Our Profiles</h1>
+                    <p className="text-xs uppercase tracking-[0.3em] text-brand mb-4 font-mono">Services</p>
+                    <h1 className="font-serif text-headline font-light mb-6 text-gray-900">Our Profiles</h1>
                     <p className="text-gray-500 max-w-xl mx-auto keep-all">
                         VIBE의 분석 시스템은 느낌이 아닌 데이터를 기반으로 당신만의 고유한 분위기를 정리한 결과지를 제공합니다.
                     </p>
@@ -124,7 +124,7 @@ export default function Services() {
 
             {/* Service Cards */}
             <section className="max-w-6xl mx-auto px-6 pb-24">
-                <div className="space-y-16">
+                <div className="space-y-10">
                     {services.map((service, index) => (
                         <ServiceCard key={index} {...service} />
                     ))}
@@ -132,21 +132,21 @@ export default function Services() {
             </section>
 
             {/* Package */}
-            <section className="py-24 bg-brand/10 border border-brand/20 text-white backdrop-blur-md relative overflow-hidden">
-                <div className="absolute inset-0 bg-brand/5 pointer-events-none" />
-                <div className="max-w-4xl mx-auto px-6 text-center">
-                    <p className="text-caption uppercase text-gray-500 mb-4">Special</p>
-                    <h2 className="font-serif text-4xl md:text-5xl font-light mb-4">All-in-One</h2>
-                    <p className="text-gray-400 mb-8 keep-all">
+            <section className="py-24 bg-[#f5f7fa] border-y border-brand/10 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-brand/5 to-transparent pointer-events-none" />
+                <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+                    <p className="text-xs uppercase tracking-[0.3em] text-brand mb-4 font-mono">Special</p>
+                    <h2 className="font-serif text-4xl md:text-5xl font-light mb-4 text-gray-900">All-in-One</h2>
+                    <p className="text-gray-500 mb-8 keep-all">
                         Hair + Makeup + Fashion 세 가지 프로필을 한 번에.
                     </p>
                     <div className="flex items-baseline justify-center gap-4 mb-10">
-                        <span className="text-gray-500 line-through">₩264,000</span>
-                        <span className="font-serif text-5xl font-light">₩198,000</span>
+                        <span className="text-gray-400 line-through">₩264,000</span>
+                        <span className="font-serif text-5xl font-light text-gray-900">₩198,000</span>
                     </div>
                     <Link
                         to="/contact"
-                        className="inline-block px-10 py-4 border border-brand text-brand-light text-sm tracking-[0.1em] uppercase hover:bg-brand hover:text-black transition-all"
+                        className="inline-block px-10 py-4 border border-brand text-brand text-sm tracking-[0.1em] uppercase hover:bg-brand hover:text-white transition-all rounded-full"
                     >
                         패키지 신청
                     </Link>
@@ -154,9 +154,9 @@ export default function Services() {
             </section>
 
             {/* FAQ */}
-            <section className="py-24 px-6">
+            <section className="py-24 px-6 bg-white">
                 <div className="max-w-3xl mx-auto">
-                    <h3 className="font-serif text-3xl font-light text-center mb-16">FAQ</h3>
+                    <h3 className="font-serif text-3xl font-light text-center mb-16 text-gray-900">FAQ</h3>
 
                     <div className="space-y-0">
                         {[
@@ -164,12 +164,12 @@ export default function Services() {
                             { q: '분석은 어떻게 진행되나요?', a: 'VIBE 시스템이 제출된 응답 데이터를 기반으로 자동 분석하여 결과지를 생성합니다.' },
                             { q: '환불은 가능한가요?', a: '체크리스트 제출 전까지 100% 환불 가능합니다.' },
                         ].map((item, index) => (
-                            <details key={index} className="border-t border-white/10 last:border-b last:border-white/10 group">
-                                <summary className="py-6 flex justify-between items-center cursor-pointer list-none text-white hover:text-brand transition-colors">
+                            <details key={index} className="border-t border-gray-100 last:border-b last:border-gray-100 group">
+                                <summary className="py-6 flex justify-between items-center cursor-pointer list-none text-gray-900 hover:text-brand transition-colors">
                                     <span className="text-lg">{item.q}</span>
                                     <span className="text-xl group-open:rotate-45 transition-transform text-brand">+</span>
                                 </summary>
-                                <p className="pb-6 text-gray-400 leading-relaxed">{item.a}</p>
+                                <p className="pb-6 text-gray-500 leading-relaxed">{item.a}</p>
                             </details>
                         ))}
                     </div>

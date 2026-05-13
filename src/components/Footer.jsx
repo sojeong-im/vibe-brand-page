@@ -4,7 +4,7 @@ export default function Footer() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <footer className="bg-black border-t border-white/10 relative z-10">
+        <footer className="bg-[#111] border-t border-white/5 relative z-10">
             {/* Main Footer */}
             <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -18,7 +18,7 @@ export default function Footer() {
 
                     {/* Links */}
                     <div>
-                        <p className="text-xs tracking-[0.2em] uppercase text-brand-dark mb-6">Menu</p>
+                        <p className="text-xs tracking-[0.2em] uppercase text-brand mb-6">Menu</p>
                         <nav className="flex flex-col gap-3">
                             <Link to="/about" className="text-sm text-gray-400 hover:text-brand transition-colors">About</Link>
                             <Link to="/services" className="text-sm text-gray-400 hover:text-brand transition-colors">Services</Link>
@@ -30,7 +30,7 @@ export default function Footer() {
 
                     {/* Contact */}
                     <div>
-                        <p className="text-xs tracking-[0.2em] uppercase text-brand-dark mb-6">Contact</p>
+                        <p className="text-xs tracking-[0.2em] uppercase text-brand mb-6">Contact</p>
                         <div className="flex flex-col gap-3 text-sm text-gray-400">
                             <a href="mailto:contact@vibe-profile.co.kr" className="hover:text-brand transition-colors">
                                 contact@vibe-profile.co.kr
@@ -48,6 +48,14 @@ export default function Footer() {
                     <div className="flex items-center gap-6 text-xs text-gray-500">
                         <a href="#privacy" className="hover:text-white transition-colors">Privacy</a>
                         <a href="#terms" className="hover:text-white transition-colors">Terms</a>
+                        <a
+                            href="/dashboard.html"
+                            className="text-gray-600 hover:text-brand transition-colors flex items-center gap-1"
+                            title="Admin Dashboard"
+                        >
+                            <span>⬡</span>
+                            <span>Dashboard</span>
+                        </a>
                     </div>
                 </div>
             </div>
