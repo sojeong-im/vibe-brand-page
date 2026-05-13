@@ -261,12 +261,19 @@
 
             try {
                 const q = query(collection(db, "vibe_pursuits"), orderBy("createdAt", "desc"));
-                const querySnapshot = await getDocs(q);
+                
+                // Add a 10 second timeout for getDocs
+                const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT')), 10000));
+                
+                const querySnapshot = await Promise.race([
+                    getDocs(q),
+                    timeoutPromise
+                ]);
                 
                 loadingEl.style.display = 'none';
                 
                 if (querySnapshot.empty) {
-                    listEl.innerHTML = '<div style="text-align:center; color: var(--text-dim); padding: 40px;">아직 접수된 응답이 없습니다.</div>';
+                    listEl.innerHTML = '<div style="text-align:center; color: var(--text-dim); padding: 40px; font-size: 16px;">아직 접수된 응답이 없습니다.</div>';
                     return;
                 }
 
@@ -299,7 +306,11 @@
                 });
             } catch (error) {
                 console.error("Error fetching documents: ", error);
-                loadingEl.innerText = "데이터를 불러오는 중 오류가 발생했습니다.";
+                if (error.message === 'TIMEOUT') {
+                    loadingEl.innerHTML = '<span style="color: var(--vibe-accent);">데이터 로딩 시간이 초과되었습니다.<br>Firebase 콘솔에서 Firestore Database가 생성되어 있는지 확인해주세요.</span>';
+                } else {
+                    loadingEl.innerHTML = `<span style="color: var(--vibe-accent);">데이터를 불러오는 중 오류가 발생했습니다.<br>${error.message}</span>`;
+                }
             }
         }
     </script>
