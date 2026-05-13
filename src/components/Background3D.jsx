@@ -15,17 +15,17 @@ const Background3D = () => {
         canvas.height = height
 
         const particles = []
-        const particleCount = 50
-        const connectionDistance = 150
+        const particleCount = 60
+        const connectionDistance = 130
 
         // Initialize particles
         for (let i = 0; i < particleCount; i++) {
             particles.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                size: Math.random() * 2,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                size: Math.random() * 1.5 + 0.5,
             })
         }
 
@@ -39,16 +39,18 @@ const Background3D = () => {
         window.addEventListener('resize', resize)
 
         const draw = () => {
-            ctx.fillStyle = '#000000'
+            // 밝은 배경 — 순수 화이트
+            ctx.fillStyle = '#ffffff'
             ctx.fillRect(0, 0, width, height)
 
-            // Draw grid perspective
-            ctx.strokeStyle = 'rgba(0, 234, 255, 0.1)'
-            ctx.lineWidth = 1
+            // 미세한 쿨 블루 그라데이션 오버레이
+            const grad = ctx.createRadialGradient(width * 0.5, height * 0.3, 0, width * 0.5, height * 0.3, width * 0.8)
+            grad.addColorStop(0, 'rgba(0, 194, 255, 0.05)')
+            grad.addColorStop(1, 'rgba(255, 255, 255, 0)')
+            ctx.fillStyle = grad
+            ctx.fillRect(0, 0, width, height)
 
-            // Vertical lines perspective
             const cx = width / 2
-            const cy = height / 2
 
             // Update and draw particles
             particles.forEach((p, i) => {
@@ -59,13 +61,13 @@ const Background3D = () => {
                 if (p.x < 0 || p.x > width) p.vx *= -1
                 if (p.y < 0 || p.y > height) p.vy *= -1
 
-                // Draw particle
+                // Draw particle — 하늘색 점
                 ctx.beginPath()
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-                ctx.fillStyle = '#00EAFF'
+                ctx.fillStyle = 'rgba(0, 194, 255, 0.5)'
                 ctx.fill()
 
-                // Connect particles
+                // Connect particles — 연한 하늘색 선
                 for (let j = i + 1; j < particles.length; j++) {
                     const p2 = particles[j]
                     const dx = p.x - p2.x
@@ -74,7 +76,8 @@ const Background3D = () => {
 
                     if (dist < connectionDistance) {
                         ctx.beginPath()
-                        ctx.strokeStyle = `rgba(0, 234, 255, ${0.1 * (1 - dist / connectionDistance)})`
+                        ctx.strokeStyle = `rgba(0, 194, 255, ${0.07 * (1 - dist / connectionDistance)})`
+                        ctx.lineWidth = 0.8
                         ctx.moveTo(p.x, p.y)
                         ctx.lineTo(p2.x, p2.y)
                         ctx.stroke()
@@ -82,37 +85,36 @@ const Background3D = () => {
                 }
             })
 
-            // Draw glowing grid floor (simulated 3D)
+            // Moving perspective grid (very subtle, light)
             const time = Date.now() * 0.001
             const gridY = height * 0.8
 
             ctx.save()
-            ctx.beginPath()
-            // Horizon line
-            // ctx.moveTo(0, gridY)
-            // ctx.lineTo(width, gridY)
 
             // Perspective lines
             for (let i = -10; i <= 10; i++) {
                 const x = cx + i * 200
+                ctx.beginPath()
                 ctx.moveTo(x, height)
-                ctx.lineTo(cx, gridY - 200) // Vanishing point
+                ctx.lineTo(cx, gridY - 200)
+                ctx.strokeStyle = 'rgba(0, 194, 255, 0.04)'
+                ctx.lineWidth = 1
+                ctx.stroke()
             }
-            ctx.strokeStyle = 'rgba(0, 234, 255, 0.05)'
-            ctx.stroke()
 
             // Moving horizontal lines
-            const offset = (time * 50) % 100
+            const offset = (time * 40) % 100
             for (let i = 0; i < 10; i++) {
                 const y = gridY + i * 40 + offset
                 if (y < height) {
                     ctx.beginPath()
                     ctx.moveTo(0, y)
                     ctx.lineTo(width, y)
-                    ctx.strokeStyle = `rgba(0, 234, 255, ${0.05 + (i / 20) * 0.1})`
+                    ctx.strokeStyle = `rgba(0, 194, 255, ${0.03 + (i / 20) * 0.04})`
                     ctx.stroke()
                 }
             }
+
             ctx.restore()
 
             animationFrameId = requestAnimationFrame(draw)

@@ -130,25 +130,26 @@ function Home() {
                 className="relative min-h-screen flex items-center justify-center overflow-hidden"
                 style={{ opacity: heroOpacity, scale: heroScale }}
             >
-                {/* Visual Backdrop is handled by global Background3D, but we add local gradient for focus */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-white/70 pointer-events-none" />
+                {/* Light gradient overlay — no black at all */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/60 pointer-events-none" />
 
-                {/* Animated Particles - Cyan */}
+                {/* Animated Particles - Sky Blue (light) */}
                 <div className="absolute inset-0">
-                    {Array.from({ length: 20 }).map((_, i) => (
+                    {Array.from({ length: 15 }).map((_, i) => (
                         <motion.div
                             key={i}
-                            className="absolute w-1 h-1 bg-brand rounded-full shadow-[0_0_10px_#00EAFF]"
+                            className="absolute w-1 h-1 bg-brand rounded-full"
                             style={{
                                 left: `${Math.random() * 100}%`,
                                 top: `${Math.random() * 100}%`,
+                                opacity: 0.25,
                             }}
                             animate={{
-                                opacity: [0, 1, 0],
-                                scale: [0, 1.5, 0],
+                                opacity: [0.1, 0.4, 0.1],
+                                scale: [0.5, 1.2, 0.5],
                             }}
                             transition={{
-                                duration: 2 + Math.random() * 2,
+                                duration: 3 + Math.random() * 2,
                                 repeat: Infinity,
                                 delay: Math.random() * 2,
                             }}
@@ -163,18 +164,18 @@ function Home() {
                         transition={{ duration: 1, delay: 0.2 }}
                         className="mb-6"
                     >
-                        <span className="text-sm uppercase tracking-[0.3em] text-brand-light font-mono border border-brand/30 px-4 py-2 rounded-full backdrop-blur-md">
+                        <span className="text-sm uppercase tracking-[0.3em] text-brand font-mono border border-brand/30 px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm">
                             Visual Logic System
                         </span>
                     </motion.div>
 
                     <motion.h1
-                        className="text-display font-serif font-bold mb-8 drop-shadow-2xl"
+                        className="text-display font-serif font-bold mb-8"
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.4 }}
                     >
-                        <span className="block text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">
+                        <span className="block text-gray-900">
                             VIBE
                         </span>
                     </motion.h1>
@@ -205,13 +206,13 @@ function Home() {
                     >
                         <Link
                             to="/services"
-                            className="px-8 py-4 bg-brand text-black rounded-full font-bold hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,234,255,0.5)]"
+                            className="px-8 py-4 bg-brand text-white rounded-full font-bold hover:bg-brand/80 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,194,255,0.4)]"
                         >
                             서비스 시작하기
                         </Link>
                         <Link
                             to="/about"
-                            className="px-8 py-4 border border-brand/50 text-brand-light rounded-full font-medium hover:bg-brand/10 hover:border-brand transition-all duration-300 backdrop-blur-sm"
+                            className="px-8 py-4 border border-brand/40 text-brand rounded-full font-medium hover:bg-brand/10 hover:border-brand transition-all duration-300 bg-white/50 backdrop-blur-sm"
                         >
                             VIBE 알아보기
                         </Link>
@@ -224,9 +225,9 @@ function Home() {
                     animate={{ y: [0, 10, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                 >
-                    <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+                    <div className="w-6 h-10 border-2 border-brand/30 rounded-full flex justify-center pt-2">
                         <motion.div
-                            className="w-1 h-2 bg-white rounded-full"
+                            className="w-1 h-2 bg-brand/50 rounded-full"
                             animate={{ y: [0, 12, 0] }}
                             transition={{ duration: 2, repeat: Infinity }}
                         />
