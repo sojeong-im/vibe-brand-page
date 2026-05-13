@@ -12,6 +12,7 @@ export default defineConfig({
         shop: resolve(__dirname, 'shop.html'),
         insight: resolve(__dirname, 'insight.html'),
         dashboard: resolve(__dirname, 'dashboard.html'),
+        responses: resolve(__dirname, 'responses.html'),
       },
     },
   },
