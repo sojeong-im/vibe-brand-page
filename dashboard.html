@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIBE DATA DASHBOARD</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #05070a;
+            --vibe-navy: #0a1128;
+            --vibe-blue: #0047ff;
+            --vibe-accent: #e56353;
+            --text-main: #ffffff;
+            --text-dim: #888888;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Layout */
+        .dashboard-container {
+            width: 100%;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 80px 5%;
+            box-sizing: border-box;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Section Title */
+        .section-header {
+            position: absolute;
+            top: 40px;
+            left: 5%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            color: var(--vibe-blue);
+            letter-spacing: 0.2em;
+        }
+
+        .section-title {
+            font-size: 13px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        /* 1. Intro Slider */
+        .intro-slider-wrap {
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 2000px;
+        }
+
+        .profile-viewer {
+            width: 90%;
+            max-width: 1200px;
+            height: 100%;
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        .slider-content {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide {
+            width: 33.333%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            box-sizing: border-box;
+        }
+
+        .mockup-page {
+            width: 80%;
+            height: 90%;
+            background: #fff;
+            color: #000;
+            padding: 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            transform: rotateY(-5deg);
+            transition: transform 0.5s;
+        }
+
+        .slide-nav {
+            position: absolute;
+            bottom: 40px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-dot {
+            width: 40px;
+            height: 2px;
+            background: var(--text-dim);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-dot.active {
+            background: var(--vibe-blue);
+            width: 80px;
+        }
+
+        /* 2. AI Analysis */
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .embed-container {
+            height: 600px;
+            background: #000;
+            border-radius: 12px;
+            border: 1px solid var(--vibe-blue);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .data-visualizer {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            color: var(--vibe-blue);
+        }
+
+        /* 3. Precision Tuning */
+        .tuning-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .tuning-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            padding: 40px;
+            border-top: 2px solid var(--vibe-blue);
+        }
+
+        .tuning-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 0.1em;
+        }
+
+        .tuning-desc {
+            color: var(--text-dim);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .range-wrap {
+            margin-bottom: 20px;
+        }
+
+        input[type=range] {
+            width: 100%;
+            appearance: none;
+            background: rgba(255,255,255,0.1);
+            height: 2px;
+            outline: none;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: var(--vibe-blue);
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        /* 4. Review Campaign */
+        .campaign-box {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .gauge-container {
+            width: 100%;
+            height: 60px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 30px;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .gauge-bar {
+            width: 74%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--vibe-blue), #00d1ff);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 20px;
+            box-sizing: border-box;
+            transition: 2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gauge-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Animations */
+        .floating-data {
+            position: absolute;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            color: var(--vibe-blue);
+            opacity: 0.3;
+            animation: moveUp 10s linear infinite;
+        }
+
+        @keyframes moveUp {
+            from { transform: translateY(100vh); }
+            to { transform: translateY(-100vh); }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- 1. Intro: The Result -->
+        <section id="intro">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <span class="section-title">Intro: The Result</span>
+            </div>
+            <div class="intro-slider-wrap">
+                <div class="profile-viewer">
+                    <div class="slider-content" id="slider">
+                        <div class="slide">
+                            <div class="mockup-page">
+                                <h2>VIBE PROFILE PAGE 01</h2>
+                                <p>Visual Logic Analysis Result</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="mockup-page">
+                                <h2>VIBE PROFILE PAGE 02</h2>
+                                <p>Data-Driven Style Guide</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="mockup-page">
+                                <h2>VIBE PROFILE PAGE 03</h2>
+                                <p>Personalized Identity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-nav">
+                <div class="nav-dot active" onclick="moveSlide(0)"></div>
+                <div class="nav-dot" onclick="moveSlide(1)"></div>
+                <div class="nav-dot" onclick="moveSlide(2)"></div>
+            </div>
+        </section>
+
+        <!-- 2. AI Analysis -->
+        <section id="analysis">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <span class="section-title">Section 1: AI Analysis</span>
+            </div>
+            <div class="analysis-grid">
+                <div class="embed-container">
+                    <iframe src="https://vibelogic.site/" width="100%" height="100%" frameborder="0"></iframe>
+                </div>
+                <div class="data-visualizer">
+                    <div class="metric-row">
+                        <span class="metric-label">Facial Symmetry</span>
+                        <span class="metric-value" id="sym-val">0.982</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Geometric Balance</span>
+                        <span class="metric-value" id="bal-val">1.241</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Visual Weight</span>
+                        <span class="metric-value" id="weight-val">0.756</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Chroma Consistency</span>
+                        <span class="metric-value" id="chroma-val">0.884</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Precision Tuning -->
+        <section id="tuning">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <span class="section-title">Section 2: Precision Tuning</span>
+            </div>
+            <div class="tuning-controls">
+                <div class="tuning-card">
+                    <h3>Medi-Log</h3>
+                    <p class="tuning-desc">약물 복용에 따른 혈색 보정 가이드</p>
+                    <div class="range-wrap">
+                        <label class="metric-label">Skin Sensitivity</label>
+                        <input type="range" min="0" max="100" value="45">
+                    </div>
+                    <div class="range-wrap">
+                        <label class="metric-label">Tone Variability</label>
+                        <input type="range" min="0" max="100" value="62">
+                    </div>
+                </div>
+                <div class="tuning-card">
+                    <h3>Inked-Logic</h3>
+                    <p class="tuning-desc">문신/흉터 무드 및 시각적 무게 분석</p>
+                    <div class="range-wrap">
+                        <label class="metric-label">Visual Gravity</label>
+                        <input type="range" min="0" max="100" value="30">
+                    </div>
+                    <div class="range-wrap">
+                        <label class="metric-label">Style Balance</label>
+                        <input type="range" min="0" max="100" value="85">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Review Campaign -->
+        <section id="review">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <span class="section-title">Section 3: DATA FEEDBACK</span>
+            </div>
+            <div class="campaign-box">
+                <h2 style="font-size: 48px; margin-bottom: 20px;">The Value of Your Feedback</h2>
+                <p style="color: var(--text-dim); line-height: 1.8;">"Review is Data" - 고객님의 리뷰는 단순한 후기를 넘어,<br>VIBE AI 알고리즘의 정확도를 높이는 핵심 검증 데이터로 활용됩니다.</p>
+                
+                <div class="gauge-container">
+                    <div class="gauge-bar">
+                        <span class="gauge-text">74% COLLECTED</span>
+                    </div>
+                </div>
+                <p style="font-size: 12px; color: var(--vibe-blue); margin-top: 15px; letter-spacing: 0.1em;">CURRENT CAMPAIGN STATUS: ACTIVE (LIMITED CAPACITY)</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Slider Logic
+        function moveSlide(index) {
+            const slider = document.getElementById('slider');
+            const dots = document.querySelectorAll('.nav-dot');
+            slider.style.transform = `translateX(-${index * 33.333}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+        }
+
+        // Live Metric Animation
+        function animateMetrics() {
+            const ids = ['sym-val', 'bal-val', 'weight-val', 'chroma-val'];
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                setInterval(() => {
+                    const current = parseFloat(el.innerText);
+                    const diff = (Math.random() - 0.5) * 0.01;
+                    el.innerText = (current + diff).toFixed(3);
+                }, 100);
+            });
+        }
+        animateMetrics();
+
+        // Add Floating Background Data
+        function createFloatingData() {
+            for(let i=0; i<20; i++) {
+                const div = document.createElement('div');
+                div.className = 'floating-data';
+                div.innerText = (Math.random() * 1000).toFixed(4);
+                div.style.left = Math.random() * 100 + '%';
+                div.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(div);
+            }
+        }
+        createFloatingData();
+    </script>
+</body>
+</html>
