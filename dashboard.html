@@ -154,6 +154,41 @@
             width: 60px;
         }
 
+        /* Slider Arrows */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .slider-arrow:hover {
+            background: var(--vibe-blue);
+            border-color: var(--vibe-blue);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-arrow.prev {
+            left: 20px;
+        }
+
+        .slider-arrow.next {
+            right: 20px;
+        }
+
         /* 2. AI Analysis */
         .analysis-grid {
             display: grid;
@@ -375,7 +410,8 @@
                 <span class="section-number">01</span>
                 <span class="section-title">Intro: The Result</span>
             </div>
-            <div class="intro-slider-wrap">
+            <div class="intro-slider-wrap" style="position: relative;">
+                <button class="slider-arrow prev" onclick="moveSlideDir(-1)">❮</button>
                 <div class="profile-viewer">
                     <div class="slider-content" id="slider">
                         <div class="slide"><div class="mockup-page"><img src="/assets/profile_page1.png" alt="Profile Page 1"></div></div>
@@ -393,6 +429,7 @@
                         <div class="slide"><div class="mockup-page"><img src="/assets/profile_page13.png" alt="Profile Page 13"></div></div>
                     </div>
                 </div>
+                <button class="slider-arrow next" onclick="moveSlideDir(1)">❯</button>
             </div>
             <div class="slide-nav">
                 <div class="nav-dot active" onclick="moveSlide(0)"></div>
@@ -497,12 +534,23 @@
     </div>
 
     <script>
+        let currentSlide = 0;
+        const totalSlides = 13;
+
         function moveSlide(index) {
+            currentSlide = index;
             const slider = document.getElementById('slider');
             const dots = document.querySelectorAll('.nav-dot');
-            slider.style.transform = `translateX(-${index * (100 / 13)}%)`;
+            slider.style.transform = `translateX(-${index * (100 / totalSlides)}%)`;
             dots.forEach(dot => dot.classList.remove('active'));
             dots[index].classList.add('active');
+        }
+
+        function moveSlideDir(dir) {
+            let nextIndex = currentSlide + dir;
+            if (nextIndex < 0) nextIndex = totalSlides - 1;
+            if (nextIndex >= totalSlides) nextIndex = 0;
+            moveSlide(nextIndex);
         }
 
         // Live Metric Animation
