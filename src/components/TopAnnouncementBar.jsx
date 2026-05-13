@@ -18,7 +18,7 @@ export default function TopAnnouncementBar() {
             >
                 <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between text-xs md:text-sm font-bold tracking-wide">
                     <Link to="/insight" className="flex-1 text-center hover:opacity-75 transition-opacity flex items-center justify-center gap-2">
-                        <span className="bg-black text-brand px-2 py-0.5 rounded text-[10px]">EVENT</span>
+                        <span className="bg-white text-brand px-2 py-0.5 rounded text-[10px] font-bold">EVENT</span>
                         <span>VIBE 런칭 행사 '느낌을 모아 데이터로 가이드하다' 5/7(목) 참가 신청 중!</span>
                         <span className="hidden md:inline">➔</span>
                     </Link>

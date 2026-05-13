@@ -27,12 +27,12 @@ import Background3D from './components/Background3D'
 
 function App() {
     return (
-        <div className="min-h-screen flex flex-col bg-black text-white relative">
+        <div className="min-h-screen flex flex-col bg-white text-gray-900 relative">
             <TopAnnouncementBar />
             <Background3D />
             <ScrollToTop />
             <Header />
-            <main className="flex-1 selection:bg-brand-DEFAULT selection:text-black">
+            <main className="flex-1 selection:bg-brand selection:text-white">
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
