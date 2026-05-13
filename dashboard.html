@@ -161,6 +161,31 @@
             width: 60px;
         }
 
+        .version-tab {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-dim);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        .version-tab.active {
+            background: var(--vibe-blue);
+            color: white;
+            border-color: var(--vibe-blue);
+        }
+        
+        .version-tab:hover:not(.active) {
+            border-color: var(--vibe-blue);
+            color: var(--vibe-blue);
+        }
+
         .slider-arrow {
             position: absolute;
             top: 50%;
@@ -608,41 +633,21 @@
                 <span class="section-number">01</span>
                 <span class="section-title">Intro: The Result</span>
             </div>
+            <div class="version-tabs" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;">
+                <button class="version-tab active" onclick="setGender('women')">여성 버전 (Women)</button>
+                <button class="version-tab" onclick="setGender('men')">남성 버전 (Men)</button>
+            </div>
             <div class="intro-slider-wrap" style="position: relative;">
                 <button class="slider-arrow prev" onclick="moveSlideDir(-1)">❮</button>
                 <div class="profile-viewer">
                     <div class="slider-content" id="slider">
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page1.png" alt="Profile Page 1"></div></div>
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page2.png" alt="Profile Page 2"></div></div>
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page3.png" alt="Profile Page 3"></div></div>
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page4.png" alt="Profile Page 4"></div></div>
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page5.png" alt="Profile Page 5"></div></div>
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page6.png" alt="Profile Page 6"></div></div>
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page7.png" alt="Profile Page 7"></div></div>
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page8.png" alt="Profile Page 8"></div></div>
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page9.png" alt="Profile Page 9"></div></div>
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page10.png" alt="Profile Page 10"></div></div>
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page11.png" alt="Profile Page 11"></div></div>
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page12.png" alt="Profile Page 12"></div></div>
-                        <div class="slide"><div class="mockup-page"><img src="/assets/profile_page13.png" alt="Profile Page 13"></div></div>
+                        <!-- Rendered by JS -->
                     </div>
                 </div>
                 <button class="slider-arrow next" onclick="moveSlideDir(1)">❯</button>
             </div>
-            <div class="slide-nav">
-                <div class="nav-dot active" onclick="moveSlide(0)"></div>
-                <div class="nav-dot" onclick="moveSlide(1)"></div>
-                <div class="nav-dot" onclick="moveSlide(2)"></div>
-                <div class="nav-dot" onclick="moveSlide(3)"></div>
-                <div class="nav-dot" onclick="moveSlide(4)"></div>
-                <div class="nav-dot" onclick="moveSlide(5)"></div>
-                <div class="nav-dot" onclick="moveSlide(6)"></div>
-                <div class="nav-dot" onclick="moveSlide(7)"></div>
-                <div class="nav-dot" onclick="moveSlide(8)"></div>
-                <div class="nav-dot" onclick="moveSlide(9)"></div>
-                <div class="nav-dot" onclick="moveSlide(10)"></div>
-                <div class="nav-dot" onclick="moveSlide(11)"></div>
-                <div class="nav-dot" onclick="moveSlide(12)"></div>
+            <div class="slide-nav" id="slide-nav">
+                <!-- Rendered by JS -->
             </div>
         </section>
 
@@ -840,7 +845,42 @@
 
     <script>
         let currentSlide = 0;
-        const totalSlides = 13;
+        let totalSlides = 14;
+        let currentGender = 'women';
+
+        function renderSlider() {
+            const slider = document.getElementById('slider');
+            const nav = document.getElementById('slide-nav');
+            
+            totalSlides = currentGender === 'women' ? 14 : 13;
+            const prefix = currentGender === 'women' ? 'W' : '';
+            
+            // Generate slides
+            let slidesHtml = '';
+            for (let i = 1; i <= totalSlides; i++) {
+                slidesHtml += `<div class="slide"><div class="mockup-page"><img src="/assets/profile_page${prefix}${i}.png" alt="Profile Page ${i}"></div></div>`;
+            }
+            slider.innerHTML = slidesHtml;
+            slider.style.width = `${totalSlides * 100}%`;
+            
+            // Generate nav dots
+            let navHtml = '';
+            for (let i = 0; i < totalSlides; i++) {
+                navHtml += `<div class="nav-dot ${i === 0 ? 'active' : ''}" onclick="moveSlide(${i})"></div>`;
+            }
+            nav.innerHTML = navHtml;
+            
+            moveSlide(0);
+        }
+
+        function setGender(gender) {
+            currentGender = gender;
+            document.querySelectorAll('.version-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            renderSlider();
+        }
 
         function moveSlide(index) {
             currentSlide = index;
@@ -848,7 +888,7 @@
             const dots = document.querySelectorAll('.nav-dot');
             slider.style.transform = `translateX(-${index * (100 / totalSlides)}%)`;
             dots.forEach(dot => dot.classList.remove('active'));
-            dots[index].classList.add('active');
+            if(dots[index]) dots[index].classList.add('active');
         }
 
         function moveSlideDir(dir) {
@@ -909,7 +949,7 @@
         }
         
         // Initial state
-        // createFloatingData(); // Only start after auth
+        renderSlider();
     </script>
     <!-- Firebase & Form Script -->
     <script type="module">
@@ -952,7 +992,8 @@
                     q8: formData.get('q8') || '',
                     q9: formData.get('q9') || '',
                     q10: formData.get('q10') || '',
-                    q11: formData.get('q11') || '미선택'
+                    q11: formData.get('q11') || '미선택',
+                    version: currentGender === 'women' ? '여성(Women)' : '남성(Men)'
                 };
 
                 // Create a Promise that rejects after 10 seconds to prevent infinite hanging

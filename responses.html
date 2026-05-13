@@ -290,7 +290,10 @@
                     card.className = 'response-card';
                     card.innerHTML = `
                         <div class="card-header">
-                            <span style="font-size: 16px; font-weight: bold; color: var(--vibe-blue);">${data.applicant_name || '미기재'}</span>
+                            <div>
+                                <span style="font-size: 16px; font-weight: bold; color: var(--vibe-blue); margin-right: 8px;">${data.applicant_name || '미기재'}</span>
+                                <span style="font-size: 12px; background: rgba(0,71,255,0.1); color: var(--vibe-blue); padding: 2px 6px; border-radius: 4px;">${data.version || '버전 미상'}</span>
+                            </div>
                             <span class="time-badge">${date}</span>
                         </div>
                         <div class="qna-row"><div class="q-text">Q1. 선호 핏</div><div class="a-text">${data.q1 || '-'}</div></div>
