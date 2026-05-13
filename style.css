@@ -2,12 +2,12 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 :root {
-    --bg-color: #f8f8f6;
+    --bg-color: #ffffff;
     --text-color: #111111;
     --accent-color: #0095ff;
     --secondary-accent: #00c2ff;
-    --glass-bg: rgba(0, 0, 0, 0.03);
-    --glass-border: rgba(0, 0, 0, 0.08);
+    --glass-bg: rgba(0, 0, 0, 0.02);
+    --glass-border: rgba(0, 0, 0, 0.06);
     --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-fast: all 0.3s ease;
 }
@@ -40,16 +40,16 @@ body {
     padding: 0 5%;
     z-index: 1000;
     transition: var(--transition-slow);
-    background: rgba(248, 248, 246, 0.85);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .vibe-header-transparent.scrolled {
     height: 80px;
-    background: rgba(248, 248, 246, 0.95);
+    background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .logo-container {
@@ -317,21 +317,21 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: #f0f0ee;
+    background: #f4f4f4;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #ccc;
+    background: #d0d0d0;
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #aaa;
+    background: #b0b0b0;
 }
 
 /* --- Stats Section --- */
 .vibe-stats-section {
-    background-color: #f0f0ee;
+    background-color: #f5f7fa;
     padding: 100px 0;
     display: flex;
     justify-content: center;
@@ -587,7 +587,7 @@ body {
 
 /* --- Process Section & Transition --- */
 .vibe-process-page {
-    background: #f8f8f6;
+    background: #ffffff;
     padding: 0 0 120px 0;
     color: #1a1a1a;
     line-height: 1.8;

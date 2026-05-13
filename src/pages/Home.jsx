@@ -235,7 +235,7 @@ function Home() {
             </motion.section>
 
             {/* VIBE AI Preview Section */}
-            <section className="py-24 md:py-32 px-6 relative overflow-hidden bg-white/80">
+            <section className="py-24 md:py-32 px-6 relative overflow-hidden bg-white">
                 <div className="absolute inset-0 bg-brand/3" />
                 <GridScanEffect />
 
@@ -350,7 +350,7 @@ function Home() {
             </section>
 
             {/* Brand Philosophy Section */}
-            <section className="py-32 px-6 bg-gray-50 relative">
+            <section className="py-32 px-6 bg-[#f5f7fa] relative">
                 <div className="max-w-6xl mx-auto relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -391,7 +391,7 @@ function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                                className="group relative p-8 bg-white backdrop-blur-sm border border-gray-200 rounded-2xl hover:border-brand transition-all duration-500 hover:shadow-[0_8px_30px_rgba(0,194,255,0.15)]"
+                                className="group relative p-8 bg-white border border-gray-100 rounded-2xl hover:border-brand/40 transition-all duration-500 hover:shadow-[0_8px_30px_rgba(0,194,255,0.12)] shadow-sm"
                             >
                                 <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">
                                     {item.icon}
@@ -410,7 +410,7 @@ function Home() {
 
             {/* Data Stats Section */}
             <section className="py-32 px-6 bg-white relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand/5 to-transparent opacity-40" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand/3 to-transparent opacity-60" />
 
                 <div className="max-w-6xl mx-auto relative z-10">
                     <motion.div
@@ -439,7 +439,7 @@ function Home() {
             </section>
 
             {/* Services Preview */}
-            <section className="py-32 px-6 relative bg-gray-50">
+            <section className="py-32 px-6 relative bg-[#f5f7fa]">
                 <div className="max-w-7xl mx-auto relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -501,7 +501,7 @@ function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                                className="group relative overflow-hidden rounded-2xl p-8 bg-white border border-gray-200 hover:border-brand/50 transition-all duration-500 hover:shadow-[0_8px_30px_rgba(0,194,255,0.12)]"
+                                className="group relative overflow-hidden rounded-2xl p-8 bg-white border border-gray-100 hover:border-brand/40 transition-all duration-500 hover:shadow-[0_8px_30px_rgba(0,194,255,0.1)] shadow-sm"
                             >
                                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
 
