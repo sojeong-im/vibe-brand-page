@@ -123,7 +123,7 @@ function Home() {
     const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95])
 
     return (
-        <div className="bg-transparent text-white">
+        <div className="bg-transparent text-gray-900">
             <LaunchPopup />
             {/* Hero Section */}
             <motion.section
@@ -131,7 +131,7 @@ function Home() {
                 style={{ opacity: heroOpacity, scale: heroScale }}
             >
                 {/* Visual Backdrop is handled by global Background3D, but we add local gradient for focus */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-white/70 pointer-events-none" />
 
                 {/* Animated Particles - Cyan */}
                 <div className="absolute inset-0">
@@ -180,7 +180,7 @@ function Home() {
                     </motion.h1>
 
                     <motion.p
-                        className="text-2xl md:text-3xl text-gray-300 mb-4 font-light tracking-wide"
+                        className="text-2xl md:text-3xl text-gray-600 mb-4 font-light tracking-wide"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1, delay: 0.6 }}
@@ -189,7 +189,7 @@ function Home() {
                     </motion.p>
 
                     <motion.p
-                        className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto"
+                        className="text-lg md:text-xl text-gray-500 mb-12 max-w-3xl mx-auto"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1, delay: 0.8 }}
@@ -235,8 +235,8 @@ function Home() {
             </motion.section>
 
             {/* VIBE AI Preview Section */}
-            <section className="py-24 md:py-32 px-6 relative overflow-hidden">
-                <div className="absolute inset-0 bg-brand/5" />
+            <section className="py-24 md:py-32 px-6 relative overflow-hidden bg-white/80">
+                <div className="absolute inset-0 bg-brand/3" />
                 <GridScanEffect />
 
                 <div className="max-w-7xl mx-auto relative z-10">
@@ -250,33 +250,33 @@ function Home() {
                             <span className="inline-block px-3 py-1 bg-brand/10 border border-brand/20 text-brand text-xs font-mono mb-6 rounded-full">
                                 AI ANALYSIS Beta
                             </span>
-                            <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight">
+                            <h2 className="text-4xl md:text-6xl font-serif font-bold text-gray-900 mb-6 leading-tight">
                                 VIBE AI :<br />
                                 <span className="text-brand">THE LOGIC OF BEAUTY</span>
                             </h2>
-                            <p className="text-xl text-gray-300 mb-8 leading-relaxed font-light">
+                            <p className="text-xl text-gray-600 mb-8 leading-relaxed font-light">
                                 Undefined VIBE, Defined by Data.<br />
                                 거울 속 모호했던 나의 분위기를<br />
-                                <strong className="text-white">0.1mm의 정확한 수치</strong>로 정의합니다.
+                                <strong className="text-gray-900">0.1mm의 정확한 수치</strong>로 정의합니다.
                             </p>
 
                             <div className="space-y-6 mb-10">
                                 <div className="flex items-start gap-4">
-                                    <div className="w-12 h-12 rounded-full bg-gray-900 border border-brand/30 flex items-center justify-center flex-shrink-0">
+                                    <div className="w-12 h-12 rounded-full bg-gray-100 border border-brand/30 flex items-center justify-center flex-shrink-0">
                                         <span className="text-xl">👁️</span>
                                     </div>
                                     <div>
-                                        <h4 className="text-white font-bold mb-1">Visual Logic</h4>
-                                        <p className="text-gray-400 text-sm">"내가 알고 있던 나의 느낌들"을 단순한 감상이 아닌 객관적 지표로 정리해 줍니다.</p>
+                                        <h4 className="text-gray-900 font-bold mb-1">Visual Logic</h4>
+                                        <p className="text-gray-500 text-sm">"내가 알고 있던 나의 느낌들"을 단순한 감상이 아닌 객관적 지표로 정리해 줍니다.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <div className="w-12 h-12 rounded-full bg-gray-900 border border-brand/30 flex items-center justify-center flex-shrink-0">
+                                    <div className="w-12 h-12 rounded-full bg-gray-100 border border-brand/30 flex items-center justify-center flex-shrink-0">
                                         <span className="text-xl">📐</span>
                                     </div>
                                     <div>
-                                        <h4 className="text-white font-bold mb-1">Precise Algorithm</h4>
-                                        <p className="text-gray-400 text-sm">오직 당신만을 위해 설계된 VIBE 알고리즘을 경험해 보세요.</p>
+                                        <h4 className="text-gray-900 font-bold mb-1">Precise Algorithm</h4>
+                                        <p className="text-gray-500 text-sm">오직 당신만을 위해 설계된 VIBE 알고리즘을 경험해 보세요.</p>
                                     </div>
                                 </div>
                             </div>
@@ -350,7 +350,7 @@ function Home() {
             </section>
 
             {/* Brand Philosophy Section */}
-            <section className="py-32 px-6 bg-black/50 relative">
+            <section className="py-32 px-6 bg-gray-50 relative">
                 <div className="max-w-6xl mx-auto relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -359,10 +359,10 @@ function Home() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-20"
                     >
-                        <h2 className="text-headline font-serif font-bold text-white mb-6">
+                        <h2 className="text-headline font-serif font-bold text-gray-900 mb-6">
                             느낌이 데이터가 되는 순간
                         </h2>
-                        <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                        <p className="text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
                             우리가 '느낌'이라 부르는 모든 것은 결국 정교한 '데이터'의 합이다.
                         </p>
                     </motion.div>
@@ -391,15 +391,15 @@ function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                                className="group relative p-8 bg-gray-900/50 backdrop-blur-sm border border-white/10 rounded-2xl hover:border-brand transition-all duration-500 hover:shadow-[0_0_20px_rgba(0,234,255,0.2)]"
+                                className="group relative p-8 bg-white backdrop-blur-sm border border-gray-200 rounded-2xl hover:border-brand transition-all duration-500 hover:shadow-[0_8px_30px_rgba(0,194,255,0.15)]"
                             >
-                                <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(0,234,255,0.4)]">
+                                <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">
                                     {item.icon}
                                 </div>
-                                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-brand transition-colors">
+                                <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-brand transition-colors">
                                     {item.title}
                                 </h3>
-                                <p className="text-gray-400 leading-relaxed">
+                                <p className="text-gray-500 leading-relaxed">
                                     {item.description}
                                 </p>
                             </motion.div>
@@ -409,8 +409,8 @@ function Home() {
             </section>
 
             {/* Data Stats Section */}
-            <section className="py-32 px-6 bg-black relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-dark/10 to-transparent opacity-20" />
+            <section className="py-32 px-6 bg-white relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand/5 to-transparent opacity-40" />
 
                 <div className="max-w-6xl mx-auto relative z-10">
                     <motion.div
@@ -420,10 +420,10 @@ function Home() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-20"
                     >
-                        <h2 className="text-headline font-serif font-bold text-white mb-6">
+                        <h2 className="text-headline font-serif font-bold text-gray-900 mb-6">
                             데이터로 증명하는 스타일
                         </h2>
-                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                        <p className="text-xl text-gray-500 max-w-3xl mx-auto">
                             VIBE는 막연한 '느낌'을 말하지 않습니다
                         </p>
                     </motion.div>
@@ -439,7 +439,7 @@ function Home() {
             </section>
 
             {/* Services Preview */}
-            <section className="py-32 px-6 relative bg-black/40">
+            <section className="py-32 px-6 relative bg-gray-50">
                 <div className="max-w-7xl mx-auto relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -448,10 +448,10 @@ function Home() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-20"
                     >
-                        <h2 className="text-headline font-serif font-bold text-white mb-6">
+                        <h2 className="text-headline font-serif font-bold text-gray-900 mb-6">
                             VIBE SYSTEM
                         </h2>
-                        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                        <p className="text-xl text-gray-500 max-w-3xl mx-auto">
                             데이터 분석부터 스타일 구현까지
                         </p>
                     </motion.div>
@@ -501,18 +501,18 @@ function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                                className="group relative overflow-hidden rounded-2xl p-8 bg-gray-900 border border-white/10 hover:border-brand/50 transition-all duration-500 hover:shadow-[0_0_20px_rgba(0,234,255,0.15)]"
+                                className="group relative overflow-hidden rounded-2xl p-8 bg-white border border-gray-200 hover:border-brand/50 transition-all duration-500 hover:shadow-[0_8px_30px_rgba(0,194,255,0.12)]"
                             >
-                                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
 
                                 <div className="relative z-10">
                                     <div className="text-caption text-brand mb-2 font-mono">
                                         {service.subtitle}
                                     </div>
-                                    <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-brand-light transition-colors duration-300">
+                                    <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-brand transition-colors duration-300">
                                         {service.title}
                                     </h3>
-                                    <p className="text-gray-400 leading-relaxed mb-6">
+                                    <p className="text-gray-500 leading-relaxed mb-6">
                                         {service.description}
                                     </p>
                                     <div className="flex items-center text-brand font-medium group-hover:translate-x-2 transition-transform duration-300">
@@ -542,7 +542,7 @@ function Home() {
 
             {/* CTA Section */}
             <section className="py-32 px-6 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-black via-brand-dark/20 to-black" />
+                <div className="absolute inset-0 bg-gradient-to-b from-white via-brand/5 to-white" />
                 <GridScanEffect />
 
                 <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -552,10 +552,10 @@ function Home() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-headline font-serif font-bold text-white mb-6">
+                        <h2 className="text-headline font-serif font-bold text-gray-900 mb-6">
                             당신의 느낌을 데이터로
                         </h2>
-                        <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+                        <p className="text-xl text-gray-500 mb-12 leading-relaxed">
                             막연하게 느껴왔던 분위기, 이제 데이터로 확인하세요.<br />
                             나를 표현하는 일은 더 이상 막막한 과제가 아닌 즐거운 확신이 됩니다.
                         </p>

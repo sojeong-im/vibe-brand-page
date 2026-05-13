@@ -2,12 +2,12 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 :root {
-    --bg-color: #050505;
-    --text-color: #ffffff;
-    --accent-color: #7000ff;
-    --secondary-accent: #00d4ff;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --bg-color: #f8f8f6;
+    --text-color: #111111;
+    --accent-color: #0095ff;
+    --secondary-accent: #00c2ff;
+    --glass-bg: rgba(0, 0, 0, 0.03);
+    --glass-border: rgba(0, 0, 0, 0.08);
     --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-fast: all 0.3s ease;
 }
@@ -40,14 +40,16 @@ body {
     padding: 0 5%;
     z-index: 1000;
     transition: var(--transition-slow);
-    background: transparent;
+    background: rgba(248, 248, 246, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .vibe-header-transparent.scrolled {
     height: 80px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(248, 248, 246, 0.95);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .logo-container {
@@ -96,7 +98,7 @@ body {
 
 .login-link {
     font-size: 12px;
-    color: #fff;
+    color: #111;
     text-decoration: none;
     letter-spacing: 0.1em;
     font-weight: 300;
@@ -104,7 +106,7 @@ body {
 
 /* Rarelee 스타일 Start Now 버튼 */
 .vibe-fixed-start-btn {
-    background-color: #000;
+    background-color: #111;
     color: #fff;
     padding: 12px 30px;
     font-size: 13px;
@@ -116,15 +118,15 @@ body {
 }
 
 .vibe-fixed-start-btn:hover {
-    background-color: #333;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: var(--secondary-accent);
+    box-shadow: 0 4px 20px rgba(0, 194, 255, 0.3);
 }
 
 /* 장바구니 아이콘 스타일 */
 .cart-icon {
     position: relative;
     cursor: pointer;
-    color: #fff;
+    color: #111;
     display: flex;
     align-items: center;
 }
@@ -177,7 +179,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%);
+    background: radial-gradient(circle, rgba(248, 248, 246, 0.15) 0%, rgba(248, 248, 246, 0.55) 100%);
 }
 
 .hero-content {
@@ -191,7 +193,7 @@ body {
     font-weight: 600;
     letter-spacing: -5px;
     line-height: 0.8;
-    background: linear-gradient(to bottom, #ffffff 30%, #555 100%);
+    background: linear-gradient(to bottom, #111111 30%, #666 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -232,7 +234,7 @@ body {
     font-weight: 600;
     letter-spacing: -2px;
     line-height: 0.9;
-    background: linear-gradient(to right, #ffffff, #888);
+    background: linear-gradient(to right, #111111, #888);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -315,22 +317,21 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-color);
+    background: #f0f0ee;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #333;
+    background: #ccc;
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #444;
+    background: #aaa;
 }
 
 /* --- Stats Section --- */
 .vibe-stats-section {
-    background-color: #000;
-    /* 어두운 배경에서 신뢰감 상승 */
+    background-color: #f0f0ee;
     padding: 100px 0;
     display: flex;
     justify-content: center;
@@ -352,7 +353,7 @@ body {
     display: block;
     font-size: 11px;
     letter-spacing: 0.3em;
-    color: #666;
+    color: #999;
     margin-bottom: 15px;
     text-transform: uppercase;
 }
@@ -361,8 +362,7 @@ body {
     font-size: 48px;
     font-weight: 200;
     letter-spacing: 0.05em;
-    /* VIBE 로고 스타일의 실버 그라데이션 */
-    background: linear-gradient(180deg, #FFFFFF 0%, #A0A0A0 100%);
+    background: linear-gradient(180deg, #111111 0%, #888 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -371,7 +371,7 @@ body {
 .stat-divider {
     width: 1px;
     height: 40px;
-    background-color: #333;
+    background-color: #ddd;
 }
 
 /* --- Notification Box --- */
@@ -560,7 +560,7 @@ body {
 
 .profile-text p {
     font-size: 1.1rem;
-    color: #999;
+    color: #666;
     font-weight: 300;
     line-height: 1.8;
 }
@@ -579,18 +579,15 @@ body {
 }
 
 .vibe-start-btn:hover {
-    background: var(--text-color);
-    color: var(--bg-color);
+    background: var(--secondary-accent);
+    border-color: var(--secondary-accent);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 194, 255, 0.3);
 }
 
 /* --- Process Section & Transition --- */
 .vibe-process-page {
-    /* 상단 1000px 구간을 블랙에서 화이트로 부드럽게 전환 */
-    background: linear-gradient(to bottom,
-            #050505 0%,
-            #050505 100px,
-            #ffffff 900px,
-            #ffffff 100%);
+    background: #f8f8f6;
     padding: 0 0 120px 0;
     color: #1a1a1a;
     line-height: 1.8;
@@ -613,8 +610,7 @@ body {
     font-weight: 200;
     letter-spacing: 0.3em;
     text-align: center;
-    padding-top: 500px;
-    /* 그라데이션이 진행된 후 화이트 배경 구간에서 제목 시작 */
+    padding-top: 150px;
     margin-bottom: 120px;
     text-transform: uppercase;
     color: #1a1a1a;
@@ -884,7 +880,7 @@ details[open] .process-summary {
 
 /* --- Footer Section --- */
 .vibe-footer {
-    background-color: #000000;
+    background-color: #111111;
     color: #ffffff;
     padding: 100px 5% 60px;
     font-family: 'Pretendard', sans-serif;
@@ -1059,7 +1055,7 @@ details[open] .process-summary {
 .mobile-menu-btn span {
     width: 25px;
     height: 1px;
-    background-color: var(--text-color);
+    background-color: #111;
     transition: var(--transition-fast);
 }
 
