@@ -4,13 +4,13 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDveEhCUwEBglkznumfDIVCtpEsRfWOyrc",
-    authDomain: "vibe-brand-page.firebaseapp.com",
-    projectId: "vibe-brand-page",
-    storageBucket: "vibe-brand-page.firebasestorage.app",
-    messagingSenderId: "421880123399",
-    appId: "1:421880123399:web:3820b6eb99ab43a542daa2",
-    measurementId: "G-F721TQ8W6V"
+    apiKey: "AIzaSyApMoEdjAYMeaEXdIy6dlM1b018IjmfGfk",
+    authDomain: "vibelogic-bc65c.firebaseapp.com",
+    projectId: "vibelogic-bc65c",
+    storageBucket: "vibelogic-bc65c.firebasestorage.app",
+    messagingSenderId: "814360532364",
+    appId: "1:814360532364:web:2cf8235dbfee1eea1a72a9",
+    measurementId: "G-MEWZG6CK8Z"
 };
 
 // Initialize Firebase
