@@ -896,29 +896,42 @@
             btn.innerText = '저장 중...';
             btn.disabled = true;
 
-            const formData = new FormData(e.target);
-            const data = {
-                createdAt: serverTimestamp(),
-                q1: formData.get('q1') === '기타' ? formData.get('q1_etc') : formData.get('q1'),
-                q2: formData.getAll('q2'),
-                q3: formData.get('q3'),
-                q4: formData.get('q4'),
-                q5_has_tattoo: formData.get('q5_has_tattoo'),
-                q5_detail: formData.get('q5_detail'),
-                q6: formData.getAll('q6'),
-                q7: formData.get('q7'),
-                q8: formData.get('q8'),
-                q9: formData.get('q9'),
-                q10: formData.get('q10')
-            };
-
             try {
-                await addDoc(collection(db, "vibe_pursuits"), data);
+                const formData = new FormData(e.target);
+                const data = {
+                    createdAt: serverTimestamp(),
+                    q1: (formData.get('q1') === '기타' ? formData.get('q1_etc') : formData.get('q1')) || '미선택',
+                    q2: formData.getAll('q2') || [],
+                    q3: formData.get('q3') || '미선택',
+                    q4: formData.get('q4') || '',
+                    q5_has_tattoo: formData.get('q5_has_tattoo') || '미선택',
+                    q5_detail: formData.get('q5_detail') || '',
+                    q6: formData.getAll('q6') || [],
+                    q7: formData.get('q7') || '',
+                    q8: formData.get('q8') || '',
+                    q9: formData.get('q9') || '',
+                    q10: formData.get('q10') || ''
+                };
+
+                // Create a Promise that rejects after 10 seconds to prevent infinite hanging
+                const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT')), 10000));
+                
+                await Promise.race([
+                    addDoc(collection(db, "vibe_pursuits"), data),
+                    timeoutPromise
+                ]);
+
                 alert('데이터가 성공적으로 저장되었습니다!');
                 e.target.reset();
             } catch (error) {
                 console.error("Error adding document: ", error);
-                alert('오류가 발생했습니다. 다시 시도해주세요.');
+                if (error.message === 'TIMEOUT') {
+                    alert('저장 시간이 초과되었습니다. Firebase 콘솔에서 Firestore Database가 생성되어 있는지 확인해주세요.');
+                } else if (error.code === 'permission-denied') {
+                    alert('권한 오류: Firebase Firestore 규칙(Rules) 설정을 확인해주세요.');
+                } else {
+                    alert('오류가 발생했습니다. 브라우저 콘솔을 확인하거나 다시 시도해주세요.');
+                }
             } finally {
                 btn.innerText = originalText;
                 btn.disabled = false;
