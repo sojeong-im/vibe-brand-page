@@ -543,6 +543,52 @@
             transition: 0.3s;
         }
 
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 40px 20px;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .section-title {
+                font-size: 24px;
+            }
+            .qna-item {
+                flex-direction: column;
+                padding: 25px 20px;
+                gap: 10px;
+            }
+            .qna-text {
+                font-size: 16px;
+            }
+            .qna-options {
+                flex-direction: column;
+            }
+            .qna-option {
+                width: 100%;
+                justify-content: center;
+            }
+            .applicant-info-card {
+                padding: 20px !important;
+            }
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+            .embed-container {
+                height: 400px;
+            }
+            .campaign-box h2 {
+                font-size: 32px !important;
+            }
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
